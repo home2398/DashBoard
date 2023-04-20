@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author wlgns
- *
- */
-module test {
-}
