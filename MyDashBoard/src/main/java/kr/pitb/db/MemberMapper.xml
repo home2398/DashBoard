@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- SQL문을 기술하는 공간 -->
+ <!-- namespace : 해당하는 mapper파일을 사용하게 될 DAO이름 작성 -->
+ 
+ <mapper>
+ 
+ <!-- <mapper namespace="kr.smhrd.model.MemberDAO">
+ 	
+ 	
+ 	<insert id="join" parameterType="kr.smhrd.model.MemberVO">
+ 		insert into web_member
+ 		values (#{email} , #{pw}, #{tel}, #{address})
+ 	</insert>
+ 
+ 
+ 	<select id="login" parameterType="kr.smhrd.model.MemberVO"
+ 		resultType="kr.smhrd.model.MemberVO">
+ 		select email, tel, address from web_member
+ 		where email=#{email} and pw=#{pw}
+ 	</select>
+ 	
+ 	
+ 	<select id="selectAll" resultType="kr.smhrd.model.MemberVO">
+ 		select email, tel, address
+ 		from web_member
+ 		where email!='admin'
+ 	
+ 	</select>
+ 
+ 	<select id="emailcheck" parameterType="kr.smhrd.model.MemberVO"
+ 	resultType="java.lang.String">
+ 		select email from web_member
+ 		where email=#{email}
+ 	</select> -->
+ 
+ 
+ </mapper>
