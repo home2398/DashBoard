@@ -17,6 +17,7 @@ public class ex05행개수입력별찍기 {
 				System.out.print("*");
 			}
 			System.out.println();
+			System.out.println();
 		}
 		
 	}
