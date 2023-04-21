@@ -37,7 +37,7 @@ public class LoginService extends HttpServlet {
 			 HttpSession session = request.getSession();
 			 session.setAttribute("User", result);
 		}
-		response.sendRedirect("dashboard.jsp");
+		response.sendRedirect("main.jsp");
 		
 		
 		
