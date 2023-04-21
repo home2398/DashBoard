@@ -13,14 +13,15 @@
  		insert into 회원 (회원id , 비밀번호, 닉네임)
  		values (#{id} , #{pw}, #{nickname})
  	</insert>
- 
+ 	
+ 	<select id="login" parameterType="kr.pitb.model.UserVO"
+ 		resultType="kr.pitb.model.UserVO">
+ 		select 회원ID, 비밀번호 from 회원
+ 		where 회원ID=#{id} and 비밀번호=#{pw}
+ 	</select>
  
  <!-- 
- 	<select id="login" parameterType="kr.smhrd.model.MemberVO"
- 		resultType="kr.smhrd.model.MemberVO">
- 		select email, tel, address from web_member
- 		where email=#{email} and pw=#{pw}
- 	</select>
+ 	
  	
  	 List로 생성하는 건 mybatis 내부적으로 알아서 다 해줌 
  	<select id="selectAll" resultType="kr.smhrd.model.MemberVO">

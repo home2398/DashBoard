@@ -48,6 +48,20 @@ public class UserDAO {
 		return row;
 		
 	}
+
+	public UserVO login(UserVO vo) {
+		
+		UserVO result = null;
+		SqlSession session = null;
+		
+		try {
+			 session = sqlSessionFactory.openSession(true);
+			 result = session.selectOne("login", vo);
+		} finally {
+			session.close();
+		}
+		return result;
+	}
 	
 	
 	

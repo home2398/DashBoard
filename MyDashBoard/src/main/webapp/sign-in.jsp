@@ -53,21 +53,21 @@
                       </div>
                     </div>
                     <div class="card-body">
-                      <form role="form" class="text-start">
+                      <form role="form" class="text-start" action="Login" method="post">
                         <div class="input-group input-group-outline my-3">
                           <label class="form-label">아이디를 입력하세요.</label>
-                          <input type="email" class="form-control">
+                          <input type="text" class="form-control" name="id">
                         </div>
                         <div class="input-group input-group-outline mb-3">
                           <label class="form-label">비밀번호를 입력하세요.</label>
-                          <input type="password" class="form-control">
+                          <input type="password" class="form-control" name="pw">
                         </div>
                         <div class="form-check form-switch d-flex align-items-center mb-3">
                           <input class="form-check-input" type="checkbox" id="rememberMe" checked>
                           <label class="form-check-label mb-0 ms-3" for="rememberMe">계정정보 저장하기</label>
                         </div>
                         <div class="text-center">
-                          <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">들어가기</button>
+                          <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">들어가기</button>
                         </div>
                         <p class="mt-4 text-sm text-center">
                           계정이 없으신가요?

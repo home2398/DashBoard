@@ -47,7 +47,7 @@
                     <p class="mb-0">정보를 입력해주세요</p>
                   </div>
                   <div class="card-body">
-                    <form action="Join" method="post">
+                    <form role="form" action="Join" method="post">
                       <div class="input-group input-group-outline mb-3">
                         <label class="form-label">아이디</label>
                         <input type="text" class="form-control"  name="id">
@@ -73,7 +73,7 @@
                   </div>
                   <div class="card-footer text-center pt-0 px-lg-2 px-1">
                     <p class="mb-2 text-sm mx-auto">
-                      계정이 이미 있으신가요?ㅎㅎ
+                      계정이 이미 있으신가요?
                       <a href="sign-in.jsp" class="text-primary text-gradient font-weight-bold">로그인</a>
                     </p>
                   </div>
