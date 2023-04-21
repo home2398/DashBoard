@@ -7,7 +7,7 @@
 <configuration>
   
   <!-- 2) properties : 외부 파일 읽어오기! -->
-  <properties resource="kr/smhrd/db/db.properties"/>
+  <properties resource="kr/pitb/db/db.properties"/>
   
   <!-- 3) environments : 데이터베이스들을 기술하는 공간 -->
   <environments default="development">
@@ -28,6 +28,6 @@
   
   <!--  SQL구문을 Mapper.xml 곳에 작성 -->
   <mappers>
-    <mapper resource="kr/smhrd/db/MemberMapper.xml"/>
+    <mapper resource="kr/pitb/db/MemberMapper.xml"/>
   </mappers>
 </configuration>

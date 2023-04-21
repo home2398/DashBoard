@@ -47,18 +47,18 @@
                     <p class="mb-0">정보를 입력해주세요</p>
                   </div>
                   <div class="card-body">
-                    <form role="form">
+                    <form action="Join" method="post">
                       <div class="input-group input-group-outline mb-3">
                         <label class="form-label">아이디</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control"  name="id">
                       </div>
                       <div class="input-group input-group-outline mb-3">
                         <label class="form-label">비밀번호</label>
-                        <input type="email" class="form-control">
+                        <input type="password" class="form-control" name="pw">
                       </div>
                       <div class="input-group input-group-outline mb-3">
                         <label class="form-label">닉네임</label>
-                        <input type="password" class="form-control">
+                        <input type="text" class="form-control" name="nickname">
                       </div>
                       <div class="form-check form-check-info text-start ps-0">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
@@ -67,7 +67,7 @@
                         </label>
                       </div>
                       <div class="text-center">
-                        <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">가입</button>
+                        <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">가입</button>
                       </div>
                     </form>
                   </div>
