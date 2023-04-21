@@ -5,36 +5,31 @@
  <!-- SQL문을 기술하는 공간 -->
  <!-- namespace : 해당하는 mapper파일을 사용하게 될 DAO이름 작성 -->
  
- <mapper>
- 
- <!-- <mapper namespace="kr.smhrd.model.MemberDAO">
+ <mapper namespace="kr.pitb.model.UserDAO">
  	
- 	
- 	<insert id="join" parameterType="kr.smhrd.model.MemberVO">
- 		insert into web_member
- 		values (#{email} , #{pw}, #{tel}, #{address})
+ 	<!--  parameterType : DAO에서 받아오는 데이터가 있을 때 작성
+ 						  >> 반드시 FULL NAME 작성(패키지명까지) -->
+ 	<insert id="join" parameterType="kr.pitb.model.UserVO">
+ 		insert into 회원 (회원id , 비밀번호, 닉네임)
+ 		values (#{id} , #{pw}, #{nickname})
  	</insert>
  
  
+ <!-- 
  	<select id="login" parameterType="kr.smhrd.model.MemberVO"
  		resultType="kr.smhrd.model.MemberVO">
  		select email, tel, address from web_member
  		where email=#{email} and pw=#{pw}
  	</select>
  	
- 	
+ 	 List로 생성하는 건 mybatis 내부적으로 알아서 다 해줌 
  	<select id="selectAll" resultType="kr.smhrd.model.MemberVO">
  		select email, tel, address
  		from web_member
  		where email!='admin'
  	
  	</select>
- 
- 	<select id="emailcheck" parameterType="kr.smhrd.model.MemberVO"
- 	resultType="java.lang.String">
- 		select email from web_member
- 		where email=#{email}
- 	</select> -->
+  -->
  
  
  </mapper>
