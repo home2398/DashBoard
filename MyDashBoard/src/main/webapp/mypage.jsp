@@ -235,7 +235,7 @@
 <body class="g-sidenav-show  ">
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark1" id="sidenav-main">
     <div class="logolarge">
-      <img src="assets/img/로고확대.PNG" alt="main_logo" width="250" height="100">
+      <img src="assets/img/로고확대.png" alt="main_logo" width="250" height="100">
     </div>
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -332,7 +332,7 @@
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
     <nav class="sign-in navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
-      <span class="container-fluid py-1 px-3"></span>
+       <!-- <span class="container-fluid py-1 px-3"></span>  -->
         <nav aria-label="breadcrumb">
           <!-- <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
