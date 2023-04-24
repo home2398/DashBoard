@@ -24,6 +24,29 @@
 
   <style>
 
+/* 두꺼운 폰트 */
+@font-face {
+  font-family: 'GangwonEduPowerExtraBoldA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+/* 관광여행숙박시설... 이런애들 폰트 */
+@font-face {
+  font-family: 'GangwonEdu_OTFBoldA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+/* 얘 이름 아직  */
+@font-face {
+  font-family: 'GangwonEduHyeonokT_OTFMediumA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduHyeonokT_OTFMediumA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 /* 마이페이지 글씨 */
 .my_page {
   font-family: 'GangwonEduPowerExtraBoldA';
@@ -318,7 +341,7 @@
           <span class="Dashboard">Dashboard</span>
         </nav>
         <span class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar"></span>
-          <span class="ms-md-auto pe-md-3 d-flex align-items-center"</span> 
+          <span class="ms-md-auto pe-md-3 d-flex align-items-center"></span> 
             
             **님 환영합니다!
 
