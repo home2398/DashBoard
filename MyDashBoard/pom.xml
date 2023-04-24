@@ -44,6 +44,11 @@
 			<artifactId>chart.js</artifactId>
 			<version>3.7.0</version>
 		</dependency>
+		<dependency>
+			<groupId>kr.smhrd</groupId>
+			<artifactId>MessageSystem</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
