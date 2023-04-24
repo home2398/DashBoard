@@ -21,7 +21,7 @@
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
   <style>
-    .login-header {
+  	.login-header {
         background-color: rgb(243, 105, 19);
     }
     .mainbutton {
@@ -53,7 +53,7 @@
                       <div class="login-header shadow-primary border-radius-lg py-3 pe-1">
                         <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">로그인</h4>
                         <div class="row mt-3"></div>
-                      </div>
+                  	  </div>
                     </div>
                     <div class="card-body">
                       <form role="form" class="text-start" action="Login" method="post">
@@ -65,10 +65,7 @@
                           <label class="form-label">비밀번호를 입력하세요.</label>
                           <input type="password" class="form-control" name="pw">
                         </div>
-                        <div class="form-check form-switch d-flex align-items-center mb-3">
-                          <input class="form-check-input" type="checkbox" id="rememberMe" checked>
-                          <label class="form-check-label mb-0 ms-3" for="rememberMe">계정정보 저장하기</label>
-                        </div>
+                        
                         <div class="text-center">
                           <button type="submit" class="btn bg-gradient-primary mainbutton my-4 mb-2 ">들어가기</button>
                         </div>

@@ -9303,8 +9303,8 @@ fieldset:disabled .btn {
 }
 
 .mx-3 {
-  margin-right: 1rem !important;
-  margin-left: 1rem !important;
+  margin-right: 0rem !important;
+  margin-left: 0rem !important;
 }
 
 .mx-4 {
