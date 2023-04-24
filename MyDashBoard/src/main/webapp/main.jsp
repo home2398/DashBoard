@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,25 +45,30 @@
   .bsize {
     width: 10%;
   }
+  .main-blank {
+  	background-color : white;
+  	height:0.5%;
+  }
+  .pheader{
+  	font-family: 'GangwonEduPowerExtraBoldA';
+  	font-size: 4ch;
+  	font-style: italic;
+  	color: #FF8839;
+  	position: absolute;
+  }
 </style>
 </head>
 
 
 <body class="g-sidenav-show  bg-gray-200">
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
-    <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
-        <img src="assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold text-white">Material Dashboard 2</span>
-      </a>
+    <div class="logolarge">
+      <img src="assets/img/로고확대.png" alt="main_logo" width="250" height="100">
     </div>
+      <div class="main-blank"></div>
+    
     <hr class="horizontal light mt-0 mb-2">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-      <div class="input-group input-group-outline">
-        <label class="form-label">Type here...</label>
-        <input type="text" class="form-control">
-      </div>
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link text-white active bg-gradient-primary" href="../pages/dashboard.html">
@@ -132,28 +138,32 @@
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
       <div class="container-fluid py-1 px-3">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
-          </ol>
-          <h6 class="font-weight-bolder mb-0">Dashboard</h6>
-        </nav>
+        <span class="pheader">Main</span>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            
-            **님 환영합니다!
-
-
-          </div>
           <ul class="navbar-nav  justify-content-end">
-            
+            <c:if test="${empty User}">
             <li class="nav-item d-flex align-items-center">
               <a href="sign-in.jsp" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
                 <span class="d-sm-inline d-none">Log In</span>
               </a>
             </li>
+            </c:if>
+            <c:if test="${!empty User}">
+            	<h6>${User.id}님 환영합니다!</h6>
+            	<li class="nav-item d-flex align-items-center">
+              		<a href="logout.jsp" class="nav-link text-body font-weight-bold px-0">
+                	<i class="fa fa-user me-sm-1"></i>
+                	<span class="d-sm-inline d-none">Log Out</span>
+              		</a>
+            	</li>
+            </c:if>
+          </div>
+            
+            
+            
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
                 <div class="sidenav-toggler-inner">
@@ -185,11 +195,11 @@
             </div>
             <div class="card-footer p-3 csize1">
               <p class="mb-0">
-                <button class="btn bg-gradient-warning w-100 mb-0 toast-btn" type="button" data-target="warningToast">csv파일1</button>
-                <button class="btn bg-gradient-warning w-100 mb-0 toast-btn" type="button" data-target="warningToast">csv파일2</button>
-                <button class="btn bg-gradient-warning w-100 mb-0 toast-btn" type="button" data-target="warningToast">csv파일3</button>
-                <button class="btn bg-gradient-warning w-100 mb-0 toast-btn" type="button" data-target="warningToast">csv파일4</button>
-                <button class="btn bg-gradient-warning w-100 mb-0 toast-btn" type="button" data-target="warningToast">csv파일5</button>
+                <button onclick="explain1()" class="btn bg-gradient-warning w-100 mb-0 toast-btn" type="button" data-target="warningToast">csv파일1</button>
+                <button onclick="explain2()" class="btn bg-gradient-warning w-100 mb-0 toast-btn" type="button" data-target="warningToast">csv파일2</button>
+                <button onclick="explain3()" class="btn bg-gradient-warning w-100 mb-0 toast-btn" type="button" data-target="warningToast">csv파일3</button>
+                <button onclick="explain4()" class="btn bg-gradient-warning w-100 mb-0 toast-btn" type="button" data-target="warningToast">csv파일4</button>
+                <button onclick="explain5()" class="btn bg-gradient-warning w-100 mb-0 toast-btn" type="button" data-target="warningToast">csv파일5</button>
               </p>
             </div>
           </div>
@@ -200,6 +210,11 @@
       </div>
       <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        
+        
+        
+        
+        
           <div class="card select-file2">
             <div class="card-header p-3 pt-2 csize2">
               <div class="pt-1 cpadding2">
@@ -716,6 +731,14 @@
       },
     });
   </script>
+  
+  <script>
+  
+  
+  
+  
+  </script>
+    
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
