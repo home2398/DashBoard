@@ -30,6 +30,9 @@
 .login-header {
 	background-color: rgb(243, 105, 19);
 }
+.position-relative.bg-gradient-primary.h-100.m-3.px-7.border-radius-lg.d-flex.flex-column.justify-content-center {
+	background-size: contain;
+}
 </style>
 
 <body class="">
@@ -42,12 +45,9 @@
 		<section>
 			<div class="page-header min-vh-100">
 				<div class="container">
-					<div class="row">
-						<div
-							class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
-							<div
-								class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center"
-								style="background-image: url('assets/img/기억_남산타워.jpg'); background-size: cover;">
+					
+						<div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+							<div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('assets/img/우리의로고.png');">
 							</div>
 						</div>
 						<div
@@ -68,15 +68,15 @@
 										<form role="form" action="Join" method="post">
 											<div class="input-group input-group-outline my-3">
 												<label class="form-label">아이디</label> <input type="text"
-													class="form-control" name="id">
+													class="form-control" name="id" minlength="5" maxlength="50">
 											</div>
 											<div class="input-group input-group-outline mb-3">
 												<label class="form-label">비밀번호</label> <input
-													type="password" class="form-control" name="pw">
+													type="password" class="form-control" name="pw" minlength="5" maxlength="50">
 											</div>
 											<div class="input-group input-group-outline mb-3">
 												<label class="form-label">닉네임</label> <input type="text"
-													class="form-control" name="nickname">
+													class="form-control" name="nickname" name="id" minlength="5" maxlength="50">
 											</div>
 											<div class="text-center">
 												<button type="submit"
@@ -96,7 +96,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+		
 		</section>
 	</main>
 	<!--   Core JS Files   -->
