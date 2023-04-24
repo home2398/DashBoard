@@ -56,6 +56,7 @@ public class UserDAO {
 		
 		try {
 			 session = sqlSessionFactory.openSession(true);
+			 System.out.println("DAO vo 상태 >> " + vo.getId() + "," + vo.getPw() );
 			 result = session.selectOne("login", vo);
 		} finally {
 			session.close();
