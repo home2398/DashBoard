@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Selfmaid Orange Dashboard_sign-up
+<title>Selfmade Orange Dashboard_sign-up
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -20,6 +20,12 @@
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+  
+  <style>
+  .mainbutton {
+  width: 100% !important;
+    }
+  </style>
 </head>
 
 
@@ -67,7 +73,7 @@
                         </label>
                       </div>
                       <div class="text-center">
-                        <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">가입</button>
+                        <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg mainbutton mt-4 mb-0">가입</button>
                       </div>
                     </form>
                   </div>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Selfmaid Orange Dashboard_Log-in
+<title>Selfmade Orange Dashboard_Log-in
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -23,6 +23,9 @@
   <style>
     .login-header {
         background-color: rgb(243, 105, 19);
+    }
+    .mainbutton {
+ 		width: 100% !important;
     }
 </style>
   
@@ -67,7 +70,7 @@
                           <label class="form-check-label mb-0 ms-3" for="rememberMe">계정정보 저장하기</label>
                         </div>
                         <div class="text-center">
-                          <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">들어가기</button>
+                          <button type="submit" class="btn bg-gradient-primary mainbutton my-4 mb-2 ">들어가기</button>
                         </div>
                         <p class="mt-4 text-sm text-center">
                           계정이 없으신가요?

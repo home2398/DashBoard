@@ -31,8 +31,10 @@ public class LoginService extends HttpServlet {
 		
 		UserDAO dao = new UserDAO();
 		
-		UserVO result = dao.login(vo);
+		System.out.println("LS VO 상태 >> " + vo.getId() + "," + vo.getPw());
 		
+		UserVO result = dao.login(vo);
+		System.out.println("LS 로그인정보 >> " + result);
 		if(result!=null) {
 			 HttpSession session = request.getSession();
 			 session.setAttribute("User", result);
