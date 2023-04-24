@@ -64,6 +64,7 @@
   position: absolute;
 }
 
+
 /* 왼쪽아이콘 */
 .material-icons{
   color: orange;
@@ -102,6 +103,36 @@
   font-family: 'GangwonEdu_OTFBoldA';
   font-size: larger !important;
 }
+
+/* 왼쪽 항목 글씨들 */
+.ms-1 {
+  font-size: large;
+  margin-left: 0.25rem !important;
+}
+
+.material-icons {
+  font-family: 'Material Icons Round';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 28px;
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
 
 
 .collection1 {
@@ -186,6 +217,7 @@
 /* **님 환영합니다! */
 .navbar-main {
   font-family: 'GangwonEduPowerExtraBoldA';
+  color: #EC6602;
   font-size: x-large;
   transition: box-shadow 0.25s ease-in, background-color 0.25s ease-in;
 }
@@ -193,8 +225,9 @@
 /* **님 환영합니다! */
 .pe-md-3 {
   font-weight: bold;
-  color: #EC6602;
+  color: #EC6602 ;
   padding-right: 1rem !important;
+  position: static;
 }
 
 /* signin */
@@ -203,7 +236,7 @@
   font-size: x-large;
 }
 
-/* 이게 뭘까? */
+/* signin */
 .navbar-nav1 {
   --bs-nav-link-padding-x: 0;
   --bs-nav-link-padding-y: 0.5rem;
@@ -224,10 +257,60 @@
   height: 3%;
 }
 
+/* 챠트1번쨰 배경(?) */
+.bg-gradient-primary {
+  background-image: linear-gradient(195deg, #FDD995 0%, #FDD995 100%);
+}
 
+/* 챠트2번째 */
+.bg-gradient-success {
+  background-image: linear-gradient(195deg, #FFAC84 0%, #FFAC84 100%);
+}
 
+/* 챠트3번 */
+.bg-gradient-dark {
+  background-image: linear-gradient(195deg, #FF8930 0%, #FF8930 100%);
+}
 
+.mx-4 {
+  margin-right: 2rem !important;
+  margin-left: 1rem !important;
+}
   
+
+.px-0 {
+  padding-right: 1.0rem !important;
+  padding-left: 1.0rem !important;
+}  
+
+
+.material-icons2 {
+  font-family: 'Material Icons Round';
+  color: orange;
+  font-weight: normal;
+  font-style: normal;
+  
+  font-size: xx-large !important;
+  
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+
   </style>
 
 </head>
@@ -332,7 +415,7 @@
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
     <nav class="sign-in navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
-      <span class="container-fluid py-1 px-3"></span>
+       <!-- <span class="container-fluid py-1 px-3"></span>  -->
         <nav aria-label="breadcrumb">
           <!-- <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
@@ -388,7 +471,7 @@
               <p class="text-sm1 ">Last Campaign Performance</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
-                <i class="material-icons text-sm my-auto me-1">schedule</i>
+                <i class="material-icons2 text-sm my-auto me-1">schedule</i>
                 <p class="mb-02 text-sm2"> campaign sent 2 days ago </p>
               </div>
             </div>
@@ -408,7 +491,7 @@
               <p class="text-sm1 "> (<span class="font-weight-bolder">+15%</span>) increase in today sales. </p>
               <hr class="dark horizontal">
               <div class="d-flex ">
-                <i class="material-icons text-sm my-auto me-1">schedule</i>
+                <i class="material-icons2 text-sm my-auto me-1">schedule</i>
                 <p class="mb-02 text-sm2"> updated 4 min ago </p>
               </div>
             </div>
@@ -428,7 +511,7 @@
               <p class="text-sm1 ">Last Campaign Performance</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
-                <i class="material-icons text-sm my-auto me-1">schedule</i>
+                <i class="material-icons2 text-sm my-auto me-1">schedule</i>
                 <p class="mb-02 text-sm2">just updated</p>
               </div>
             </div>
@@ -450,7 +533,7 @@
                 <p class="text-sm1 ">Last Campaign Performance</p>
                 <hr class="dark horizontal">
                 <div class="d-flex ">
-                  <i class="material-icons text-sm my-auto me-1">schedule</i>
+                  <i class="material-icons2 text-sm my-auto me-1">schedule</i>
                   <p class="mb-02 text-sm2"> campaign sent 2 days ago </p>
                 </div>
               </div>
@@ -470,7 +553,7 @@
                 <p class="text-sm1 "> (<span class="font-weight-bolder">+15%</span>) increase in today sales. </p>
                 <hr class="dark horizontal">
                 <div class="d-flex ">
-                  <i class="material-icons text-sm my-auto me-1">schedule</i>
+                  <i class="material-icons2 text-sm my-auto me-1">schedule</i>
                   <p class="mb-02 text-sm2"> updated 4 min ago </p>
                 </div>
               </div>
@@ -490,7 +573,7 @@
                 <p class="text-sm1 ">Last Campaign Performance</p>
                 <hr class="dark horizontal">
                 <div class="d-flex ">
-                  <i class="material-icons text-sm my-auto me-1">schedule</i>
+                  <i class="material-icons2 text-sm my-auto me-1">schedule</i>
                   <p class="mb-02 text-sm2">just updated</p>
                 </div>
               </div>
