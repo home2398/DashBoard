@@ -27,7 +27,6 @@
   width: 100% !important;
     }
   </style>
-=======
 <title>Selfmaid Orange Dashboard_sign-up</title>
 <!--     Fonts and icons     -->
 <link rel="stylesheet" type="text/css"
