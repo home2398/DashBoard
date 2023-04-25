@@ -79,7 +79,7 @@
 
 										<div class="text-center">
 											<button type="submit"
-												class="btn bg-gradient-primary mainbutton my-4 mb-2 "
+												class="btn btn-lg bg-gradient-primary w-100 my-4 mb-2 "
 												style="width: 350px">로그인</button>
 										</div>
 										<p class="mt-4 text-sm text-center">

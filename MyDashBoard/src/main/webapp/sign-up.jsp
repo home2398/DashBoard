@@ -67,15 +67,15 @@
 									<div class="card-body">
 										<form role="form" action="Join" method="post">
 											<div class="input-group input-group-outline my-3">
-												<label class="form-label">아이디</label> <input type="text"
+												<label class="form-label">아이디를 입력하세요.</label> <input type="text"
 													class="form-control" name="id" minlength="5" maxlength="50">
 											</div>
 											<div class="input-group input-group-outline mb-3">
-												<label class="form-label">비밀번호</label> <input
+												<label class="form-label">비밀번호를 입력하세요.</label> <input
 													type="password" class="form-control" name="pw" minlength="5" maxlength="50">
 											</div>
 											<div class="input-group input-group-outline mb-3">
-												<label class="form-label">닉네임</label> <input type="text"
+												<label class="form-label">닉네임을 입력하세요.</label> <input type="text"
 													class="form-control" name="nickname" name="id" minlength="5" maxlength="50">
 											</div>
 											<div class="text-center">
