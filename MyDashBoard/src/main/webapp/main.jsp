@@ -29,17 +29,6 @@
 	src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 
 <style>
-.select-file1 {
-	margin-bottom: 20px;
-}
-
-.select-file2 {
-	margin-bottom: 30px;
-}
-
-.csize1 {
-	height: 200px;
-}
 
 .csize2 {
 	border-bottom-left-radius: 10% !important;
@@ -174,8 +163,8 @@
 		</nav>
 		<!-- End Navbar -->
 		<div class="container-fluid py-4">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card select-file1">
+				<div class="col-xl-3 col-sm-6 mb-xl-0">
+					<div class="card">
 						<div class="card-header p-3 pt-2">
 							<div
 								class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
@@ -187,6 +176,7 @@
 								<h4 class="mb-0">파일 선택하기</h4>
 							</div>
 						</div>
+						<div class="card-footer p-3">
 						<%
 						Connection conn = null;
 						Statement stmt = null;
@@ -206,13 +196,13 @@
 
 								String fileName = rs.getString("fileName");
 						%>
-						<div class="card-footer p-3 csize1">
-							<p class="mb-0">
+						
+							<span class="mb-0">
 								<button onclick="explain1()"
 									class="btn bg-gradient-warning w-100 mb-0 toast-btn"
 									type="button" data-target="warningToast"><%=fileName%></button>
-							</p>
-						</div>
+							</span>
+						
 						<!-- <button><%=fileName%></button> -->
 						<%
 						}
@@ -243,21 +233,22 @@
 						}
 						%>
 					</div>
+					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card select-file2">
+			<div class="container-fluid py-4">
+				<div class="col-xl-3 col-sm-6 mb-xl-0">
+					<div class="card">
 						<div class="card-header p-3 pt-2 csize2">
 							<div class="pt-1 cpadding2">
-								<p class="text-sm mb-0 text-capitalize">여기는 지울지말지</p>
-								<h4 class="mb-0">이런저런 파일입니다/글자가 깨지는듯? 글씨체........h4는 조금 큰듯</h4>
+								<p class="text-sm mb-0 text-capitalize">선택하신 파일은</p>
+								<h6 class="mb-0">이런저런 파일입니다/글자가 깨지는듯? 글씨체........h4는 조금 큰듯</h6>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="container-fluid py-4">
 				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
 					<div class="card">
 						<div class="card-header p-3 pt-2">
