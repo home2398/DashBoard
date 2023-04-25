@@ -168,7 +168,7 @@
 							<c:if test="${!empty User}">
 								<h6>${User.id}님환영합니다!</h6>
 								<li class="nav-item d-flex align-items-center"><a
-									href="logout.jsp"
+									href="GoLogout.do"
 									class="nav-link text-body font-weight-bold px-0"> <i
 										class="fa fa-user me-sm-1"></i> <span
 										class="d-sm-inline d-none">Log Out</span>
