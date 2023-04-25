@@ -9,8 +9,8 @@
 <link rel="stylesheet" type="text/css"
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
 <!-- Nucleo Icons -->
-<link href="assets/css/nucleo-icons.css" rel="stylesheet" />
-<link href="assets/css/nucleo-svg.css" rel="stylesheet" />
+<link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
+<link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
 <!-- Font Awesome Icons -->
 <script src="https://kit.fontawesome.com/42d5adcbca.js"
 	crossorigin="anonymous"></script>
@@ -19,7 +19,7 @@
 	href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
 	rel="stylesheet">
 <!-- CSS Files -->
-<link id="pagestyle" href="assets/css/material-dashboard.css?v=3.0.5"
+<link id="pagestyle" href="./assets/css/material-dashboard.css?v=3.0.5"
 	rel="stylesheet" />
 <!-- Nepcha Analytics (nepcha.com) -->
 <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
@@ -49,7 +49,7 @@
 				<div class="container">
 					
 						<div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
-							<div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('assets/img/우리의로고.png');">
+							<div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('assets/img/mainlogo.png');">
 							</div>
 						</div>
 						<div
