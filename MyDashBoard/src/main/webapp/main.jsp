@@ -196,7 +196,6 @@
 		</nav>
 		<!-- End Navbar -->
 		<div class="container-fluid py-4">
-			<div class="row">
 				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
 					<div class="card select-file1">
 						<div class="card-header p-3 pt-2">
@@ -229,14 +228,14 @@
 
 								String fileName = rs.getString("fileName");
 						%>
-								<div class="card-footer p-3 csize1">
-								<p class="mb-0">
+						<div class="card-footer p-3 csize1">
+							<p class="mb-0">
 								<button onclick="explain1()"
 									class="btn bg-gradient-warning w-100 mb-0 toast-btn"
 									type="button" data-target="warningToast"><%=fileName%></button>
-								</p>
-								</div>
-								<!-- <button><%=fileName%></button> -->
+							</p>
+						</div>
+						<!-- <button><%=fileName%></button> -->
 						<%
 						}
 						} catch (SQLException e) {
@@ -265,22 +264,11 @@
 						}
 						}
 						%>
-
-
-
 					</div>
 				</div>
-
-
-
 			</div>
 			<div class="row">
 				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-
-
-
-
-
 					<div class="card select-file2">
 						<div class="card-header p-3 pt-2 csize2">
 							<div class="pt-1 cpadding2">
@@ -288,12 +276,9 @@
 								<h4 class="mb-0">이런저런 파일입니다/글자가 깨지는듯? 글씨체........h4는 조금 큰듯</h4>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
-
-
 			<div class="row">
 				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
 					<div class="card">
@@ -414,11 +399,14 @@
 							onclick="sidebarColor(this)"></span>
 					</div>
 				</a>
+
 				<!-- Sidenav Type -->
+
 				<div class="mt-3">
 					<h6 class="mb-0">Sidenav Type</h6>
 					<p class="text-sm">Choose between 2 different sidenav types.</p>
 				</div>
+
 				<div class="d-flex">
 					<button class="btn bg-gradient-dark px-3 mb-2 active"
 						data-class="bg-gradient-dark" onclick="sidebarType(this)">Dark</button>
@@ -427,9 +415,13 @@
 					<button class="btn bg-gradient-dark px-3 mb-2 ms-2"
 						data-class="bg-white" onclick="sidebarType(this)">White</button>
 				</div>
+
 				<p class="text-sm d-xl-none d-block mt-2">You can change the
 					sidenav type just on desktop view.</p>
+
+
 				<!-- Navbar Fixed -->
+
 				<div class="mt-3 d-flex">
 					<h6 class="mb-0">Navbar Fixed</h6>
 					<div class="form-check form-switch ps-0 ms-auto my-auto">
@@ -437,6 +429,9 @@
 							id="navbarFixed" onclick="navbarFixed(this)">
 					</div>
 				</div>
+
+
+
 				<hr class="horizontal dark my-3">
 				<div class="mt-2 d-flex">
 					<h6 class="mb-0">Light / Dark</h6>
@@ -446,17 +441,21 @@
 					</div>
 				</div>
 				<hr class="horizontal dark my-sm-4">
+
+
 				<a class="btn bg-gradient-info w-100"
 					href="https://www.creative-tim.com/product/material-dashboard-pro">Free
 					Download</a> <a class="btn btn-outline-dark w-100"
 					href="https://www.creative-tim.com/learning-lab/bootstrap/overview/material-dashboard">View
 					documentation</a>
+
 				<div class="w-100 text-center">
 					<a class="github-button"
 						href="https://github.com/creativetimofficial/material-dashboard"
 						data-icon="octicon-star" data-size="large" data-show-count="true"
 						aria-label="Star creativetimofficial/material-dashboard on GitHub">Star</a>
 					<h6 class="mt-3">Thank you for sharing!</h6>
+
 					<a
 						href="https://twitter.com/intent/tweet?text=Check%20Material%20UI%20Dashboard%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23bootstrap5&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fsoft-ui-dashboard"
 						class="btn btn-dark mb-0 me-2" target="_blank"> <i
@@ -466,6 +465,7 @@
 						class="btn btn-dark mb-0 me-2" target="_blank"> <i
 						class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
 					</a>
+
 				</div>
 			</div>
 		</div>
