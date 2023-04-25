@@ -25,6 +25,7 @@
 <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
 <script defer data-site="YOUR_DOMAIN_HERE"
 	src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+</head>
 <style>
 .login-header {
 	background-color: rgb(243, 105, 19);
@@ -33,10 +34,11 @@
 .position-relative.bg-gradient-primary.h-100.m-3.px-7.border-radius-lg.d-flex.flex-column.justify-content-center
 	{
 	background-size: contain;
+	width: 980px;
+	height: 1025px;
 }
 </style>
 
-</head>
 <body class="">
 	<div class="container position-sticky z-index-sticky top-0">
 		<div class="row">
