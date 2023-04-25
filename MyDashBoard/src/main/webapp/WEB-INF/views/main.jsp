@@ -189,17 +189,16 @@
 
 							// SQL 쿼리 실행
 							stmt = conn.createStatement();
-							rs = stmt.executeQuery("SELECT 원본파일이름 as fileName , 파일ID as fileId FROM csv파일정보");
+							rs = stmt.executeQuery("SELECT 원본파일이름 as fileName FROM csv파일정보");
 
 							// ResultSet에서 데이터를 가져와서 출력
 							while (rs.next()) {
 
 								String fileName = rs.getString("fileName");
-								String fileId = rs.getString("fileId");
 						%>
 						
 							<span class="mb-0">
-								<button id="explain<%=fileId%>"
+								<button id="explain1"
 									class="btn bg-gradient-warning w-100 mb-0 toast-btn"
 									type="button" data-target="warningToast"><%=fileName%></button>
 							</span>
@@ -244,8 +243,7 @@
 						<div class="card-header p-3 pt-2 csize2">
 							<div class="pt-1 cpadding2">
 								<p class="text-sm mb-0 text-capitalize">선택하신 파일은</p>
-								
-								<h6 class="mb-0">이런저런 파일입니다/글자가 깨지는듯? 글씨체........h4는 조금 큰듯</h6>
+								<h6 class="mb-0 explain">이런저런 파일입니다/글자가 깨지는듯? 글씨체........h4는 조금 큰듯</h6>
 							</div>
 						</div>
 					</div>
@@ -448,6 +446,9 @@
 	<script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
 	<script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
 	<script src="assets/js/plugins/chartjs.min.js"></script>
+	
+	
+	
 	<script>
 		//데이터
 		var data = {
