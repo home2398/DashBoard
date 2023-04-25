@@ -758,7 +758,7 @@ progress {
 .row {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
-  display: flex;
+  display: block;
   flex-wrap: wrap;
   margin-top: calc(-1 * var(--bs-gutter-y));
   margin-right: calc(-.5 * var(--bs-gutter-x));
@@ -5220,7 +5220,7 @@ fieldset:disabled .btn {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 0;
+  min-width: 50;
   height: var(--bs-card-height);
   word-wrap: break-word;
   background-color: var(--bs-card-bg);
@@ -8992,8 +8992,6 @@ fieldset:disabled .btn {
 }
 
 .h-100 {
- 	width:900px;
-    height:1060px;
     overflow:hidden;
     margin:0 auto;
 }
