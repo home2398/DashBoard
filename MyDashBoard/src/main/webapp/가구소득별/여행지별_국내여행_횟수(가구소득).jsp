@@ -2,103 +2,155 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>여행지별_국내여행_횟수(가구소득)</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>여행지별_국내여행_횟수(가구소득)</title>
+
+    <style>
+        .chart-container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .btn-container {
+            width: 80%;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-	<canvas id="myChart"></canvas>
+    <h1 align="center">여행지별_국내여행_횟수(가구소득)</h1>
+    <div class="chart-container">
+        <canvas id="myChart"></canvas>
+    </div>
+    <div class="btn-container">
+        <button class="btn" id="seoulBtn">서울</button>
+        <button class="btn" id="busanBtn">부산</button>
+        <button class="btn" id="daeguBtn">대구</button>
+        <button class="btn" id="incheonBtn">인천</button>
+        <button class="btn" id="gwangjuBtn">광주</button>
+        <button class="btn" id="daejeonBtn">대전</button>
+        <button class="btn" id="ulsanBtn">울산</button>
+        <button class="btn" id="sejongBtn">세종</button>
+        <button class="btn" id="gyeonggiBtn">경기</button>
+        <button class="btn" id="gangwonBtn">강원</button>
+        <button class="btn" id="chongbukBtn">충북</button>
+        <button class="btn" id="chongnamBtn">충남</button>
+        <button class="btn" id="jeonbukBtn">전북</button>
+        <button class="btn" id="jeonnamBtn">전남</button>
+        <button class="btn" id="gyongbukBtn">경북</button>
+        <button class="btn" id="gyongnamBtn">경남</button>
+        <button class="btn" id="jejuBtn">제주</button>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // 통계 데이터
+            var data = {
+                labels: ["100만원 미만", "100~200만원 미만", "200~300만원 미만", "300~400만원 미만", "400~500만원 미만", "500~600만원 미만", "600만원 이상"],
+                datasets: [{
+                    label: '지출액',
+                    backgroundColor: ['rgba(255, 109, 96, 0.2)', 'rgba(247, 208, 96, 0.2)', 'rgba(243, 219, 8, 0.2)', 'rgba(152, 216, 170, 0.2)'],
+                    borderColor: ['rgba(255, 109, 96, 1)', 'rgba(247, 208, 96, 1)', 'rgba(243, 233, 159, 1)', 'rgba(159, 216, 170, 1)'],
+                    borderWidth: 1,
+                    data: [20, 120, 400, 50, 180, 30, 43] // 1차원 형식으로 넣어줘야함(여기에 바로 데이터-2차원를 넣어주면 차트형식이 이상해짐)
+                }]
+            };
 
-	<script>
-		// 데이터
-		var data = {
-			labels : [ "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기",
-					"강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주" ],
-			datasets : [
-					{
-						label : "100만원 미만",
-						data : [ 246, 219, 163, 142, 77, 110, 117, 71, 867,
-								270, 209, 273, 375, 421, 475, 430, 161 ],
-						backgroundColor : "rgba(75, 192, 192, 0.2)", // 막대 그래프의 채우기 색상
-						borderColor : "rgba(75, 192, 192, 1)", // 막대 그래프의 테두리 색상
-						borderWidth : 1,
+            // 차트 생성
+            var ctx = document.getElementById('myChart').getContext('2d');
 
-					// 막대 그래프의 테두리 두께
-					},
-					{
-						label : "100~200만원 미만",
-						data : [ 588, 356, 312, 301, 112, 211, 257, 41, 1751,
-								629, 480, 609, 591, 861, 1060, 1004, 204 ],
-						backgroundColor : "rgba(255, 99, 132, 0.2)",
-						borderColor : "rgba(255, 99, 132, 1)",
-						borderWidth : 1
-					},
-					{
-						label : "200~300만원 미만",
-						data : [ 1124, 1329, 563, 934, 253, 643, 709, 345,
-								6152, 2285, 1398, 2627, 2066, 2615, 2633, 3377,
-								808 ],
-						backgroundColor : "rgba(255, 205, 86, 0.2)",
-						borderColor : "rgba(255, 205, 86, 1)",
-						borderWidth : 1
-					},
-					{
-						label : "300~400만원 미만",
-						data : [ 2412, 2009, 1018, 1691, 489, 901, 825, 376,
-								8953, 4220, 2090, 4043, 3153, 4762, 5325, 5852,
-								1710 ],
-						backgroundColor : "rgba(54, 162, 235, 0.2)",
-						borderColor : "rgba(54, 162, 235, 1)",
-						borderWidth : 1
-					},
-					{
-						label : "400~500만원 미만",
-						data : [ 2974, 1770, 791, 1496, 255, 932, 840, 409,
-								9851, 4253, 2209, 4063, 2929, 4652, 4727, 5101,
-								1845 ],
-						backgroundColor : "rgba(153, 102, 255, 0.2)",
-						borderColor : "rgba(153, 102, 255, 1)",
-						borderWidth : 1
-					},
-					{
-						label : "500~600만원 미만",
-						data : [ 2720, 2039, 640, 1960, 308, 882, 667, 329,
-								11561, 6283, 1871, 3654, 2549, 3817, 3678,
-								4337, 2269 ],
-						backgroundColor : "rgba(255, 159, 64, 0.2)",
-						borderColor : "rgba(255, 159, 64, 1)",
-						borderWidth : 1
-					},
-					{
-						label : "600만원 이상",
-						data : [ 3196, 2232, 520, 2619, 314, 926, 778, 311,
-								14265, 7482, 1889, 3876, 2173, 3002, 4736,
-								3408, 4100 ],
-						backgroundColor : "rgba(255, 0, 0, 0.5)",
-						borderColor : "rgba(255, 0, 0, 1)",
-						borderWidth : 1
-					} ]
-		};
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            min: 0,
+                            max: null
+                        }
+                    },
+                    scales: {
+                        y: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
 
-		// 그래프 생성
-		var ctx = document.getElementById('myChart').getContext('2d');
-		var myChart = new Chart(ctx, {
-			type : 'bar',
-			data : data,
-			options : {
-				plugins : {
-					title : {
-						display : true,
-						text : "여행지별_국내여행_횟수(가구소득)"
-					},
-				},
-				scales : {
-					y : {
-						beginAtZero : true
-					}
-				}
-			}
-		});
-	</script>
+
+            // 버튼 클릭 이벤트 리스너
+            // 버튼 id와 대응하는 데이터 인덱스를 객체 배열로 정의
+            const chartData = [
+                { id: 'seoulBtn', index: 0 },
+                { id: 'busanBtn', index: 1 },
+                { id: 'daeguBtn', index: 2 },
+                { id: 'incheonBtn', index: 3 },
+                { id: 'gwangjuBtn', index: 4 },
+                { id: 'daejeonBtn', index: 5 },
+                { id: 'ulsanBtn', index: 6 },
+                { id: 'sejongBtn', index: 7 },
+                { id: 'gyeonggiBtn', index: 8 },
+                { id: 'gangwonBtn', index: 9 },
+                { id: 'chongbukBtn', index: 10 },
+                { id: 'chongnamBtn', index: 11 },
+                { id: 'jeonbukBtn', index: 12 },
+                { id: 'jeonnamBtn', index: 13 },
+                { id: 'gyongbukBtn', index: 14 },
+                { id: 'gyongnamBtn', index: 15 },
+                { id: 'jejuBtn', index: 16 }
+            ];
+
+            // for문으로 버튼 이벤트 리스너 등록
+            for (let i = 0; i < chartData.length; i++) {
+                document.getElementById(chartData[i].id).addEventListener('click', function () {
+                    updateChart(chartData[i].index); // 해당 버튼에 대응하는 데이터 인덱스로 차트 업데이트
+                });
+            }
+
+            // 2차원의 데이터(원본형태)
+            var clickData = [
+                [246, 588, 1124, 2412, 2974, 2720, 3196],
+                [219, 356, 1329, 2009, 1770, 2039, 2232],
+                [163, 312, 563, 1018, 791, 640, 520],
+                [142, 301, 934, 1691, 1496, 1960, 2619],
+                [77, 112, 253, 489, 255, 308, 314],
+                [110, 211, 643, 901, 932, 882, 926],
+                [117, 257, 709, 825, 840, 667, 778],
+                [71, 41, 345, 376, 409, 329, 311],
+                [867, 1751, 6152, 8953, 9851, 11561, 14265],
+                [270, 629, 2285, 4220, 4253, 6283, 7482],
+                [209, 480, 1398, 2090, 2209, 1871, 1889],
+                [273, 609, 2627, 4043, 4063, 3654, 3876],
+                [375, 591, 2066, 3153, 2929, 2549, 2173],
+                [421, 861, 2615, 4762, 4652, 3817, 3002],
+                [475, 1060, 2633, 5325, 4727, 3678, 4736],
+                [430, 1004, 3377, 5852, 5101, 4337, 3408],
+                [161, 204, 808, 1710, 1845, 2269, 4100]
+            ];
+
+            // updateChart 함수 정의
+            function updateChart(index) {
+                // 데이터 업데이트
+                myChart.data.datasets[0].data = clickData[index];
+                myChart.update(); // 차트 업데이트
+            }
+        })
+    </script>
 </body>
+
 </html>

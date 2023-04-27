@@ -2,105 +2,154 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>여행지별_관광여행_재방문_의향(가구소득)</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>여행지별_관광여행_재방문_의향(가구소득)</title>
+
+    <style>
+        .chart-container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .btn-container {
+            width: 80%;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-	<canvas id="myChart"></canvas>
+    <h1 align="center">여행지별_관광여행_재방문_의향(가구소득)</h1>
+    <div class="chart-container">
+        <canvas id="myChart"></canvas>
+    </div>
+    <div class="btn-container">
+        <button class="btn" id="seoulBtn">서울</button>
+        <button class="btn" id="busanBtn">부산</button>
+        <button class="btn" id="daeguBtn">대구</button>
+        <button class="btn" id="incheonBtn">인천</button>
+        <button class="btn" id="gwangjuBtn">광주</button>
+        <button class="btn" id="daejeonBtn">대전</button>
+        <button class="btn" id="ulsanBtn">울산</button>
+        <button class="btn" id="sejongBtn">세종</button>
+        <button class="btn" id="gyeonggiBtn">경기</button>
+        <button class="btn" id="gangwonBtn">강원</button>
+        <button class="btn" id="chongbukBtn">충북</button>
+        <button class="btn" id="chongnamBtn">충남</button>
+        <button class="btn" id="jeonbukBtn">전북</button>
+        <button class="btn" id="jeonnamBtn">전남</button>
+        <button class="btn" id="gyongbukBtn">경북</button>
+        <button class="btn" id="gyongnamBtn">경남</button>
+        <button class="btn" id="jejuBtn">제주</button>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // 통계 데이터
+            var data = {
+                labels: ["100만원 미만", "100~200만원 미만", "200~300만원 미만", "300~400만원 미만", "400~500만원 미만", "500~600만원 미만", "600만원 이상"],
+                datasets: [{
+                    label: '지출액',
+                    backgroundColor: ['rgba(255, 109, 96, 0.2)', 'rgba(247, 208, 96, 0.2)', 'rgba(243, 219, 8, 0.2)', 'rgba(152, 216, 170, 0.2)'],
+                    borderColor: ['rgba(255, 109, 96, 1)', 'rgba(247, 208, 96, 1)', 'rgba(243, 233, 159, 1)', 'rgba(159, 216, 170, 1)'],
+                    borderWidth: 1,
+                    data: [20, 120, 400, 50, 180, 30, 43] // 1차원 형식으로 넣어줘야함(여기에 바로 데이터-2차원를 넣어주면 차트형식이 이상해짐)
+                }]
+            };
 
-	<script>
-		// 데이터
-		var data = {
-			labels : [ "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기",
-					"강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주" ],
-			datasets : [
-					{
-						label : "100만원 미만",
-						data : [ 82.4, 81.2, 73.2, 69.6, 80.5, 68.2, 80.5,
-								67.8, 75.4, 79.7, 79.9, 72.9, 77.9, 77.6, 77.4,
-								77.5, 77.5 ],
-						backgroundColor : "rgba(75, 192, 192, 0.2)", // 막대 그래프의 채우기 색상
-						borderColor : "rgba(75, 192, 192, 1)", // 막대 그래프의 테두리 색상
-						borderWidth : 1,
+            // 차트 생성
+            var ctx = document.getElementById('myChart').getContext('2d');
 
-					// 막대 그래프의 테두리 두께
-					},
-					{
-						label : "100~200만원 미만",
-						data : [ 72, 77.2, 69.4, 75.5, 87.3, 64.6, 79.7, 82.8,
-								76.3, 77.9, 77.4, 72.1, 80.2, 81.9, 75.5, 78.5,
-								80.2 ],
-						backgroundColor : "rgba(255, 99, 132, 0.2)",
-						borderColor : "rgba(255, 99, 132, 1)",
-						borderWidth : 1
-					},
-					{
-						label : "200~300만원 미만",
-						data : [ 72.2, 77.6, 77.3, 73.7, 80.7, 70.1, 76.2,
-								74.7, 75.9, 77.5, 71.4, 75.6, 79.4, 79.9, 75.7,
-								76.2, 79.3 ],
-						backgroundColor : "rgba(255, 205, 86, 0.2)",
-						borderColor : "rgba(255, 205, 86, 1)",
-						borderWidth : 1
-					},
-					{
-						label : "300~400만원 미만",
-						data : [ 75.5, 77.3, 75.7, 72.5, 83, 73.6, 74.6, 69.8,
-								75.1, 77.3, 74, 76.8, 81.5, 80.5, 76, 76.3,
-								78.3 ],
-						backgroundColor : "rgba(54, 162, 235, 0.2)",
-						borderColor : "rgba(54, 162, 235, 1)",
-						borderWidth : 1
-					},
-					{
-						label : "400~500만원 미만",
-						data : [ 76.2, 75.3, 69.1, 76.7, 84.1, 74.6, 74.3,
-								70.3, 75.2, 74.6, 75.2, 76.9, 79.6, 82.2, 76.9,
-								78, 79.6 ],
-						backgroundColor : "rgba(153, 102, 255, 0.2)",
-						borderColor : "rgba(153, 102, 255, 1)",
-						borderWidth : 1
-					},
-					{
-						label : "500~600만원 미만",
-						data : [ 74.5, 77.5, 73, 75, 78.9, 74.8, 77.1, 77.1,
-								76.1, 77.6, 77.2, 77.2, 82.7, 83.1, 75.9, 78.6,
-								82.1 ],
-						backgroundColor : "rgba(255, 159, 64, 0.2)",
-						borderColor : "rgba(255, 159, 64, 1)",
-						borderWidth : 1
-					},
-					{
-						label : "600만원 이상",
-						data : [ 75.2, 77.5, 77.8, 73.7, 81.2, 74.7, 76.4,
-								72.9, 75.8, 77.8, 78.8, 76.8, 78.6, 80.8, 76.9,
-								77.3, 80.4 ],
-						backgroundColor : "rgba(255, 0, 0, 0.5)",
-						borderColor : "rgba(255, 0, 0, 1)",
-						borderWidth : 1
-					} ]
-		};
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            min: 0,
+                            max: null
+                        }
+                    },
+                    scales: {
+                        y: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
 
-		// 그래프 생성
-		var ctx = document.getElementById('myChart').getContext('2d');
-		var myChart = new Chart(ctx, {
-			type : 'bar',
-			data : data,
-			options : {
-				plugins : {
-					title : {
-						display : true,
-						text : "여행지별_관광여행_재방문_의향(가구소득)"
-					},
-				},
-				scales : {
-					y : {
-						beginAtZero : true
-					}
-				}
-			}
-		});
-	</script>
+            // 버튼 클릭 이벤트 리스너
+            // 버튼 id와 대응하는 데이터 인덱스를 객체 배열로 정의
+            const chartData = [
+                { id: 'seoulBtn', index: 0 },
+                { id: 'busanBtn', index: 1 },
+                { id: 'daeguBtn', index: 2 },
+                { id: 'incheonBtn', index: 3 },
+                { id: 'gwangjuBtn', index: 4 },
+                { id: 'daejeonBtn', index: 5 },
+                { id: 'ulsanBtn', index: 6 },
+                { id: 'sejongBtn', index: 7 },
+                { id: 'gyeonggiBtn', index: 8 },
+                { id: 'gangwonBtn', index: 9 },
+                { id: 'chongbukBtn', index: 10 },
+                { id: 'chongnamBtn', index: 11 },
+                { id: 'jeonbukBtn', index: 12 },
+                { id: 'jeonnamBtn', index: 13 },
+                { id: 'gyongbukBtn', index: 14 },
+                { id: 'gyongnamBtn', index: 15 },
+                { id: 'jejuBtn', index: 16 }
+            ];
+
+            // for문으로 버튼 이벤트 리스너 등록
+            for (let i = 0; i < chartData.length; i++) {
+                document.getElementById(chartData[i].id).addEventListener('click', function () {
+                    updateChart(chartData[i].index); // 해당 버튼에 대응하는 데이터 인덱스로 차트 업데이트
+                });
+            }
+
+            // 2차원의 데이터(원본형태)
+            var clickData = [
+                [82.4, 72, 72.2, 75.5, 76.2, 74.5, 75.2], // 서울에 대한 데이터
+                [81.2, 77.2, 77.6, 77.3, 75.3, 77.5, 77.5], // 부산에 대한 데이터
+                [73.2, 69.4, 77.3, 75.7, 69.1, 73, 77.8],     // 대구 데이터
+                [69.6, 75.5, 73.7, 72.5, 76.7, 75, 73.7],      // 인천
+                [80.5, 87.3, 80.7, 83, 84.1, 78.9, 81.2],     // 광주 ~~~~~ 위 html 코드 div안쪽의 지역버튼 순서대로
+                [68.2, 64.6, 70.1, 73.6, 74.6, 74.8, 74.7],
+                [80.5, 79.7, 76.2, 74.6, 74.3, 77.1, 76.4],
+                [67.8, 82.8, 74.7, 69.8, 70.3, 77.1, 72.9],
+                [75.4, 76.3, 75.9, 75.1, 75.2, 76.1, 75.8],
+                [79.7, 77.9, 77.5, 77.3, 74.6, 77.6, 77.8], // 강원
+                [79.9, 77.4, 71.4, 74, 75.2, 77.2, 78.8],       // 충북
+                [72.9, 72.1, 75.6, 76.8, 76.9, 77.2, 76.8],
+                [77.9, 80.2, 79.4, 81.5, 79.6, 82.7, 78.6],
+                [77.6, 81.9, 79.9, 80.5, 82.2, 83.1, 80.8],
+                [77.4, 75.5, 75.7, 76, 76.9, 75.9, 76.9],
+                [77.5, 78.5, 76.2, 76.3, 78, 78.6, 77.3],
+                [77.5, 80.2, 79.3, 78.3, 79.6, 82.1, 80.4]  // 제주
+            ]
+
+            // updateChart 함수 정의
+            function updateChart(index) {
+                // 데이터 업데이트
+                myChart.data.datasets[0].data = clickData[index];
+                myChart.update(); // 차트 업데이트
+            }
+        })
+    </script>
 </body>
+
 </html>
