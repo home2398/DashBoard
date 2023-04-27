@@ -49,7 +49,15 @@
 				<button class="genderClass" id="genderBtn<%=fileId%>" style="display: none"><%=value%></button>
 		<%}
 	%>
-				
+	
+	<button onclick="openPopup()">팝업 열기</button>
+	
+	<script type="text/javascript">
+		function openPopup() {
+		   	window.open('가구소득별/여행지별_국내여행_횟수(가구소득).jsp', '팝업 창 제목', 'width=1600, height=900');
+			}
+	</script>
+	
 	
 	<!-- values 배열의 첫 번째 값을 출력합니다. -->
 	
