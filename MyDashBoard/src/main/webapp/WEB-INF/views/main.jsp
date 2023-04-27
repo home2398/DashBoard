@@ -29,7 +29,12 @@
 	src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 
 <style>
-
+@font-face {
+    font-family: 'GangwonEduPowerExtraBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .csize2 {
 	border-bottom-left-radius: 10% !important;
 	border-bottom-right-radius: 10% !important;
@@ -59,6 +64,7 @@
 	color: #FF8839;
 	position: absolute;
 }
+
 </style>
 </head>
 
@@ -87,7 +93,7 @@
 				</a></li>
 
 				<li class="nav-item"><a class="nav-link text-white "
-					href="mypage.jsp">
+					href="GoMypage.do">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="material-icons opacity-10">person</i>
@@ -135,7 +141,7 @@
 							<c:if test="${!empty User}">
 								<h6>${User.id}님환영합니다!</h6>
 								<li class="nav-item d-flex align-items-center"><a
-									href="logout.jsp"
+									href="GoLogout.do"
 									class="nav-link text-body font-weight-bold px-0"> <i
 										class="fa fa-user me-sm-1"></i> <span
 										class="d-sm-inline d-none">Log Out</span>
@@ -198,11 +204,11 @@
 						%>
 						
 							<span class="mb-0">
-								<button id="explain1"
+								<button id="explain1" 
 									class="btn bg-gradient-warning w-100 mb-0 toast-btn"
 									type="button" data-target="warningToast"><%=fileName%></button>
 							</span>
-						
+							
 						<!-- <button><%=fileName%></button> -->
 						<%
 						}
@@ -232,6 +238,7 @@
 						}
 						}
 						%>
+						
 					</div>
 					</div>
 				</div>
@@ -782,10 +789,8 @@
 			},
 		});
 	</script>
+	
 
-	<script>
-		
-	</script>
 
 	<script>
 		var win = navigator.platform.indexOf('Win') > -1;
