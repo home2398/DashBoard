@@ -9541,7 +9541,8 @@ fieldset:disabled .btn {
 }
 
 .mb-0 {
-  margin-bottom: 0 !important;
+  margin-bottom: 10px !important;
+  margin-right: 5px !important;
 }
 
 .mb-1 {
