@@ -33,7 +33,7 @@ public class FrontController extends HttpServlet {
 		map.put("Login.do", new LoginService());
 		map.put("Join.do", new JoinService());
 		map.put("Mycheck.do", new MycheckService());
-
+		
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

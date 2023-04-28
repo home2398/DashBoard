@@ -24,6 +24,55 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+/* 모달창 스타일 */
+.modalDiv {
+  display: none; /* 모달창 초기에는 숨김 */
+  position: fixed; /* 모달창이 스크롤되지 않도록 설정 */
+  z-index: 1; /* 모달창 위에 다른 요소가 놓이지 않도록 설정 */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4); /* 배경색과 투명도 설정 */
+}
+
+/* 모달창 콘텐츠 스타일 */
+.modal-content-div {
+  background-color: #fefefe;
+  margin: 2% auto; /* 모달창이 화면 중앙에 위치하도록 설정 */
+  margin-left:15%;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 1600px;
+  height: 1000px;
+}
+
+/* 차트 스타일 */
+#modalIframe {
+  width: 1500px;
+  height: 950px;
+  position: fixed;
+  overflow: auto;
+
+}
+
+/* 모달창 닫기 버튼 스타일 */
+.closeSpan {
+  color: #aaa;
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.closeSpan:hover,
+.closeSpan:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -195,6 +244,7 @@
 			</div>
 		</nav>
 		<!-- End Navbar -->
+	<form action="Mycheck.do" method="post">
 		<div class="container-fluid py-4">
 			<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
 				<div class="card select-file1">
@@ -209,7 +259,7 @@
 						<br>
 						<!-- 성별별 버튼 선택 -->
 						<!-- <div class="csvType"> -->
-							<button id="genderShowType" type="button" class="btn btn-primary">성별별</button>
+						<button id="genderShowType" type="button" class="btn btn-primary">성별별</button>
 						<!-- </div> -->
 						<br>
 						
@@ -233,7 +283,20 @@
 				values.add(value);
 				index.add(fileId);
 				%>
-				<button type="button" class="btn btn-outline-warning genderClass" id="genderBtn<%=fileId%>" style="display: none"><%=value%></button><br>
+				<input type="button" name="fileName" value="<%=value%>" class="btn btn-outline-warning genderClass" id="genderBtn<%=fileId%>" style="display: none">
+				
+				<!-- 모달창 -->
+				<div id="modalId" class="modalDiv">
+  					<!-- 모달창 콘텐츠 -->
+  					<div class="modal-content-div">
+  					  <!-- 차트를 표시할 iframe -->
+    				 <iframe id="modalIframe"></iframe>
+    				 <span class="closeSpan" onclick="closeModal()">&times;</span>
+  					</div>
+				</div>
+				<%-- <button type="button" class="btn btn-outline-warning genderClass" id="genderBtn<%=fileId%>" style="display: none">
+				<%=value%></button> --%>
+				
 		<%}
 	%>
 	<%
@@ -280,7 +343,7 @@
 				values.add(value);
 				index.add(fileId);
 				%>
-				<button type="button" class="btn btn-outline-primary ageClass" id="ageBtn<%=fileId%>" style="display: none"><%=value%></button>
+				<input type="button" name="fileName" value="<%=value%>" class="btn btn-outline-primary ageClass" id="ageBtn<%=fileId%>" style="display: none">
 		<%}
 	%>
 	<%
@@ -327,7 +390,7 @@
 				values.add(value);
 				index.add(fileId);
 				%>
-				<button type="button" class="btn btn-outline-secondary gradeClass" id="gradeBtn<%=fileId%>" style="display: none"><%=value%></button>
+				<input type="button" name="fileName" value="<%=value%>" class="btn btn-outline-secondary gradeClass" id="gradeBtn<%=fileId%>" style="display: none">
 		<%}
 	%>
 	<%
@@ -374,7 +437,7 @@
 				values.add(value);
 				index.add(fileId);
 				%>
-				<button type="button" class="btn btn-outline-success familyPayClass" id="familyPayBtn<%=fileId%>" style="display: none"><%=value%></button>
+				<input type="button" name="fileName" value="<%=value%>" class="btn btn-outline-success familyPayClass" id="familyPayBtn<%=fileId%>" style="display: none">
 		<%}
 	%>
 	<%
@@ -421,7 +484,7 @@
 				values.add(value);
 				index.add(fileId);
 				%>
-				<button type="button" class="btn btn-outline-info familyCntClass" id="familyCntBtn<%=fileId%>" style="display: none"><%=value%></button>
+				<input type="button" name="fileName" value="<%=value%>" class="btn btn-outline-info familyCntClass" id="familyCntBtn<%=fileId%>" style="display: none">
 		<%}
 	%>
 	<%
@@ -443,1754 +506,13 @@
 	}
 	}
 	%>
-	
-	
-	<!-- 성별별 시작 -->
-	<!-- gender27 csv파일 설명 부분 -->
-	<div class="gender27" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">성별분류1</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- gender27 지역선택 부분 -->
-	<div class="gender27" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
+  </div>
+ </div>
+ </div>
+</div>
+</form>
 
-<!-- gender3 csv파일 설명 부분 -->
-	<div class="gender3" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">성별분류2</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
 	
-	<!-- gender3 지역선택 부분 -->
-	<div class="gender3" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>	
-						
-<!-- gender9 csv파일 설명 부분 -->
-	<div class="gender9" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">성별분류3</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- gender9 지역선택 부분 -->
-	<div class="gender9" class="locationSelect"  style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>							
-						
-<!-- gender15 csv파일 설명 부분 -->
-	<div class="gender15" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">성별분류4</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- gender15 지역선택 부분 -->
-	<div class="gender15" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>							
-						
-<!-- gender21 csv파일 설명 부분 -->
-	<div class="gender21" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">성별분류5</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- gender21 지역선택 부분 -->
-	<div class="gender21" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-
-<!-- 연령대별 시작 -->		
-<!-- age28 csv파일 설명 부분 -->
-	<div class="age28" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">연령분류1</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- age28 지역선택 부분 -->
-	<div class="age28" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-<!-- age4 csv파일 설명 부분 -->
-	<div class="age4" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">연령분류2</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- age4 지역선택 부분 -->
-	<div class="age4" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>	
-						
-<!-- age10 csv파일 설명 부분 -->
-	<div class="age10" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">연령분류3</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- age10 지역선택 부분 -->
-	<div class="age10" class="locationSelect"  style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>							
-						
-<!-- age16 csv파일 설명 부분 -->
-	<div class="age16" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">연령분류4</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- age16 지역선택 부분 -->
-	<div class="age16" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>							
-						
-<!-- age22 csv파일 설명 부분 -->
-	<div class="age22" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">연령분류5</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- age22 지역선택 부분 -->
-	<div class="age22" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-<!-- 학력별 시작 -->		
-<!-- grade24 csv파일 설명 부분 -->
-	<div class="grade24" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">학력분류1</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- grade24 지역선택 부분 -->
-	<div class="grade24" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-<!-- grade30 csv파일 설명 부분 -->
-	<div class="grade30" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">학력분류2</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- grade30 지역선택 부분 -->
-	<div class="grade30" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>	
-						
-<!-- "grade6" csv파일 설명 부분 -->
-	<div class="grade6" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">학력분류3</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- "grade6" 지역선택 부분 -->
-	<div class="grade6" class="locationSelect"  style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>							
-						
-<!-- grade12 csv파일 설명 부분 -->
-	<div class="grade12" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">학력분류4</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- grade12 지역선택 부분 -->
-	<div class="grade12" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>							
-						
-<!-- grade18 csv파일 설명 부분 -->
-	<div class="grade18" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">학력분류5</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- grade18 지역선택 부분 -->
-	<div class="grade18" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>	
-			
-
-<!-- 가구소득별 시작 -->		
-<!-- familyPay25 csv파일 설명 부분 -->
-	<div class="familyPay25" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">가구소득분류1</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- familyPay25 지역선택 부분 -->
-	<div class="familyPay25" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-<!-- familyPay1 csv파일 설명 부분 -->
-	<div class="familyPay1" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">가구소득분류2</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- familyPay1 지역선택 부분 -->
-	<div class="familyPay1" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>	
-						
-<!-- "familyPay7" csv파일 설명 부분 -->
-	<div class="familyPay7" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">가구소득분류3</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- "familyPay7" 지역선택 부분 -->
-	<div class="familyPay7" class="locationSelect"  style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>							
-						
-<!-- familyPay13 csv파일 설명 부분 -->
-	<div class="familyPay13" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">가구소득분류4</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- familyPay13 지역선택 부분 -->
-	<div class="familyPay13" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>							
-						
-<!-- familyPay19 csv파일 설명 부분 -->
-	<div class="familyPay19" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">가구소득분류5</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- familyPay19 지역선택 부분 -->
-	<div class="familyPay19" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-<!-- 가구원수별 시작 -->		
-<!-- familyCnt26 csv파일 설명 부분 -->
-	<div class="familyCnt26" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">가구원수분류1</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- familyCnt26 지역선택 부분 -->
-	<div class="familyCnt26" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-<!-- familyCnt2 csv파일 설명 부분 -->
-	<div class="familyCnt2" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">가구원수분류2</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- familyCnt2 지역선택 부분 -->
-	<div class="familyCnt2" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>	
-						
-<!-- "familyCnt8" csv파일 설명 부분 -->
-	<div class="familyCnt8" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">가구원수분류3</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- "familyCnt8" 지역선택 부분 -->
-	<div class="familyCnt8" class="locationSelect"  style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>							
-						
-<!-- familyCnt14 csv파일 설명 부분 -->
-	<div class="familyCnt14" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">가구원수분류4</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- familyCnt14 지역선택 부분 -->
-	<div class="familyCnt14" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>							
-						
-<!-- familyCnt20 csv파일 설명 부분 -->
-	<div class="familyCnt20" style="display: none;">
-	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-	<div class="card select-file2">
-	<div class="card-header p-3 pt-2 csize2">
-	<div class="pt-1 cpadding2">
-	<h2 class="text-sm mb-0 text-capitalize">설명부분</h2>
-	<h4 class="mb-0">가구원수분류5</h4>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<!-- familyCnt20 지역선택 부분 -->
-	<div class="familyCnt20" style="display: none;">
-				<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-					<div class="card">
-						<div class="card-header p-3 pt-2">
-							<div
-								class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-								<i class="material-icons opacity-10">person</i>
-							</div>
-	<div class="pt-1 cpadding1">
-		<h4 class="mb-0">지역 선택하기</h4>
-	</div>
-						</div>
-						<div class="card-footer p-3 csize3">
-							<p class="mb-0">
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">서울</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">부산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대구</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">인천</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">광주</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">대전</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">울산</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">세종</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경기</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">강원</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">충남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">전남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경북</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">경남</button>
-								<button type="button" class="btn btn-warning"
-									type="button" data-target="warningToast">제주</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
 	</main>
 	<div class="fixed-plugin">
 		<a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
@@ -2303,6 +625,8 @@
 			</div>
 		</div>
 	</div>
+	
+
 	<!--   Core JS Files   -->
 	<script src="assets/js/core/popper.min.js"></script>
 	<script src="assets/js/core/bootstrap.min.js"></script>
@@ -2480,11 +804,6 @@
 	// 성별별 클릭했을 때 내용 숨기기
 	$(document).on("click", "#genderHideType", function(){
 	    $(".genderClass").hide();
-	    $(".gender27").hide();
-	    $(".gender3").hide();
-	    $('.gender9').hide();
-		$('.gender15').hide();
-		$('.gender21').hide();
 		$("#ageShowType").show();
 	    $("#gradeShowType").show();
 	    $("#familyPayShowType").show();
@@ -2496,11 +815,6 @@
 	// 연령대별 클릭했을 때 내용 숨기기
 	$(document).on("click", "#ageHideType", function(){
 	    $(".ageClass").hide();
-	    $(".age28").hide();
-	    $(".age4").hide();
-	    $('.age10').hide();
-		$('.age16').hide();
-		$('.age22').hide();
 		$("#genderShowType").show();
 	    $("#gradeShowType").show();
 	    $("#familyPayShowType").show();
@@ -2512,11 +826,6 @@
 	// 학력별 클릭했을 때 내용 숨기기
 	$(document).on("click", "#gradeHideType", function(){
 	    $(".gradeClass").hide();
-	    $(".grade24").hide();
-	    $(".grade30").hide();
-	    $('.grade6').hide();
-		$('.grade12').hide();
-		$('.grade18').hide();
 		$("#ageShowType").show();
 	    $("#genderShowType").show();
 	    $("#familyPayShowType").show();
@@ -2528,11 +837,6 @@
 	// 가구소득별 클릭했을 때 내용 숨기기
 	$(document).on("click", "#familyPayHideType", function(){
 	    $(".familyPayClass").hide();
-	    $(".familyPay25").hide();
-	    $(".familyPay1").hide();
-	    $('.familyPay7').hide();
-		$('.familyPay13').hide();
-		$('.familyPay19').hide();
 		$("#ageShowType").show();
 	    $("#gradeShowType").show();
 	    $("#genderShowType").show();
@@ -2544,11 +848,6 @@
 	// 가구원수별 클릭했을 때 내용 숨기기
 	$(document).on("click", "#familyCntHideType", function(){
 	    $(".familyCntClass").hide();
-	    $(".familyCnt26").hide();
-	    $(".familyCnt2").hide();
-	    $('.familyCnt8').hide();
-		$('.familyCnt14').hide();
-		$('.familyCnt20').hide();
 		$("#ageShowType").show();
 	    $("#gradeShowType").show();
 	    $("#familyPayShowType").show();
@@ -2557,21 +856,43 @@
 	    $(this).removeClass("familyCntHideType");
 	  });
 
+/* 	$(document).ready(function(){
+	    // 소득구간별 버튼에 대한 이벤트 핸들러 작성
+	    $(".incomeClass").click(function(){
+	        var buttonId = $(this).attr("id");
+	        var filePath;
+	        if(buttonId === "incomeBtn1"){
+	            filePath = "가구소득별/여행지별_국내여행_횟수(가구소득).jsp";
+	        } else if(buttonId === "incomeBtn2") {
+	            filePath = "가구소득별/여행지별_국내여행_지출액(가구소득).jsp";
+	        } else if(buttonId === "incomeBtn3") {
+	            filePath = "가구소득별/여행지별_관광여행_재방문_의향(가구소득).jsp";
+	        } else {
+	            // ...
+	        }
+	        $("#incomeIframe").attr("src", filePath);
+	        $('#incomeModal').show();
+	    });
+	});
+ */
 	
 	
 	$(document).ready(function(){
 		// 성별별 버튼에 대한 이벤트 핸들러 작성
 		$(".genderClass").click(function(){
 			var buttonId = $(this).attr("id");
+			var filePath;
 			
 			if(buttonId === "genderBtn27"){
-				alert("설명팝업")
+				alert("CSV파일명 : 여행지별_국내여행_횟수(성별분류)\n 설명 : 성별")
 				$('.gender27').show();
 				$('.gender3').hide();
 				$('.gender9').hide();
 				$('.gender15').hide();
 				$('.gender21').hide();
+				filePath = "성별별/여행지별_국내여행_횟수(성별별).jsp";
 			}
+	
 			else if(buttonId === "genderBtn3"){
 				alert("설명팝업")
 				$('.gender3').show();
@@ -2579,7 +900,7 @@
 				$('.gender9').hide();
 				$('.gender15').hide();
 				$('.gender21').hide();
-				
+				filePath = "성별별/1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(성별별).jsp";
 			}
 			else if(buttonId === "genderBtn9"){
 				alert("설명팝업")
@@ -2588,7 +909,7 @@
 				$('.gender3').hide();
 				$('.gender15').hide();
 				$('.gender21').hide();
-				
+				filePath = "성별별/1회_평균_여행지별_국내여행_지출액_여행경험자(성별별).jsp";
 			}
 			else if(buttonId === "genderBtn15"){
 				alert("설명팝업")
@@ -2597,7 +918,7 @@
 				$('.gender9').hide();
 				$('.gender3').hide();
 				$('.gender21').hide();
-				
+				filePath = "성별별/여행지별_관광여행_재방문_의향(성별별).jsp";
 			}
 			else if(buttonId === "genderBtn21"){
 				alert("설명팝업")
@@ -2606,13 +927,16 @@
 				$('.gender9').hide();
 				$('.gender15').hide();
 				$('.gender3').hide();
-				
+				filePath = "성별별/여행지별_국내여행_지출액(성별별).jsp";
 			}
+			$("#modalIframe").attr("src", filePath);
+	        $('#modalId').show();
 		})
 		
 		// 연령대별 버튼에 대한 이벤트 핸들러 작성
 		$(".ageClass").click(function(){
 			var buttonId = $(this).attr("id");
+			var filePath;
 			
 			if(buttonId === "ageBtn28"){
 				alert("설명팝업")
@@ -2621,6 +945,7 @@
 				$('.age10').hide();
 				$('.age16').hide();
 				$('.age22').hide();
+				filePath = "연령별/여행지별_국내여행_횟수(연령대별).jsp";
 			}
 			else if(buttonId === "ageBtn4"){
 				alert("설명팝업")
@@ -2629,7 +954,7 @@
 				$('.age10').hide();
 				$('.age16').hide();
 				$('.age22').hide();
-				
+				filePath = "연령별/1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(연령대별).jsp";
 			}
 			else if(buttonId === "ageBtn10"){
 				alert("설명팝업")
@@ -2638,7 +963,7 @@
 				$('.age4').hide();
 				$('.age16').hide();
 				$('.age22').hide();
-				
+				filePath = "연령별/1회_평균_여행지별_국내여행_지출액_여행경험자(연령대별).jsp";
 			}
 			else if(buttonId === "ageBtn16"){
 				alert("설명팝업")
@@ -2647,7 +972,7 @@
 				$('.age4').hide();
 				$('.age10').hide();
 				$('.age22').hide();
-				
+				filePath = "연령별/여행지별_관광여행_재방문_의향(연령대별).jsp";
 			}
 			else if(buttonId === "ageBtn22"){
 				alert("설명팝업")
@@ -2656,13 +981,16 @@
 				$('.age4').hide();
 				$('.age10').hide();
 				$('.age16').hide();
-				
+				filePath = "연령별/여행지별_국내여행_지출액(연령대별).jsp";
 			}
+			$("#modalIframe").attr("src", filePath);
+	        $('#modalId').show();
 		})
 		
 		// 학력별 버튼에 대한 이벤트 핸들러 작성
 		$(".gradeClass").click(function(){
 			var buttonId = $(this).attr("id");
+			var filePath;
 			
 			if(buttonId === "gradeBtn24"){
 				alert("설명팝업")
@@ -2671,6 +999,7 @@
 				$('.grade6').hide();
 				$('.grade12').hide();
 				$('.grade18').hide();
+				filePath = "학력별/여행지별_국내여행_지출액(학력별).jsp";
 			}
 			else if(buttonId === "gradeBtn30"){
 				alert("설명팝업")
@@ -2679,7 +1008,7 @@
 				$('.grade6').hide();
 				$('.grade12').hide();
 				$('.grade18').hide();
-				
+				filePath = "학력별/여행지별_국내여행_횟수(학력별).jsp";
 			}
 			else if(buttonId === "gradeBtn6"){
 				alert("설명팝업")
@@ -2688,7 +1017,7 @@
 				$('.grade30').hide();
 				$('.grade12').hide();
 				$('.grade18').hide();
-				
+				filePath = "학력별/1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(학력별).jsp";
 			}
 			else if(buttonId === "gradeBtn12"){
 				alert("설명팝업")
@@ -2697,7 +1026,7 @@
 				$('.grade30').hide();
 				$('.grade6').hide();
 				$('.grade18').hide();
-				
+				filePath = "학력별/1회_평균_여행지별_국내여행_지출액_여행경험자(학력별).jsp";
 			}
 			else if(buttonId === "gradeBtn18"){
 				alert("설명팝업")
@@ -2706,13 +1035,16 @@
 				$('.grade30').hide();
 				$('.grade6').hide();
 				$('.grade12').hide();
-				
+				filePath = "학력별/여행지별_관광여행_재방문_의향(학력별).jsp";
 			}
+			$("#modalIframe").attr("src", filePath);
+	        $('#modalId').show();
 		})
 		
 		// 가구소득별 버튼에 대한 이벤트 핸들러 작성
 		$(".familyPayClass").click(function(){
 			var buttonId = $(this).attr("id");
+			var filePath;
 			
 			if(buttonId === "familyPayBtn25"){
 				alert("설명팝업")
@@ -2721,6 +1053,7 @@
 				$('.familyPay7').hide();
 				$('.familyPay13').hide();
 				$('.familyPay19').hide();
+				filePath = "가구소득별/여행지별_국내여행_횟수(가구소득).jsp";
 			}
 			else if(buttonId === "familyPayBtn1"){
 				alert("설명팝업")
@@ -2729,7 +1062,7 @@
 				$('.familyPay7').hide();
 				$('.familyPay13').hide();
 				$('.familyPay19').hide();
-				
+				filePath = "가구소득별/1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(가구소득).jsp";
 			}
 			else if(buttonId === "familyPayBtn7"){
 				alert("설명팝업")
@@ -2738,7 +1071,7 @@
 				$('.familyPay1').hide();
 				$('.familyPay13').hide();
 				$('.familyPay19').hide();
-				
+				filePath = "가구소득별/1회_평균_여행지별_국내여행_지출액_여행경험자(가구소득).jsp";
 			}
 			else if(buttonId === "familyPayBtn13"){
 				alert("설명팝업")
@@ -2747,7 +1080,7 @@
 				$('.familyPay1').hide();
 				$('.familyPay7').hide();
 				$('.familyPay19').hide();
-				
+				filePath = "가구소득별/여행지별_관광여행_재방문_의향(가구소득).jsp";
 			}
 			else if(buttonId === "familyPayBtn19"){
 				alert("설명팝업")
@@ -2756,13 +1089,16 @@
 				$('.familyPay1').hide();
 				$('.familyPay7').hide();
 				$('.familyPay13').hide();
-				
+				filePath = "가구소득별/여행지별_국내여행_지출액(가구소득).jsp";
 			}
+			$("#modalIframe").attr("src", filePath);
+	        $('#modalId').show();
 		})
 		
 		// 학력별 버튼에 대한 이벤트 핸들러 작성
 		$(".familyCntClass").click(function(){
 			var buttonId = $(this).attr("id");
+			var filePath;
 			
 			if(buttonId === "familyCntBtn26"){
 				alert("설명팝업")
@@ -2771,6 +1107,7 @@
 				$('.familyCnt8').hide();
 				$('.familyCnt14').hide();
 				$('.familyCnt20').hide();
+				filePath = "가구원수별/여행지별_국내여행_횟수(가구원수).jsp";
 			}
 			else if(buttonId === "familyCntBtn2"){
 				alert("설명팝업")
@@ -2779,7 +1116,7 @@
 				$('.familyCnt8').hide();
 				$('.familyCnt14').hide();
 				$('.familyCnt20').hide();
-				
+				filePath = "가구원수별/1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(가구원수).jsp";
 			}
 			else if(buttonId === "familyCntBtn8"){
 				alert("설명팝업")
@@ -2788,7 +1125,7 @@
 				$('.familyCnt2').hide();
 				$('.familyCnt14').hide();
 				$('.familyCnt20').hide();
-				
+				filePath = "가구원수별/1회_평균_여행지별_국내여행_지출액_여행경험자(가구원수).jsp";
 			}
 			else if(buttonId === "familyCntBtn14"){
 				alert("설명팝업")
@@ -2797,7 +1134,7 @@
 				$('.familyCnt2').hide();
 				$('.familyCnt8').hide();
 				$('.familyCnt20').hide();
-				
+				filePath = "가구원수별/여행지별_관광여행_재방문_의향(가구원수).jsp";
 			}
 			else if(buttonId === "familyCntBtn20"){
 				alert("설명팝업")
@@ -2806,11 +1143,51 @@
 				$('.familyCnt2').hide();
 				$('.familyCnt8').hide();
 				$('.familyCnt14').hide();
+				filePath = "가구원수별/여행지별_국내여행_지출액(가구원수).jsp";
+			}
+			$("#modalIframe").attr("src", filePath);
+	        $('#modalId').show();
+		})
+	});
+</script>
+
+<script type="text/javascript">
+// 모달창 닫기 함수
+function closeModal(){
+		/* document.getElementByClassName("modalDiv")[0].style.display="none"; */
+		document.getElementById("modalId").style.display="none";
+	};
+</script>
+
+
+
+
+<!-- <script type="text/javascript">
+	$(document).ready(function(){
+		
+		// 성별별 버튼에 대한 이벤트 핸들러 작성
+		$(".familyPayClass").click(function(){
+			var buttonId = $(this).attr("id");
+			
+			if(buttionId === "familyPayBtn25"){
+				window.open('가구소득별/여행지별_국내여행_횟수(가구소득).jsp', '팝업 창 제목', 'width=1600, height=900');
+			}
+			else if(buttionId === "familyPayBtn1"){
+				
 				
 			}
 		})
 	});
-</script>
+</script> -->
+
+
+
+<!-- 차트 팝업 -->
+<!-- <script type="text/javascript">
+	function openPopup() {
+		window.open('가구소득별/여행지별_국내여행_횟수(가구소득).jsp', '팝업 창 제목', 'width=1600, height=900');
+	}
+</script> -->
 
 </body>
 </html>

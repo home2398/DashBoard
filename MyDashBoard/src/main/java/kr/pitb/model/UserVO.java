@@ -6,15 +6,17 @@ public class UserVO {
 	private String pw;
 	private String nickname;
 	private String saveName;
-	private String fileID;
+	private String fileName;
+	private String fileId;
 	
-	public UserVO(String id, String pw, String nickname, String saveName, String fileID) {
+	public UserVO(String id, String pw, String nickname, String saveName, String fileName, String fileId) {
 		super();
 		this.id = id;
 		this.pw = pw;
 		this.nickname = nickname;
 		this.saveName = saveName;
-		this.fileID = fileID;
+		this.fileName = fileName;
+		this.fileId = fileId;
 	}
 	
 	public UserVO() {
@@ -53,12 +55,19 @@ public class UserVO {
 		this.saveName = saveName;
 	}
 	
-	public String getFileID() {
-		return fileID;
+	public String getFileName() {
+		return fileName;
 	}
 
-	public void setFileID(String fileID) {
-		this.fileID = fileID;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 	
+	public String getFileId() {
+		return fileId;
+	}
+
+	public void setFileId(String fileId) {
+		this.fileId = fileId;
+	}
 }

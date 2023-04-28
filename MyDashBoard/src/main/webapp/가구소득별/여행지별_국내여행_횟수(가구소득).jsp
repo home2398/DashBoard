@@ -19,19 +19,31 @@
         }
 
         .btn {
-            display: inline-block;
-            margin: 0 10px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
+            border: 0;
+            outline: none;
+            font-size: 20px;
+            margin: 10px;
+            background: rgb(243, 156, 18);
+            color: white;
+            padding: 10px;
             cursor: pointer;
+            border-radius: 10px;
+        }
+
+        h1{
+            text-align: center;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart-test.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 </head>
 
 <body>
-	<form action="Mycheck.do" method="post">
+	<form action="Mycheck.do" method="post" target='blankifr'>
     <h1 align="center">여행지별_국내여행_횟수(가구소득)</h1>
     <input type="checkbox" name="saveName" value="01-Gj">
     <div class="chart-container">
@@ -57,6 +69,7 @@
         <button class="btn" id="jejuBtn">제주</button>
     </div>
     <input type="submit" value="저장">
+    <iframe name='blankifr' style='display:none;'></iframe>
     </form>
     
     <script>
@@ -66,8 +79,8 @@
                 labels: ["100만원 미만", "100~200만원 미만", "200~300만원 미만", "300~400만원 미만", "400~500만원 미만", "500~600만원 미만", "600만원 이상"],
                 datasets: [{
                     label: '지출액',
-                    backgroundColor: ['rgba(255, 109, 96, 0.2)', 'rgba(247, 208, 96, 0.2)', 'rgba(243, 219, 8, 0.2)', 'rgba(152, 216, 170, 0.2)'],
-                    borderColor: ['rgba(255, 109, 96, 1)', 'rgba(247, 208, 96, 1)', 'rgba(243, 233, 159, 1)', 'rgba(159, 216, 170, 1)'],
+                    backgroundColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
+                    borderColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
                     borderWidth: 1,
                     data: [20, 120, 400, 50, 180, 30, 43] // 1차원 형식으로 넣어줘야함(여기에 바로 데이터-2차원를 넣어주면 차트형식이 이상해짐)
                 }]
@@ -75,28 +88,25 @@
 
             // 차트 생성
             var ctx = document.getElementById('myChart').getContext('2d');
-
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: data,
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: true,
-                            min: 0,
-                            max: null
-                        }
-                    },
-                    scales: {
-                        y: {
+                            max: null,
                             grid: {
                                 display: false
                             }
                         }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
                     }
                 }
             });
-
 
             // 버튼 클릭 이벤트 리스너
             // 버튼 id와 대응하는 데이터 인덱스를 객체 배열로 정의

@@ -14,25 +14,28 @@ public class MycheckService implements Command {
 	
 public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	String fileID = request.getParameter("fileID");
+	String fileName = request.getParameter("fileName");
+	
+	UserDAO dao = new UserDAO();
+	
+	String select_fileID = dao.select_fileID(fileName);
+	
 	String saveName = request.getParameter("saveName");
 	HttpSession session = request.getSession();
 	String id = ((UserVO)session.getAttribute("User")).getId();
-	System.out.println("fileID >> " + fileID);
+	
+	System.out.println("fileName >> " + fileName);
 	System.out.println("saveName >> " + saveName);
 	System.out.println("저장된 id >>> "+id);
 	
 	UserVO vo = new UserVO();
 	vo.setId(id);
 	vo.setSaveName(saveName);
-	vo.setFileID(fileID);
-	
-	UserDAO dao = new UserDAO();
+	vo.setFileId(select_fileID);
 	
 	int row = dao.save(vo);
 
 	if (row > 0) {
-		request.setAttribute("interestingList", fileID);
 		return "redirect:/GoMain.do";
 	} else {
 		return "redirect:/GoMain.do";
