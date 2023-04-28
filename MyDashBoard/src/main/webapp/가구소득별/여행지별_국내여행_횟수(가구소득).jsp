@@ -43,7 +43,7 @@
 </head>
 
 <body>
-	<form action="Mycheck.do" method="post" target='blankifr'>
+	<form action="/MyDashBoard/Mycheck.do" method="post"> <!--  target='blankifr' -->
     <h1 align="center">여행지별_국내여행_횟수(가구소득)</h1>
     <input type="checkbox" name="saveName" value="01-Gj">
     <div class="chart-container">
@@ -69,7 +69,7 @@
         <button class="btn" id="jejuBtn">제주</button>
     </div>
     <input type="submit" value="저장">
-    <iframe name='blankifr' style='display:none;'></iframe>
+    <!-- <iframe name='blankifr' style='display:none;'></iframe> -->
     </form>
     
     <script>

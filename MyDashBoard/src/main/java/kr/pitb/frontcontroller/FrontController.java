@@ -63,6 +63,9 @@ public class FrontController extends HttpServlet {
 		String finalpath = null;
 		Command com = null;
 
+		System.out.println("확인>>"+finaluri);
+		
+		
 		// 2. 요청 경로에 따라 다른 기능을 수행하게끔 설계
 		if (finaluri.contains("Go")) {
 			// 특정 로직을 수행하지 않고 그냥 바로 jsp 로 이동해야 하는 url

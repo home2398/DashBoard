@@ -15,6 +15,7 @@ public class MycheckService implements Command {
 public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	String fileName = request.getParameter("fileName");
+	System.out.println("fileName >> " + fileName);
 	
 	UserDAO dao = new UserDAO();
 	
@@ -24,7 +25,6 @@ public String execute(HttpServletRequest request, HttpServletResponse response) 
 	HttpSession session = request.getSession();
 	String id = ((UserVO)session.getAttribute("User")).getId();
 	
-	System.out.println("fileName >> " + fileName);
 	System.out.println("saveName >> " + saveName);
 	System.out.println("저장된 id >>> "+id);
 	
