@@ -17,7 +17,7 @@
 </style>
 
 <body>
-	<canvas id="chartCanvas" width="400" height="400"></canvas>
+	<canvas id="chartCanvas"></canvas>
 	<script>
 		// 데이터
 		var data = {
