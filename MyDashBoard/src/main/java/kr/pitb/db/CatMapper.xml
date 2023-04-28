@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.pitb.model.CatDAO">
+   
+   <select id="selectCat" parameterType="java.lang.String" resultType="kr.pitb.model.CatVO">
+   
+   select 파일ID as file_id , 원본파일이름 as file_name 
+   from csv파일정보 where 원본파일이름 like  '%'||#{cat}||'%'
+   </select>
+   
+   
+   
+</mapper>

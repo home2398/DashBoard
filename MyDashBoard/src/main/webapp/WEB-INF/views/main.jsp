@@ -5,21 +5,6 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%!// 디비정보
-	Connection conn = null;
-	Statement stmt = null;
-	ResultSet rs = null;
-	// 데이터베이스에 연결
-	String url = "jdbc:oracle:thin:@project-db-stu.smhrd.com:1524:XE";
-	String user = "cgi_2_230419_4";
-	String password = "smhrd4";
-	String gendersql = "select 파일ID as fileId , 원본파일이름 as fileName from csv파일정보 where 원본파일이름 like '%성별분류%' ";
-	String agesql = "select 파일ID as fileId , 원본파일이름 as fileName from csv파일정보 where 원본파일이름 like '%연령대별%' ";
-	String jobsql = "select 파일ID as fileId , 원본파일이름 as fileName from csv파일정보 where 원본파일이름 like '%직업별%' ";
-	String gradesql = "select 파일ID as fileId , 원본파일이름 as fileName from csv파일정보 where 원본파일이름 like '%학력별%' ";
-	String familypaysql = "select 파일ID as fileId , 원본파일이름 as fileName from csv파일정보 where 원본파일이름 like '%가구소득%' ";
-	String familycntsql = "select 파일ID as fileId , 원본파일이름 as fileName from csv파일정보 where 원본파일이름 like '%가구원수%' ";
-%>
 
 <!DOCTYPE html>
 <html>
@@ -139,6 +124,12 @@
 	color: #FF8839;
 	position: absolute;
 }
+
+.chart-div {
+	display: inline-block;
+	width: 30%;
+}
+
 </style>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- jquery 로딩 -->
@@ -259,258 +250,86 @@
 						<br>
 						<!-- 성별별 버튼 선택 -->
 						<!-- <div class="csvType"> -->
-						<button id="genderShowType" type="button" class="btn btn-primary">성별별</button>
+						<button id="genderShowType" type="button" class="btn btn-primary btn-type">성별별</button>
 						<!-- </div> -->
 						<br>
+						<!-- 연령대별 버튼 선택 -->
+						<!-- <div class="csvType"> -->
+							<button id="ageShowType" type="button" class="btn btn-primary btn-type">연령대별</button>
+						<!-- </div> -->
 						
-	<%
-		try {
-		// 데이터베이스를 접속하기 위한 드라이버 SW 로드
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		// 데이터베이스에 연결하는 작업 수행
-		conn = DriverManager.getConnection(url, user, password);
-		// 쿼리를 생성gkf 객체 생성
-		stmt = conn.createStatement();
-		// 쿼리 생성
-		rs = stmt.executeQuery(gendersql);
-	%>
-	<%
-			List<String> values = new ArrayList<>();
-			List<String> index = new ArrayList<>();
-			while (rs.next()) {
-				String value = rs.getString("fileName");
-				String fileId = rs.getString("fileId");
-				values.add(value);
-				index.add(fileId);
-				%>
-				<input type="button" name="fileName" value="<%=value%>" class="btn btn-outline-warning genderClass" id="genderBtn<%=fileId%>" style="display: none">
-				
-				<!-- 모달창 -->
-				<div id="modalId" class="modalDiv">
-  					<!-- 모달창 콘텐츠 -->
-  					<div class="modal-content-div">
-  					  <!-- 차트를 표시할 iframe -->
-    				 <iframe id="modalIframe"></iframe>
-    				 <span class="closeSpan" onclick="closeModal()">&times;</span>
-  					</div>
-				</div>
-				<%-- <button type="button" class="btn btn-outline-warning genderClass" id="genderBtn<%=fileId%>" style="display: none">
-				<%=value%></button> --%>
-				
-		<%}
-	%>
-	<%
-	} catch (Exception e) {
-	e.printStackTrace();
-	} finally {
-	try {
-	if (rs != null) {
-		rs.close();
-	}
-	if (stmt != null) {
-		stmt.close();
-	}
-	if (conn != null) {
-		conn.close();
-	}
-	} catch (Exception e) {
-	e.printStackTrace();
-	}
-	}
-	%>
-	
-	<!-- 연령대별 버튼 선택 -->
-	<!-- <div class="csvType"> -->
-		<button id="ageShowType" type="button" class="btn btn-primary">연령대별</button>
-	<!-- </div> -->
-	<%
-		try {
-		// 데이터베이스를 접속하기 위한 드라이버 SW 로드
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		// 데이터베이스에 연결하는 작업 수행
-		conn = DriverManager.getConnection(url, user, password);
-		// 쿼리를 생성gkf 객체 생성
-		stmt = conn.createStatement();
-		// 쿼리 생성
-		rs = stmt.executeQuery(agesql);
-	%>
-	<%
-			List<String> values = new ArrayList<>();
-			List<String> index = new ArrayList<>();
-			while (rs.next()) {
-				String value = rs.getString("fileName");
-				String fileId = rs.getString("fileId");
-				values.add(value);
-				index.add(fileId);
-				%>
-				<input type="button" name="fileName" value="<%=value%>" class="btn btn-outline-primary ageClass" id="ageBtn<%=fileId%>" style="display: none">
-		<%}
-	%>
-	<%
-	} catch (Exception e) {
-	e.printStackTrace();
-	} finally {
-	try {
-	if (rs != null) {
-		rs.close();
-	}
-	if (stmt != null) {
-		stmt.close();
-	}
-	if (conn != null) {
-		conn.close();
-	}
-	} catch (Exception e) {
-	e.printStackTrace();
-	}
-	}
-	%>
-	
-	<!-- 학력별 버튼 선택 -->
-	<!-- <div class="csvType"> -->
-		<button id="gradeShowType" type="button" class="btn btn-primary">학력별</button>
-	<!-- </div> -->
-	<%
-		try {
-		// 데이터베이스를 접속하기 위한 드라이버 SW 로드
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		// 데이터베이스에 연결하는 작업 수행
-		conn = DriverManager.getConnection(url, user, password);
-		// 쿼리를 생성gkf 객체 생성
-		stmt = conn.createStatement();
-		// 쿼리 생성
-		rs = stmt.executeQuery(gradesql);
-	%>
-	<%
-			List<String> values = new ArrayList<>();
-			List<String> index = new ArrayList<>();
-			while (rs.next()) {
-				String value = rs.getString("fileName");
-				String fileId = rs.getString("fileId");
-				values.add(value);
-				index.add(fileId);
-				%>
-				<input type="button" name="fileName" value="<%=value%>" class="btn btn-outline-secondary gradeClass" id="gradeBtn<%=fileId%>" style="display: none">
-		<%}
-	%>
-	<%
-	} catch (Exception e) {
-	e.printStackTrace();
-	} finally {
-	try {
-	if (rs != null) {
-		rs.close();
-	}
-	if (stmt != null) {
-		stmt.close();
-	}
-	if (conn != null) {
-		conn.close();
-	}
-	} catch (Exception e) {
-	e.printStackTrace();
-	}
-	}
-	%>
-	
-	<!-- 가구소득별 버튼 선택 -->
-	<!-- <div class="csvType"> -->
-		<button id="familyPayShowType" type="button" class="btn btn-primary">가구소득별</button>
-	<!-- </div> -->
-	<%
-		try {
-		// 데이터베이스를 접속하기 위한 드라이버 SW 로드
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		// 데이터베이스에 연결하는 작업 수행
-		conn = DriverManager.getConnection(url, user, password);
-		// 쿼리를 생성gkf 객체 생성
-		stmt = conn.createStatement();
-		// 쿼리 생성
-		rs = stmt.executeQuery(familypaysql);
-	%>
-	<%
-			List<String> values = new ArrayList<>();
-			List<String> index = new ArrayList<>();
-			while (rs.next()) {
-				String value = rs.getString("fileName");
-				String fileId = rs.getString("fileId");
-				values.add(value);
-				index.add(fileId);
-				%>
-				<input type="button" name="fileName" value="<%=value%>" class="btn btn-outline-success familyPayClass" id="familyPayBtn<%=fileId%>" style="display: none">
-		<%}
-	%>
-	<%
-	} catch (Exception e) {
-	e.printStackTrace();
-	} finally {
-	try {
-	if (rs != null) {
-		rs.close();
-	}
-	if (stmt != null) {
-		stmt.close();
-	}
-	if (conn != null) {
-		conn.close();
-	}
-	} catch (Exception e) {
-	e.printStackTrace();
-	}
-	}
-	%>
-	
-	<!-- 가구원수별 버튼 선택 -->
-	<!-- <div class="csvType"> -->
-		<button id="familyCntShowType" type="button" class="btn btn-primary">가구원수별</button>
-	<!-- </div> -->
-	<%
-		try {
-		// 데이터베이스를 접속하기 위한 드라이버 SW 로드
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		// 데이터베이스에 연결하는 작업 수행
-		conn = DriverManager.getConnection(url, user, password);
-		// 쿼리를 생성gkf 객체 생성
-		stmt = conn.createStatement();
-		// 쿼리 생성
-		rs = stmt.executeQuery(familycntsql);
-	%>
-	<%
-			List<String> values = new ArrayList<>();
-			List<String> index = new ArrayList<>();
-			while (rs.next()) {
-				String value = rs.getString("fileName");
-				String fileId = rs.getString("fileId");
-				values.add(value);
-				index.add(fileId);
-				%>
-				<input type="button" name="fileName" value="<%=value%>" class="btn btn-outline-info familyCntClass" id="familyCntBtn<%=fileId%>" style="display: none">
-		<%}
-	%>
-	<%
-	} catch (Exception e) {
-	e.printStackTrace();
-	} finally {
-	try {
-	if (rs != null) {
-		rs.close();
-	}
-	if (stmt != null) {
-		stmt.close();
-	}
-	if (conn != null) {
-		conn.close();
-	}
-	} catch (Exception e) {
-	e.printStackTrace();
-	}
-	}
-	%>
+						<!-- 학력별 버튼 선택 -->
+						<!-- <div class="csvType"> -->
+							<button id="gradeShowType" type="button" class="btn btn-primary btn-type">학력별</button>
+						<!-- </div> -->
+						
+						<!-- 가구소득별 버튼 선택 -->
+						<!-- <div class="csvType"> -->
+							<button id="familyPayShowType" type="button" class="btn btn-primary btn-type">가구소득별</button>
+						<!-- </div> -->
+						
+						<!-- 가구원수별 버튼 선택 -->
+						<!-- <div class="csvType"> -->
+							<button id="familyCntShowType" type="button" class="btn btn-primary btn-type">가구원수별</button>
+						<!-- </div> -->
+						
+							<div id = "scope">
+							
+							
+							</div>
+								
+						<!-- 모달창 -->
+						<div id="modalId" class="modalDiv">
+		  					<!-- 모달창 콘텐츠 -->
+		  					<div class="modal-content-div">
+		  					  <!-- 차트를 표시할 iframe -->
+		    				 <iframe id="modalIframe"></iframe>
+		    				 <span class="closeSpan" onclick="closeModal()">&times;</span>
+		  					</div>
+						</div>
+						<%-- <button type="button" class="btn btn-outline-warning genderClass" id="genderBtn<%=fileId%>" style="display: none">
+						<%=value%></button> --%>
+						
   </div>
  </div>
  </div>
 </div>
 </form>
+<!-- 차트 쌓일 구간 만들기 -->
+		<div class="row mt-4">
+			 <div class="chart-div">
+                <div id="chart1">
+                  <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+                </div>
+              </div>
+              <div class="chart-div">
+                <div id="chart2">
+                  <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+                </div>
+              </div>
+              <div class="chart-div">
+                <div id="chart3">
+                  <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+                </div>
+              </div>
+        </div>
+        <div class="row mt-4">
+			 <div class="chart-div">
+                <div id="chart4">
+                  <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+                </div>
+              </div>
+              <div class="chart-div">
+                <div id="chart5">
+                  <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+                </div>
+              </div>
+              <div class="chart-div">
+                <div id="chart6">
+                  <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+                </div>
+              </div>
+        </div>
 
 	
 	</main>
@@ -746,115 +565,46 @@
 
 	<!-- 배지훈 파일버튼 클릭 시 설명글,위치선택 버튼 나오는 자바스크립트 -->
 	<script type="text/javascript">
-	// 성별별 클릭했을 때 내용 보이기
-	$(document).on("click", "#genderShowType", function(){
-	    $(".genderClass").show();
-	    $("#ageShowType").hide();
-	    $("#gradeShowType").hide();
-	    $("#familyPayShowType").hide();
-	    $("#familyCntShowType").hide();
-	    $(this).attr("id", "genderHideType");
-	    $(this).removeClass("genderShowType");
-	  });
 	
-	// 연령대별 클릭했을 때 내용 보이기
-	$(document).on("click", "#ageShowType", function(){
-	    $(".ageClass").show();
-	    $("#genderShowType").hide();
-	    $("#gradeShowType").hide();
-	    $("#familyPayShowType").hide();
-	    $("#familyCntShowType").hide();
-	    $(this).attr("id", "ageHideType");
-	    $(this).removeClass("ageShowType");
-	  });
+	var openModal = function(filePath){
+		console.log('들어옴?');
+		filePath = filePath.replace('csv', 'jsp');
+		filePath = filePath.replace('분류', '별');
+		
+		$("#modalIframe").attr("src", "test/"+filePath);
+        $('#modalId').show();
+	}
 	
-	// 학력별 클릭했을 때 내용 보이기
-	$(document).on("click", "#gradeShowType", function(){
-	    $(".gradeClass").show();
-	    $("#genderShowType").hide();
-	    $("#ageShowType").hide();
-	    $("#familyPayShowType").hide();
-	    $("#familyCntShowType").hide();
-	    $(this).attr("id", "gradeHideType");
-	    $(this).removeClass("gradeShowType");
-	  });
 	
-	// 가구소득별 클릭했을 때 내용 보이기
-	$(document).on("click", "#familyPayShowType", function(){
-	    $(".familyPayClass").show();
-	    $("#genderShowType").hide();
-	    $("#gradeShowType").hide();
-	    $("#ageShowType").hide();
-	    $("#familyCntShowType").hide();
-	    $(this).attr("id", "familyPayHideType");
-	    $(this).removeClass("familyPayShowType");
-	  });
 	
-	// 가구원수별 클릭했을 때 내용 보이기
-	$(document).on("click", "#familyCntShowType", function(){
-	    $(".familyCntClass").show();
-	    $("#genderShowType").hide();
-	    $("#gradeShowType").hide();
-	    $("#familyPayShowType").hide();
-	    $("#ageShowType").hide();
-	    $(this).attr("id", "familyCntHideType");
-	    $(this).removeClass("familyCntShowType");
-	  });
+	// 1. btn-type을 클릭했을 때
+	$('.btn-type').on('click',function(){
+		// 2. ajax로 fileName 요청(클릭한 버튼의 이름 보내주기)
+		var sendData = {
+			data : $(this)[0].innerText
+			}
+		$.ajax({
+			url : 'SelectButton.do',
+			data : sendData,
+			dataType : 'json',
+			success : function(result){
+				// 3. 성공했을 때 버튼들을 하나씩 추가해주기
+				console.log(result);
+				$('#scope').empty();
+				for(var i =0;i<result.length;i++){
+					$('#scope').append('<input type="button" onclick=openModal("'+result[i].file_name+'") name="fileName" value='+result[i].file_name+
+							' class="btn btn-outline-secondary gradeClass" id="gradeBtn'+result[i].file_id+'">');
+				}
+			},
+			error : function(){
+				console.log('실패..');
+			}
+			
+		})
+		
 	
-	// 성별별 클릭했을 때 내용 숨기기
-	$(document).on("click", "#genderHideType", function(){
-	    $(".genderClass").hide();
-		$("#ageShowType").show();
-	    $("#gradeShowType").show();
-	    $("#familyPayShowType").show();
-	    $("#familyCntShowType").show();
-	    $(this).attr("id", "genderShowType");
-	    $(this).removeClass("genderHideType");
-	  });
+	})
 	
-	// 연령대별 클릭했을 때 내용 숨기기
-	$(document).on("click", "#ageHideType", function(){
-	    $(".ageClass").hide();
-		$("#genderShowType").show();
-	    $("#gradeShowType").show();
-	    $("#familyPayShowType").show();
-	    $("#familyCntShowType").show();
-	    $(this).attr("id", "ageShowType");
-	    $(this).removeClass("ageHideType");
-	  });
-	
-	// 학력별 클릭했을 때 내용 숨기기
-	$(document).on("click", "#gradeHideType", function(){
-	    $(".gradeClass").hide();
-		$("#ageShowType").show();
-	    $("#genderShowType").show();
-	    $("#familyPayShowType").show();
-	    $("#familyCntShowType").show();
-	    $(this).attr("id", "gradeShowType");
-	    $(this).removeClass("gradeHideType");
-	  });
-	
-	// 가구소득별 클릭했을 때 내용 숨기기
-	$(document).on("click", "#familyPayHideType", function(){
-	    $(".familyPayClass").hide();
-		$("#ageShowType").show();
-	    $("#gradeShowType").show();
-	    $("#genderShowType").show();
-	    $("#familyCntShowType").show();
-	    $(this).attr("id", "familyPayShowType");
-	    $(this).removeClass("familyPayHideType");
-	  });
-	
-	// 가구원수별 클릭했을 때 내용 숨기기
-	$(document).on("click", "#familyCntHideType", function(){
-	    $(".familyCntClass").hide();
-		$("#ageShowType").show();
-	    $("#gradeShowType").show();
-	    $("#familyPayShowType").show();
-	    $("#genderShowType").show();
-	    $(this).attr("id", "familyCntShowType");
-	    $(this).removeClass("familyCntHideType");
-	  });
 
 /* 	$(document).ready(function(){
 	    // 소득구간별 버튼에 대한 이벤트 핸들러 작성
@@ -875,280 +625,6 @@
 	    });
 	});
  */
-	
-	
-	$(document).ready(function(){
-		// 성별별 버튼에 대한 이벤트 핸들러 작성
-		$(".genderClass").click(function(){
-			var buttonId = $(this).attr("id");
-			var filePath;
-			
-			if(buttonId === "genderBtn27"){
-				alert("CSV파일명 : 여행지별_국내여행_횟수(성별분류)\n 설명 : 성별")
-				$('.gender27').show();
-				$('.gender3').hide();
-				$('.gender9').hide();
-				$('.gender15').hide();
-				$('.gender21').hide();
-				filePath = "성별별/여행지별_국내여행_횟수(성별별).jsp";
-			}
-	
-			else if(buttonId === "genderBtn3"){
-				alert("설명팝업")
-				$('.gender3').show();
-				$('.gender27').hide();
-				$('.gender9').hide();
-				$('.gender15').hide();
-				$('.gender21').hide();
-				filePath = "성별별/1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(성별별).jsp";
-			}
-			else if(buttonId === "genderBtn9"){
-				alert("설명팝업")
-				$('.gender9').show();
-				$('.gender27').hide();
-				$('.gender3').hide();
-				$('.gender15').hide();
-				$('.gender21').hide();
-				filePath = "성별별/1회_평균_여행지별_국내여행_지출액_여행경험자(성별별).jsp";
-			}
-			else if(buttonId === "genderBtn15"){
-				alert("설명팝업")
-				$('.gender15').show();
-				$('.gender27').hide();
-				$('.gender9').hide();
-				$('.gender3').hide();
-				$('.gender21').hide();
-				filePath = "성별별/여행지별_관광여행_재방문_의향(성별별).jsp";
-			}
-			else if(buttonId === "genderBtn21"){
-				alert("설명팝업")
-				$('.gender21').show();
-				$('.gender27').hide();
-				$('.gender9').hide();
-				$('.gender15').hide();
-				$('.gender3').hide();
-				filePath = "성별별/여행지별_국내여행_지출액(성별별).jsp";
-			}
-			$("#modalIframe").attr("src", filePath);
-	        $('#modalId').show();
-		})
-		
-		// 연령대별 버튼에 대한 이벤트 핸들러 작성
-		$(".ageClass").click(function(){
-			var buttonId = $(this).attr("id");
-			var filePath;
-			
-			if(buttonId === "ageBtn28"){
-				alert("설명팝업")
-				$('.age28').show();
-				$('.age4').hide();
-				$('.age10').hide();
-				$('.age16').hide();
-				$('.age22').hide();
-				filePath = "연령별/여행지별_국내여행_횟수(연령대별).jsp";
-			}
-			else if(buttonId === "ageBtn4"){
-				alert("설명팝업")
-				$('.age4').show();
-				$('.age28').hide();
-				$('.age10').hide();
-				$('.age16').hide();
-				$('.age22').hide();
-				filePath = "연령별/1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(연령대별).jsp";
-			}
-			else if(buttonId === "ageBtn10"){
-				alert("설명팝업")
-				$('.age10').show();
-				$('.age28').hide();
-				$('.age4').hide();
-				$('.age16').hide();
-				$('.age22').hide();
-				filePath = "연령별/1회_평균_여행지별_국내여행_지출액_여행경험자(연령대별).jsp";
-			}
-			else if(buttonId === "ageBtn16"){
-				alert("설명팝업")
-				$('.age16').show();
-				$('.age28').hide();
-				$('.age4').hide();
-				$('.age10').hide();
-				$('.age22').hide();
-				filePath = "연령별/여행지별_관광여행_재방문_의향(연령대별).jsp";
-			}
-			else if(buttonId === "ageBtn22"){
-				alert("설명팝업")
-				$('.age22').show();
-				$('.age28').hide();
-				$('.age4').hide();
-				$('.age10').hide();
-				$('.age16').hide();
-				filePath = "연령별/여행지별_국내여행_지출액(연령대별).jsp";
-			}
-			$("#modalIframe").attr("src", filePath);
-	        $('#modalId').show();
-		})
-		
-		// 학력별 버튼에 대한 이벤트 핸들러 작성
-		$(".gradeClass").click(function(){
-			var buttonId = $(this).attr("id");
-			var filePath;
-			
-			if(buttonId === "gradeBtn24"){
-				alert("설명팝업")
-				$('.grade24').show();
-				$('.grade30').hide();
-				$('.grade6').hide();
-				$('.grade12').hide();
-				$('.grade18').hide();
-				filePath = "학력별/여행지별_국내여행_지출액(학력별).jsp";
-			}
-			else if(buttonId === "gradeBtn30"){
-				alert("설명팝업")
-				$('.grade30').show();
-				$('.grade24').hide();
-				$('.grade6').hide();
-				$('.grade12').hide();
-				$('.grade18').hide();
-				filePath = "학력별/여행지별_국내여행_횟수(학력별).jsp";
-			}
-			else if(buttonId === "gradeBtn6"){
-				alert("설명팝업")
-				$('.grade6').show();
-				$('.grade24').hide();
-				$('.grade30').hide();
-				$('.grade12').hide();
-				$('.grade18').hide();
-				filePath = "학력별/1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(학력별).jsp";
-			}
-			else if(buttonId === "gradeBtn12"){
-				alert("설명팝업")
-				$('.grade12').show();
-				$('.grade24').hide();
-				$('.grade30').hide();
-				$('.grade6').hide();
-				$('.grade18').hide();
-				filePath = "학력별/1회_평균_여행지별_국내여행_지출액_여행경험자(학력별).jsp";
-			}
-			else if(buttonId === "gradeBtn18"){
-				alert("설명팝업")
-				$('.grade18').show();
-				$('.grade24').hide();
-				$('.grade30').hide();
-				$('.grade6').hide();
-				$('.grade12').hide();
-				filePath = "학력별/여행지별_관광여행_재방문_의향(학력별).jsp";
-			}
-			$("#modalIframe").attr("src", filePath);
-	        $('#modalId').show();
-		})
-		
-		// 가구소득별 버튼에 대한 이벤트 핸들러 작성
-		$(".familyPayClass").click(function(){
-			var buttonId = $(this).attr("id");
-			var filePath;
-			
-			if(buttonId === "familyPayBtn25"){
-				alert("설명팝업")
-				$('.familyPay25').show();
-				$('.familyPay1').hide();
-				$('.familyPay7').hide();
-				$('.familyPay13').hide();
-				$('.familyPay19').hide();
-				filePath = "가구소득별/여행지별_국내여행_횟수(가구소득).jsp";
-			}
-			else if(buttonId === "familyPayBtn1"){
-				alert("설명팝업")
-				$('.familyPay1').show();
-				$('.familyPay25').hide();
-				$('.familyPay7').hide();
-				$('.familyPay13').hide();
-				$('.familyPay19').hide();
-				filePath = "가구소득별/1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(가구소득).jsp";
-			}
-			else if(buttonId === "familyPayBtn7"){
-				alert("설명팝업")
-				$('.familyPay7').show();
-				$('.familyPay25').hide();
-				$('.familyPay1').hide();
-				$('.familyPay13').hide();
-				$('.familyPay19').hide();
-				filePath = "가구소득별/1회_평균_여행지별_국내여행_지출액_여행경험자(가구소득).jsp";
-			}
-			else if(buttonId === "familyPayBtn13"){
-				alert("설명팝업")
-				$('.familyPay13').show();
-				$('.familyPay25').hide();
-				$('.familyPay1').hide();
-				$('.familyPay7').hide();
-				$('.familyPay19').hide();
-				filePath = "가구소득별/여행지별_관광여행_재방문_의향(가구소득).jsp";
-			}
-			else if(buttonId === "familyPayBtn19"){
-				alert("설명팝업")
-				$('.familyPay19').show();
-				$('.familyPay25').hide();
-				$('.familyPay1').hide();
-				$('.familyPay7').hide();
-				$('.familyPay13').hide();
-				filePath = "가구소득별/여행지별_국내여행_지출액(가구소득).jsp";
-			}
-			$("#modalIframe").attr("src", filePath);
-	        $('#modalId').show();
-		})
-		
-		// 학력별 버튼에 대한 이벤트 핸들러 작성
-		$(".familyCntClass").click(function(){
-			var buttonId = $(this).attr("id");
-			var filePath;
-			
-			if(buttonId === "familyCntBtn26"){
-				alert("설명팝업")
-				$('.familyCnt26').show();
-				$('.familyCnt2').hide();
-				$('.familyCnt8').hide();
-				$('.familyCnt14').hide();
-				$('.familyCnt20').hide();
-				filePath = "가구원수별/여행지별_국내여행_횟수(가구원수).jsp";
-			}
-			else if(buttonId === "familyCntBtn2"){
-				alert("설명팝업")
-				$('.familyCnt2').show();
-				$('.familyCnt26').hide();
-				$('.familyCnt8').hide();
-				$('.familyCnt14').hide();
-				$('.familyCnt20').hide();
-				filePath = "가구원수별/1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(가구원수).jsp";
-			}
-			else if(buttonId === "familyCntBtn8"){
-				alert("설명팝업")
-				$('.familyCnt8').show();
-				$('.familyCnt26').hide();
-				$('.familyCnt2').hide();
-				$('.familyCnt14').hide();
-				$('.familyCnt20').hide();
-				filePath = "가구원수별/1회_평균_여행지별_국내여행_지출액_여행경험자(가구원수).jsp";
-			}
-			else if(buttonId === "familyCntBtn14"){
-				alert("설명팝업")
-				$('.familyCnt14').show();
-				$('.familyCnt26').hide();
-				$('.familyCnt2').hide();
-				$('.familyCnt8').hide();
-				$('.familyCnt20').hide();
-				filePath = "가구원수별/여행지별_관광여행_재방문_의향(가구원수).jsp";
-			}
-			else if(buttonId === "familyCntBtn20"){
-				alert("설명팝업")
-				$('.familyCnt20').show();
-				$('.familyCnt26').hide();
-				$('.familyCnt2').hide();
-				$('.familyCnt8').hide();
-				$('.familyCnt14').hide();
-				filePath = "가구원수별/여행지별_국내여행_지출액(가구원수).jsp";
-			}
-			$("#modalIframe").attr("src", filePath);
-	        $('#modalId').show();
-		})
-	});
 </script>
 
 <script type="text/javascript">

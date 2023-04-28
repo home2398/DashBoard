@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.pitb.controller.JoinService;
 import kr.pitb.controller.LoginService;
+import kr.pitb.controller.SelectButtonService;
 import kr.pitb.controller.MycheckService;
 import kr.pitb.model.UserDAO;
 import kr.pitb.model.UserVO;
@@ -33,6 +34,7 @@ public class FrontController extends HttpServlet {
 		map.put("Login.do", new LoginService());
 		map.put("Join.do", new JoinService());
 		map.put("Mycheck.do", new MycheckService());
+		map.put("SelectButton.do", new SelectButtonService());
 		
 	}
 
@@ -67,7 +69,7 @@ public class FrontController extends HttpServlet {
 		
 		
 		// 2. 요청 경로에 따라 다른 기능을 수행하게끔 설계
-		if (finaluri.contains("Go")) {
+	 if (finaluri.contains("Go")) {
 			// 특정 로직을 수행하지 않고 그냥 바로 jsp 로 이동해야 하는 url
 			// Go~~ >> 알고리즘 처리
 			finalpath = finaluri.replaceAll("Go", "").toLowerCase().replaceAll(".do", ".jsp");

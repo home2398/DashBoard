@@ -29,5 +29,6 @@
   <!--  SQL구문을 Mapper.xml 곳에 작성 -->
   <mappers>
     <mapper resource="kr/pitb/db/MemberMapper.xml"/>
+    <mapper resource="kr/pitb/db/CatMapper.xml"/>
   </mappers>
 </configuration>

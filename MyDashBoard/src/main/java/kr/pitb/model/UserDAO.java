@@ -64,22 +64,6 @@ public class UserDAO {
 		}
 		return result;
 	}
-
-	public String select_fileID(String fileName) {
-		
-		String result = null;
-		SqlSession session = null;
-		
-		try {
-			 session = sqlSessionFactory.openSession(true);
-			 //System.out.println("DAO vo 상태 >> " + vo.getId() + "," + vo.getPw() );
-			 result = session.selectOne("select_fileID", fileName);
-		} finally {
-			session.close();
-		}
-		return result;
-	}
-	
 	public int save(UserVO vo) {
 		
 		SqlSession session = null;
