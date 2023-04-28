@@ -21,7 +21,10 @@
  		where 회원ID=#{id} and 비밀번호=#{pw} 
  	</select>
  	
-
+	<insert id="save" parameterType="kr.pitb.model.UserVO">
+ 		insert into 회원관심파일내역  (관심ID, 회원id, 저장명, 파일ID)
+ 		values (user_like_seq.nextval, #{id}, #{saveName}, #{fileID})
+ 	</insert>
  
  <!-- 
  	

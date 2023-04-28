@@ -5,12 +5,16 @@ public class UserVO {
 	private String id;
 	private String pw;
 	private String nickname;
+	private String saveName;
+	private String fileID;
 	
-	public UserVO(String id, String pw, String nickname) {
+	public UserVO(String id, String pw, String nickname, String saveName, String fileID) {
 		super();
 		this.id = id;
 		this.pw = pw;
 		this.nickname = nickname;
+		this.saveName = saveName;
+		this.fileID = fileID;
 	}
 	
 	public UserVO() {
@@ -41,7 +45,20 @@ public class UserVO {
 		this.nickname = nickname;
 	}
 	
+	public String getSaveName() {
+		return saveName;
+	}
+
+	public void setSaveName(String saveName) {
+		this.saveName = saveName;
+	}
 	
-	
+	public String getFileID() {
+		return fileID;
+	}
+
+	public void setFileID(String fileID) {
+		this.fileID = fileID;
+	}
 	
 }

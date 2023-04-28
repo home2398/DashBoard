@@ -31,7 +31,9 @@
 </head>
 
 <body>
+	<form action="Mycheck.do" method="post">
     <h1 align="center">여행지별_국내여행_횟수(가구소득)</h1>
+    <input type="checkbox" name="saveName" value="01-Gj">
     <div class="chart-container">
         <canvas id="myChart"></canvas>
     </div>
@@ -54,6 +56,9 @@
         <button class="btn" id="gyongnamBtn">경남</button>
         <button class="btn" id="jejuBtn">제주</button>
     </div>
+    <input type="submit" value="저장">
+    </form>
+    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // 통계 데이터

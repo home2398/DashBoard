@@ -65,7 +65,19 @@ public class UserDAO {
 		return result;
 	}
 
-	
+	public int save(UserVO vo) {
+		
+		SqlSession session = null;
+		int row =0;
+		try {
+		
+		session = sqlSessionFactory.openSession(true);
+		row = session.insert("save", vo);
+		} finally {
+			session.close();
+		}
+		return row;
+	}
 	
 	
 	

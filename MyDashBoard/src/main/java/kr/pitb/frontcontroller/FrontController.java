@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.pitb.controller.JoinService;
 import kr.pitb.controller.LoginService;
+import kr.pitb.controller.MycheckService;
 import kr.pitb.model.UserDAO;
 import kr.pitb.model.UserVO;
 import kr.pitb.controller.Command;
@@ -31,7 +32,7 @@ public class FrontController extends HttpServlet {
 
 		map.put("Login.do", new LoginService());
 		map.put("Join.do", new JoinService());
-		
+		map.put("Mycheck.do", new MycheckService());
 
 	}
 

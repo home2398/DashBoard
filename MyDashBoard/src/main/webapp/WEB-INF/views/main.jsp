@@ -67,7 +67,7 @@
 }
 
 .csize3 {
-	height: 200px;
+	height: 400px;
 }
 
 .cpadding1 {
@@ -211,6 +211,7 @@
 						<!-- <div class="csvType"> -->
 							<button id="genderShowType" type="button" class="btn btn-primary">성별별</button>
 						<!-- </div> -->
+						<br>
 						
 	<%
 		try {
@@ -232,7 +233,7 @@
 				values.add(value);
 				index.add(fileId);
 				%>
-				<button type="button" class="btn btn-outline-warning genderClass" id="genderBtn<%=fileId%>" style="display: none"><%=value%></button>
+				<button type="button" class="btn btn-outline-warning genderClass" id="genderBtn<%=fileId%>" style="display: none"><%=value%></button><br>
 		<%}
 	%>
 	<%
@@ -2720,7 +2721,6 @@
 				$('.familyPay7').hide();
 				$('.familyPay13').hide();
 				$('.familyPay19').hide();
-				window.open('가구소득별/여행지별_국내여행_횟수(가구소득).jsp', '팝업 창 제목', 'width=1600, height=900');
 			}
 			else if(buttonId === "familyPayBtn1"){
 				alert("설명팝업")
@@ -2760,7 +2760,7 @@
 			}
 		})
 		
-		// 가구원수 버튼에 대한 이벤트 핸들러 작성
+		// 학력별 버튼에 대한 이벤트 핸들러 작성
 		$(".familyCntClass").click(function(){
 			var buttonId = $(this).attr("id");
 			
@@ -2810,13 +2810,6 @@
 			}
 		})
 	});
-</script>
-
-<!-- 차트 팝업 -->
-<script type="text/javascript">
-	function openPopup() {
-		window.open('가구소득별/여행지별_국내여행_횟수(가구소득).jsp', '팝업 창 제목', 'width=1600, height=900');
-	}
 </script>
 
 </body>
