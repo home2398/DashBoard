@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,21 +62,36 @@
   font-size: 4ch;
   font-style: italic;
   color: #FF8839;
-  position: absolute;
 }
 
-
-/* 왼쪽아이콘 */
-.material-icons{
+/* 왼쪽 아이콘 */
+.material-icons {
   color: orange;
+  font-family: 'Material Icons Round';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 28px;
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }
 
 /* 톱니바퀴모양 아이콘 */
 .material-icons1 {
   color: #EC6602;
-}
-
-.material-icons1 {   
   font-family: 'Material Icons Round';
   font-weight: normal;
   font-style: normal;
@@ -106,34 +122,10 @@
 
 /* 왼쪽 항목 글씨들 */
 .ms-1 {
+  font-family: 'GangwonEdu_OTFBoldA';
   font-size: large;
   margin-left: 0.25rem !important;
 }
-
-.material-icons {
-  font-family: 'Material Icons Round';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 28px;
-  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-  /* Support for IE. */
-  font-feature-settings: 'liga';
-}
-
-
 
 .collection1 {
   font-size: x-large !important;
@@ -155,16 +147,14 @@
   /* height: 95%; */
 }
 
-
-
 /* 왼쪽 글씨 마우스로 올리면 */
 .nav-item:hover {
   background-image: linear-gradient(195deg, #FFDBB7 0%, #FFDBB7 100%);
 }
 
-/* 맨위 오른쪽 사람 이모티콘 */
+/* 맨위 오른쪽 사람 이모티콘*/
 .me-sm-1 {
-  color: #EC6602;
+  color:#3C3C3C;
   margin-right: 0.25rem !important;
 }
 
@@ -276,14 +266,13 @@
   margin-right: 2rem !important;
   margin-left: 1rem !important;
 }
-  
 
 .px-0 {
   padding-right: 1.0rem !important;
   padding-left: 1.0rem !important;
 }  
 
-
+/* 태그 왼쪽 시계 아이콘 */
 .material-icons2 {
   font-family: 'Material Icons Round';
   color: orange;
@@ -310,6 +299,29 @@
   font-feature-settings: 'liga';
 }
 
+/* 제일 위 오른쪽 log out 글씨 */
+.navbar-nav1 {
+font-family: 'GangwonEduPowerExtraBoldA';
+font-color: #3C3C3C;
+font-size: x-large;
+transition: box-shadow 0.25s ease-in, background-color 0.25s ease-in;
+}
+
+.pheader {
+   font-family: 'GangwonEduPowerExtraBoldA';
+   font-size: 4ch;
+   font-style: italic;
+   color: #FF8839;
+   position: float;
+}
+
+.person{
+color:#3C3C3C;
+}  
+
+.log-out {
+color:#3C3C3C;
+}
 
   </style>
 
@@ -330,14 +342,16 @@
       </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
-    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+    
+    <div class="collapse navbar-collapse w-auto ps" id="sidenav-collapse-main">
       <!-- <div class="input-group input-group-outline">
         <label class="form-label">Type here...</label>
         <input type="text"  class="form-control">
       </div> -->
       <ul class="navbar-nav" >
         <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary1sidenav-collapse-main" href="pages/dashboard.html">
+          <a class="nav-link text-white active bg-gradient-primary1sidenav-collapse-main" 
+          	 href="pages/dashboard.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <span class="material-icons opacity-10">dashboard</span>
             </div>
@@ -379,30 +393,23 @@
             </a>
           </li>
         
-        <li class="nav-item">
+         <li class="nav-item">
+          <a class="nav-link text-white " href="GoMain.do">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">person</i>
+            </div>
+            <span class="nav-link-text ms-1">메인페이지</span>
+          </a>
+        </li>
+        
+        <!-- <li class="nav-item">
           <a class="nav-link text-white " href="pages/profile.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">person</i>
             </div>
-            <span class="nav-link-text ms-1">My page</span>
+            <span class="nav-link-text ms-1">마이페이지</span>
           </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="pages/sign-in.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">login</i>
-            </div>
-            <span class="nav-link-text ms-1">Sign In</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="pages/sign-up.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">assignment</i>
-            </div>
-            <span class="nav-link-text ms-1">Sign Up</span>
-          </a>
-        </li>
+        </li> -->
       </ul>
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
@@ -413,46 +420,55 @@
     </div>
   </aside>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    
     <!-- Navbar -->
-    <nav class="sign-in navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
-       <!-- <span class="container-fluid py-1 px-3"></span>  -->
-        <nav aria-label="breadcrumb">
-          <!-- <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
-          </ol> -->
-          <span class="Dashboard">Dashboard</span>
-        </nav>
-        <span class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar"></span>
-          <span class="ms-md-auto pe-md-3 d-flex align-items-center"></span> 
-            
-            **님 환영합니다!
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl "
+         id="navbarBlur" data-scroll="true">
+        <div class="container-fluid py-1 px-3">
+    		<span class="pheader">Dash board</span>
+    		<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
+					id="navbar">
+					
+           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+		   		<ul class="navbar-main pe-md-3 navbar-nav  justify-content-end">
+        		    <c:if test="${empty User}">
+							<li class="nav-item d-flex align-items-center"><a
+								href="GoSign-in.do"
+								class="nav-link text-body font-weight-bold px-0"> <i
+									class="fa fa-user me-sm-1"></i> <span
+									class="log-out d-sm-inline d-none">Log In</span>
+							</a></li>
+					</c:if>
+        		         		    
+        		<c:if test="${!empty User}">
+								<span>${User.id}님 환영합니다!</span>
+						<li class="nav-item d-flex align-items-center"><a
+							href="GoLogout.do"
+							class="nav-link text-body font-weight-bold px-0">
+							<i class="person fa fa-user me-sm-1"> </i> <span
+								class="log-out d-sm-inline d-none">Log Out</span>
+						</a></li>
+				 </c:if>
+					
+			</div>
 
+			    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+						<a href="javascript:;" class="nav-link text-body p-0"
+						id="iconNavbarSidenav">
+							<div class="sidenav-toggler-inner">
+							
+								<i class="sidenav-toggler-line"></i> <i
+									class="sidenav-toggler-line"></i> <i
+									class="sidenav-toggler-line"></i>
+							</div>
+			    </a>
+			    </li>
+			 
 
-        </div>
-          <ul class="signin navbar-nav1 justify-content-end">
-            
-            <li class="nav-item d-flex align-items-center">
-              <a href="pages/sign-in.html" class="nav-link text-body font-weight-bold px-0">
-                <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Sign In</span>
-              </a>
-            </li>
-            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
-                <div class="sidenav-toggler-inner">
-                  <i class="sidenav-toggler-line"></i>
-                  <i class="sidenav-toggler-line"></i>
-                  <i class="sidenav-toggler-line"></i>
-                </div>
-              </a>
-            </li>
-            
-            
-          </ul>
-        </div>
-      </div>
-    </nav>
+				</div>
+		  </div>
+	 </nav>
+
     <!-- End Navbar -->
     <div class="container-fluid py-4">
     
