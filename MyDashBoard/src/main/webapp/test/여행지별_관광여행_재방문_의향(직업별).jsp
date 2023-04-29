@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>여행지별_국내여행_지출액(직업별)</title>
+    <title>직업 종류별 지역 재방문의향</title>
     <style>
         .chart-container {
             width: auto;
@@ -34,7 +34,7 @@
             text-align: center;
         }
     </style>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -46,7 +46,7 @@
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
-    <h1>여행지별_국내여행_지출액(직업별)</h1>
+    <h1>여행지별_관광여행_재방문_의향(직업별)(단위:%)</h1>
     <div class="chart-container">
         <canvas id="barChart"></canvas>
     </div>
@@ -71,18 +71,18 @@
         <button class="btn" onclick="updateChart('제주')">제주</button>
     </div>
     <input type="text" name="saveName"  placeholder="차트 이름을 입력하세요">
-    <input type = "hidden" name = "fileName" value ="23">
+    <input type = "hidden" name = "fileName" value ="17">
     <input type="submit" value="저장" id = "save">
     </form>
     </div>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
+  		  document.addEventListener("DOMContentLoaded", function () {
         // 표 데이터
         const data = {
             labels: ["임금봉급근로자", "고용원있는사업주", "고용원없는자영업자", "무급가족 종사자", "전업주부", "학생", "기타"],
             datasets: [{
-                label: '지출액',
+                label: '재방문의향',
                 data: [],
                 backgroundColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
                 borderColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
@@ -131,25 +131,26 @@
 
         // 선택된 지역에 따른 데이터 매핑
         const regionDataMap = {
-            '서울': [614, 26, 146, 16, 70, 102, 63],
-            '부산': [877, 43, 118, 7, 98, 171, 59],
-            '대구': [203, 4, 87, 8, 28, 21, 17],
-            '인천': [420, 23, 68, 4, 72, 35, 31],
-            '광주': [91, 9, 35, 2, 19, 7, 4],
-            '대전': [238, 20, 51, 6, 32, 18, 13],
-            '울산': [186, 20, 35, 2, 33, 17, 8],
-            '세종': [61, 0, 12, 1, 9, 18, 5],
-            '경기': [1899, 171, 343, 21, 323, 189, 78],
-            '강원': [2038, 186, 499, 25, 374, 169, 102],
-            '충북': [515, 39, 142, 13, 97, 30, 45],
-            '충남': [1031, 38, 264, 19, 209, 122, 38],
-            '전북': [761, 33, 205, 28, 118, 84, 34],
-            '전남': [1119, 43, 400, 34, 201, 133, 59],
-            '경북': [1048, 83, 414, 33, 217, 131, 66],
-            '경남': [1176, 56, 371, 25, 234, 95, 44],
-            '제주': [3330, 222, 672, 27, 635, 255, 128]
+            '서울': [74.7, 75, 75.2, 74.4, 75, 76.4, 75.1],
+            '부산': [77, 70.6, 77.6, 82.7, 75.9, 76.7, 84.3],
+            '대구': [74.2, 76.9, 72.2, 72.6, 72.6, 74.7, 76.8],
+            '인천': [74.2, 73.2, 74.2, 81.6, 75.3, 74.3, 70.5],
+            '광주': [80.6, 73.1, 83.7, 75, 84.2, 92.5, 77.4],
+            '대전': [74, 76.7, 70.5, 66.9, 72.5, 75.4, 75],
+            '울산': [76.3, 67.6, 78.2, 75, 75.5, 71, 74.9],
+            '세종': [70.9, 0, 77.4, 25, 75, 73.3, 75],
+            '경기': [75.4, 77.4, 75.4, 79.6, 76, 76.3, 76.3],
+            '강원': [77.3, 76, 75.9, 77.9, 77.5, 77.9, 78.9],
+            '충북': [75.9, 77.4, 75, 74.6, 77.7, 71.8, 73.9],
+            '충남': [76.5, 74.4, 78.1, 73.7, 77.2, 74.2, 72.9],
+            '전북': [80.6, 76.2, 80.5, 77.7, 82.6, 79.8, 74.6],
+            '전남': [81.6, 77.7, 80.9, 78.3, 82.1, 82.6, 79.6],
+            '경북': [77.1, 80.3, 74.8, 72.2, 77.1, 74.3, 74.9],
+            '경남': [77.8, 75.1, 76.6, 79.5, 77.6, 75.8, 76],
+            '제주': [80.6, 79.1, 79.7, 66.6, 80.2, 83.1, 72.1]
         };
-		$('#save').on('click',function(){
+        
+		 $('#save').on('click',function(){
         	
         	$.ajax({
         		url : '/MyDashBoard/Mycheck.do',
