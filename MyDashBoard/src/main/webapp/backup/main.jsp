@@ -187,7 +187,7 @@
 	font-size: 4ch;
 	font-style: italic;
 	color: #FF8839;
-	position: absolute;
+	position: float;
 }
 
 /* .chart-div {
