@@ -9,7 +9,7 @@
     <style>
         .btn {
             width: 100px;
-            border: 1;
+            border: 0;
             outline: none;
             font-size: 15px;
             margin: 1px;
@@ -29,13 +29,14 @@
         h1 {
             text-align: center;
         }
-
         #myChart {
-            max-width: 2000px;
-            min-width: 1000px;
-
-            max-height: 800px;
-            min-height: 700px;
+        width: auto;
+        height: auto;
+        min-height: 300px;
+        max-height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -46,15 +47,8 @@
 </head>
 
 <body>
-<div id="contentDiv">
-<form onsubmit="return false" method="post">
     <h1>여행지별_국내여행_지출액(연령대별)</h1>
     <canvas id="myChart"></canvas>
-    <input type="checkbox" name="saveName" value="01-Gj">
-    <input type = "hidden" name = "fileName" value ="3">
-    <input type="submit" value="저장" id = "save">
-    </form>
-    </div>
     <br>
     <div style="text-align: center;">
         <button class="btn" id="seoulBtn">서울</button>
@@ -91,11 +85,13 @@
             };
 
             // 차트 초기 설정
-            var ctx = document.getElementById("myChart").getContext("2d");
+             var ctx = document.getElementById("myChart").getContext("2d");
             var myChart = new Chart(ctx, {
                 type: "line",
                 data: data,
                 options: {
+                    responsivre: true,
+                    maintainAspectRatio: false,
                     scales: {
                         y: {
                             beginAtZero: true,
@@ -111,6 +107,15 @@
                     elements: {
                         point: {
                             radius: 10 // 점의 크기 설정
+                        }
+                    },
+                    animations: {
+                        tension: {
+                            duration: 1000,
+                            easing: 'linear',
+                            from: 1,
+                            to: 0,
+                            loop: true
                         }
                     },
                     plugins: {
@@ -175,18 +180,6 @@
                 myChart.update(); // 차트 업데이트
             }
         })
-        
-        $('#save').on('click',function(){
-            	
-            	$.ajax({
-            		url : '/MyDashBoard/Mycheck.do',
-            		data : $('form').serialize(),
-            		success:function(){
-            			console.log($('#contentDiv'));
-            			$('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
-            		}
-            	})
-            })
     </script>
 </body>
 

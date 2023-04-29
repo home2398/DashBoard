@@ -43,16 +43,9 @@
 </head>
 
 <body>
-<div id="contentDiv">
-<form onsubmit="return false" method="post">
-<input type="checkbox" name="saveName" value="01-Gj">
-    <input type = "hidden" name = "fileName" value ="3">
     <h1>1회_평균_여행지별_국내여행_지출액__여행경험자(가구소득)</h1>
     <div class="chart-container">
         <canvas id="myChart"></canvas>
-    </div>
-     <input type="submit" value="저장" id = "save">
-    </form>
     </div>
     <div class="btn-container">
         <button class="btn" id="seoulBtn">서울</button>
@@ -167,18 +160,6 @@
                 myChart.update(); // 차트 업데이트
             }
         })
-        
-        $('#save').on('click',function(){
-            	
-            	$.ajax({
-            		url : '/MyDashBoard/Mycheck.do',
-            		data : $('form').serialize(),
-            		success:function(){
-            			console.log($('#contentDiv'));
-            			$('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
-            		}
-            	})
-            })
     </script>
 </body>
 

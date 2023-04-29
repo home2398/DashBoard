@@ -43,12 +43,7 @@
 </head>
 
 <body>
-<!--  -->
-<div id="contentDiv">
-<form onsubmit="return false" method="post">
-    <h1 align="center">여행지별_국내여행_횟수(가구소득)</h1>
-    <input type="checkbox" name="saveName" value="01-Gj">
-    <input type = "hidden" name = "fileName" value ="3">
+    <h1>여행지별_국내여행_횟수(가구소득)</h1>
     <div class="chart-container">
         <canvas id="myChart"></canvas>
     </div>
@@ -71,14 +66,8 @@
         <button class="btn" id="gyongnamBtn">경남</button>
         <button class="btn" id="jejuBtn">제주</button>
     </div>
-    <input type="submit" value="저장" id = "save">
-    </form>
-    </div>
-    <!-- <button id="mainIn">담기</button> -->
-    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-        	
             // 통계 데이터
             var data = {
                 labels: ["100만원 미만", "100~200만원 미만", "200~300만원 미만", "300~400만원 미만", "400~500만원 미만", "500~600만원 미만", "600만원 이상"],
@@ -169,25 +158,7 @@
                 myChart.data.datasets[0].data = clickData[index];
                 myChart.update(); // 차트 업데이트
             }
-            
-            $('#save').on('click',function(){
-            	
-            	$.ajax({
-            		url : '/MyDashBoard/Mycheck.do',
-            		data : $('form').serialize(),
-            		success:function(){
-            			console.log($('#contentDiv'));
-            			$('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
-            		}
-            	})
-            })
         })
-        
-        
-        
-        
-        
-        
     </script>
 </body>
 

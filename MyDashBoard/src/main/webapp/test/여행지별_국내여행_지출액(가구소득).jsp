@@ -43,11 +43,7 @@
 </head>
 
 <body>
-<div id="contentDiv">
-<form onsubmit="return false" method="post">
     <h1>여행지별_국내여행_지출액(가구소득)</h1>
-    <input type="checkbox" name="saveName" value="01-Gj">
-    <input type = "hidden" name = "fileName" value ="3">
     <div class="chart-container">
         <canvas id="myChart"></canvas>
     </div>
@@ -70,10 +66,6 @@
         <button class="btn" id="gyongnamBtn">경남</button>
         <button class="btn" id="jejuBtn">제주</button>
     </div>
-    <input type="submit" value="저장" id = "save">
-    </form>
-    </div>
-    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // 통계 데이터
@@ -167,18 +159,6 @@
                 myChart.update(); // 차트 업데이트
             }
         })
-        
-        $('#save').on('click',function(){
-            	
-            	$.ajax({
-            		url : '/MyDashBoard/Mycheck.do',
-            		data : $('form').serialize(),
-            		success:function(){
-            			console.log($('#contentDiv'));
-            			$('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
-            		}
-            	})
-            })
     </script>
 </body>
 

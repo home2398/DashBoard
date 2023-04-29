@@ -443,11 +443,16 @@ font-color: #EC6602 ;
 						<!-- <div class="csvType"> -->
 						<button id="genderShowType" type="button" class="btn btn-primary btn-type">성별별</button>
 						<!-- </div> -->
-						<br>
+						
 						<!-- 연령대별 버튼 선택 -->
 						<!-- <div class="csvType"> -->
 							<button id="ageShowType" type="button" class="btn btn-primary btn-type">연령대별</button>
 						<!-- </div> -->
+						
+						<!-- 직업별 버튼 선택 -->
+						<!-- <div class="csvType"> -->
+							<button id="jobShowType" type="button" class="btn btn-primary btn-type">직업별</button>
+						
 						
 						<!-- 학력별 버튼 선택 -->
 						<!-- <div class="csvType"> -->

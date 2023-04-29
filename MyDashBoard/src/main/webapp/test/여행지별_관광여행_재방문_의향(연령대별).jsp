@@ -9,7 +9,7 @@
     <style>
         .btn {
             width: 100px;
-            border: 1;
+            border: 0;
             outline: none;
             font-size: 15px;
             margin: 1px;
@@ -29,14 +29,15 @@
         h1 {
             text-align: center;
         }
-
-        #myChart {
-            max-width: 2000px;
-            min-width: 1000px;
-
-            max-height: 800px;
-            min-height: 700px;
-        }
+		#myChart {
+        width: auto;
+        height: auto;
+        min-height: 300px;
+        max-height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center
+        } 
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -46,11 +47,7 @@
 </head>
 
 <body>
-<div id="contentDiv">
-<form onsubmit="return false" method="post">
     <h1>여행지별_관광여행_재방문_의향(연령대별)</h1>
-    <input type="checkbox" name="saveName" value="01-Gj">
-    <input type = "hidden" name = "fileName" value ="3">
     <canvas id="myChart"></canvas>
     <br>
     <div style="text-align: center;">
@@ -72,10 +69,6 @@
         <button class="btn" id="gyongnamBtn">경남</button>
         <button class="btn" id="jejuBtn">제주</button>
     </div>
-    <input type="submit" value="저장" id = "save">
-    </form>
-    </div>
-    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // 통계 데이터
@@ -87,16 +80,18 @@
                     backgroundColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
                     borderColor: ['rgba(152, 8, 8)'],
                     borderWidth: 1,
-                    data: [20, 120, 380, 50, 180, 30, 43] // 1차원 형식으로 넣어줘야함(여기에 바로 데이터-2차원를 넣어주면 차트형식이 이상해짐)
+                    data: [70, 120, 220, 80, 180, 75, 90] // 1차원 형식으로 넣어줘야함(여기에 바로 데이터-2차원를 넣어주면 차트형식이 이상해짐)
                 }]
             };
 
             // 차트 초기 설정
-            var ctx = document.getElementById("myChart").getContext("2d");
+           var ctx = document.getElementById("myChart").getContext("2d");
             var myChart = new Chart(ctx, {
                 type: "line",
                 data: data,
                 options: {
+                    responsivre: true,
+                    maintainAspectRatio: false,
                     scales: {
                         y: {
                             beginAtZero: true,
@@ -112,6 +107,15 @@
                     elements: {
                         point: {
                             radius: 10 // 점의 크기 설정
+                        }
+                    },
+                    animations: {
+                        tension: {
+                            duration: 1000,
+                            easing: 'linear',
+                            from: 1,
+                            to: 0,
+                            loop: true
                         }
                     },
                     plugins: {
@@ -176,18 +180,6 @@
                 myChart.update(); // 차트 업데이트
             }
         })
-        
-         $('#save').on('click',function(){
-            	
-            	$.ajax({
-            		url : '/MyDashBoard/Mycheck.do',
-            		data : $('form').serialize(),
-            		success:function(){
-            			console.log($('#contentDiv'));
-            			$('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
-            		}
-            	})
-            })
     </script>
 </body>
 
