@@ -335,7 +335,7 @@ color:#3C3C3C;
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <div class="blank"></div>
-      <a class="navbar-brand m-01" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
+      <a class="navbar-brand m-01" target="_blank">
         <!-- <img class="logo" src="../../material-dashboard-master/assets/img/로고.png" alt="main_logo" > -->
         <span class="my_page font-weight-bold  " id="my_page">마이페이지<span>
           <!-- 원래 class 명 : ms-1 font-weight-bold text-white -->
@@ -619,10 +619,6 @@ color:#3C3C3C;
       </footer>
     </div>
   </main>
-  <div class="fixed-plugin">
-    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
-      <i class="material-icons1 py-2">settings</i>
-    </a>
     <div class="card shadow-lg">
       <div class="card-header pb-0 pt-3">
         <div class="float-start">
@@ -692,7 +688,6 @@ color:#3C3C3C;
         </div>
       </div>
     </div>
-  </div>
   <!--   Core JS Files   -->
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>

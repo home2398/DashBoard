@@ -187,7 +187,7 @@
 	font-size: 4ch;
 	font-style: italic;
 	color: #FF8839;
-	position: absolute;
+	position: float;
 }
 
 /* .chart-div {
@@ -489,10 +489,6 @@ font-color: #EC6602 ;
 
 	
 	</main>
-	<div class="fixed-plugin">
-		<a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
-			<i class="material-icons py-2">settings</i>
-		</a>
 		<div class="card shadow-lg">
 			<div class="card-header pb-0 pt-3">
 				<div class="float-start">
@@ -599,7 +595,6 @@ font-color: #EC6602 ;
 				</div>
 			</div>
 		</div>
-	</div>
 	
 
 	<!--   Core JS Files   -->
