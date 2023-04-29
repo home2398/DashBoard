@@ -349,50 +349,6 @@ color:#3C3C3C;
         <input type="text"  class="form-control">
       </div> -->
       <ul class="navbar-nav" >
-        <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary1sidenav-collapse-main" 
-          	 href="pages/dashboard.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <span class="material-icons opacity-10">dashboard</span>
-            </div>
-            <span class="nav-link-text ms-1">관광여행숙박시설</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="pages/tables.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <!-- <i class="material-icons opacity-10">table_view</i> -->
-            </div>  
-            <span class="nav-link-text ms-1">선택했던 차트1</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="pages/billing.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <!-- <i class="material-icons opacity-10">receipt_long</i> -->
-            </div>
-            <span class="nav-link-text ms-1">선택했던 차트2</span>
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link text-white " href="pages/notifications.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">notifications</i>
-            </div>
-            <span class="nav-link-text ms-1">관광 당일여행</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link text-white " href="pages/billing.html">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">receipt_long</i>
-              </div>
-              <span class="nav-link-text ms-1">관광 숙박여행</span>
-            </a>
-          </li>
-        
          <li class="nav-item">
           <a class="nav-link text-white " href="GoMain.do">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -400,6 +356,9 @@ color:#3C3C3C;
             </div>
             <span class="nav-link-text ms-1">메인페이지</span>
           </a>
+        </li>
+        <li class="nav-item">
+         <a class="nav-link text-white> </a>
         </li>
         
         <!-- <li class="nav-item">

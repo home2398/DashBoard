@@ -476,6 +476,7 @@ font-color: #EC6602 ;
 		  					  <!-- 차트를 표시할 iframe -->
 		    				 <iframe id="modalIframe"></iframe>
 		    				 <span class="closeSpan" onclick="closeModal()">&times;</span>
+		    				 <button>담기</button>
 		  					</div>
 						</div>
 						<%-- <button type="button" class="btn btn-outline-warning genderClass" id="genderBtn<%=fileId%>" style="display: none">

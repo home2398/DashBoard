@@ -443,11 +443,16 @@ font-color: #EC6602 ;
 						<!-- <div class="csvType"> -->
 						<button id="genderShowType" type="button" class="btn btn-primary btn-type">성별별</button>
 						<!-- </div> -->
-						<br>
+						
 						<!-- 연령대별 버튼 선택 -->
 						<!-- <div class="csvType"> -->
 							<button id="ageShowType" type="button" class="btn btn-primary btn-type">연령대별</button>
 						<!-- </div> -->
+						
+						<!-- 직업별 버튼 선택 -->
+						<!-- <div class="csvType"> -->
+							<button id="jobShowType" type="button" class="btn btn-primary btn-type">직업별</button>
+						
 						
 						<!-- 학력별 버튼 선택 -->
 						<!-- <div class="csvType"> -->
@@ -476,6 +481,7 @@ font-color: #EC6602 ;
 		  					  <!-- 차트를 표시할 iframe -->
 		    				 <iframe id="modalIframe"></iframe>
 		    				 <span class="closeSpan" onclick="closeModal()">&times;</span>
+		    				  <button onclick="loadFn()">담기</button>
 		  					</div>
 						</div>
 						<%-- <button type="button" class="btn btn-outline-warning genderClass" id="genderBtn<%=fileId%>" style="display: none">
@@ -743,18 +749,25 @@ font-color: #EC6602 ;
 			url : 'SelectButton.do',
 			data : sendData,
 			dataType : 'json',
-			success : function(result){
-				// 3. 성공했을 때 버튼들을 하나씩 추가해주기
-				console.log(result);
-				$('#scope').empty();
-				for(var i =0;i<result.length;i++){
-					$('#scope').append('<input type="button" onclick=openModal("'+result[i].file_name+'") name="fileName" value='+result[i].file_name+
-							' class="btn btn-outline-secondary gradeClass" id="gradeBtn'+result[i].file_id+'">');
-				}
-			},
-			error : function(){
-				console.log('실패..');
-			}
+			success: function(result) {
+				  console.log(result);
+				  $('#scope').empty();
+				  // 1. 차트명을 담을 변수 선언
+				  var chartNames = [];
+				  for (var i = 0; i < result.length; i++) {
+				    // 2. 버튼 추가
+				    $('#scope').append('<input type="button" onclick=openModal("' + result[i].file_name + '") name="fileName" value=' + result[i].file_name +
+				      ' class="btn btn-outline-secondary gradeClass" id="gradeBtn' + result[i].file_id + '">');
+				    // 3. 차트명 추가
+				    chartNames.push(result[i].file_name);
+				  }
+				  // 4. 추가된 차트명들을 네비바에 추가
+				  $('.collapse navbar-collapse w-auto ps').empty();
+				  for (var i = 0; i < chartNames.length; i++) {
+				    $('.collapse navbar-collapse w-auto ps').append('<li>' + chartNames[i] + '</li>');
+				  }
+				},
+
 			
 		})
 		

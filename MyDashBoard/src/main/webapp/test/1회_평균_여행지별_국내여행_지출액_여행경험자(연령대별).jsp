@@ -8,7 +8,7 @@
     <style>
          .btn {
             width: 100px;
-            border: 1;
+            border: 0;
             outline: none;
             font-size: 15px;
             margin: 1px;
@@ -27,14 +27,15 @@
         h1 {
             text-align: center;
         }
-
         #myChart {
-            max-width: 2000px;
-            min-width: 1000px;
-
-            max-height: 800px;
-            min-height: 700px;
-        }
+        	width: auto;
+        height: auto;
+        min-height: 300px;
+        max-height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center
+        } 
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -44,12 +45,8 @@
 </head>
 
 <body>
-<div id="contentDiv">
-<form onsubmit="return false" method="post">
     <h1>1회_평균_여행지별_국내여행_지출액__여행경험자(연령대별)</h1>
     <canvas id="myChart"></canvas>
-    <input type="checkbox" name="saveName" value="01-Gj">
-    <input type = "hidden" name = "fileName" value ="3">
     <br>
     <div style="text-align: center;">
         <button class="btn" id="seoulBtn">서울</button>
@@ -69,9 +66,6 @@
         <button class="btn" id="gyongbukBtn">경북</button>
         <button class="btn" id="gyongnamBtn">경남</button>
         <button class="btn" id="jejuBtn">제주</button>
-    </div>
-    <input type="submit" value="저장" id = "save">
-    </form>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -94,6 +88,8 @@
                 type: "line",
                 data: data,
                 options: {
+                    responsivre: true,
+                    maintainAspectRatio: false,
                     scales: {
                         y: {
                             beginAtZero: true,
@@ -104,11 +100,20 @@
                     responsive: true,
                     title: {
                         display: true,
-                        text: "1회 평균 여행지별 지출액_여행경함자(연령대별)"
+                        text: "1회_평균_여행지별_국내여행_지출액__여행경험자(연령대별)"
                     },
                     elements: {
                         point: {
                             radius: 10 // 점의 크기 설정
+                        }
+                    },
+                    animations: {
+                        tension: {
+                            duration: 1000,
+                            easing: 'linear',
+                            from: 1,
+                            to: 0,
+                            loop: true
                         }
                     },
                     plugins: {
@@ -173,17 +178,6 @@
                 myChart.update(); // 차트 업데이트
             }
         })
-        $('#save').on('click',function(){
-            	
-            	$.ajax({
-            		url : '/MyDashBoard/Mycheck.do',
-            		data : $('form').serialize(),
-            		success:function(){
-            			console.log($('#contentDiv'));
-            			$('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
-            		}
-            	})
-            })
     </script>
 </body>
 
