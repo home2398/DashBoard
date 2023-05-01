@@ -78,8 +78,20 @@ public class UserDAO {
 		return row;
 	}
 	
-	
-	
+public String mychart(String id) {
+		
+		String result = null;
+		SqlSession session = null;
+		
+		try {
+			 session = sqlSessionFactory.openSession(true);
+			 //System.out.println("DAO vo 상태 >> " + vo.getId() + "," + vo.getPw() );
+			 result = session.selectOne("mychart", id);
+		} finally {
+			session.close();
+		}
+		return result;
+}
 	
 	
 	

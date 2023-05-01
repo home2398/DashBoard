@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.pitb.model.MyCsvDAO">
+   
+   <select id="selectMyCsvList" parameterType="java.lang.String" resultType="kr.pitb.model.MyCsvVO">
+   select b.저장명 as save_name, a.서버저장경로 as file_path
+   from CSV파일정보 a , 회원관심파일내역 b
+   where a.파일ID = b.파일ID and b.회원ID = #{id}
+   </select>
+   
+   
+   
+</mapper>

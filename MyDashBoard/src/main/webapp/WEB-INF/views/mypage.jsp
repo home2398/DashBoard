@@ -21,7 +21,15 @@
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR.-->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
-
+  <script src="assets/js/plugins/chartjs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="chart-test.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
   <style>
 
@@ -335,83 +343,67 @@ color:#3C3C3C;
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <div class="blank"></div>
-      <a class="navbar-brand m-01" target="_blank">
+      <a class="navbar-brand m-01" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
         <!-- <img class="logo" src="../../material-dashboard-master/assets/img/로고.png" alt="main_logo" > -->
         <span class="my_page font-weight-bold  " id="my_page">마이페이지<span>
           <!-- 원래 class 명 : ms-1 font-weight-bold text-white -->
       </a>
     </div>
-    <hr class="horizontal light mt-0 mb-2">
-    
-    <div class="collapse navbar-collapse w-auto ps" id="sidenav-collapse-main">
-      <!-- <div class="input-group input-group-outline">
+    <div class="input-group input-group-outline">
         <label class="form-label">Type here...</label>
         <input type="text"  class="form-control">
-      </div> -->
-      <ul class="navbar-nav" >
-        <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary1sidenav-collapse-main" 
-          	 href="pages/dashboard.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <span class="material-icons opacity-10">dashboard</span>
-            </div>
-            <span class="nav-link-text ms-1">관광여행숙박시설</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="pages/tables.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <!-- <i class="material-icons opacity-10">table_view</i> -->
-            </div>  
-            <span class="nav-link-text ms-1">선택했던 차트1</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="pages/billing.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <!-- <i class="material-icons opacity-10">receipt_long</i> -->
-            </div>
-            <span class="nav-link-text ms-1">선택했던 차트2</span>
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link text-white " href="pages/notifications.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">notifications</i>
-            </div>
-            <span class="nav-link-text ms-1">관광 당일여행</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link text-white " href="pages/billing.html">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">receipt_long</i>
-              </div>
-              <span class="nav-link-text ms-1">관광 숙박여행</span>
-            </a>
+      </div>
+    <hr class="horizontal light mt-0 mb-2">
+    <!-- <button id="csvBasket">담기목록</button> -->
+    
+    <div id="csvList">
+    
+    </div>
+    
+     <!-- <div class="collapse navbar-collapse w-auto ps" id="sidenav-collapse-main">
+       <ul class="navbar-nav" >
+          <li class="nav-item">
+             <a class="nav-link text-white active bg-gradient-primary1sidenav-collapse-main">
+                <span class="nav-link-text ms-1" id="csvBasket">
+                   
+                </span>
+             </a>
           </li>
-        
-         <li class="nav-item">
-          <a class="nav-link text-white " href="GoMain.do">
+       </ul>
+    </div>  -->
+    
+     <div class="collapse navbar-collapse w-auto ps" id="sidenav-collapse-main">
+      <div class="input-group input-group-outline">
+      </div>
+     <div id="csvBasket">
+      <ul class="navbar-nav" >
+      <li class="nav-item">
+          <a class="nav-link text-white" href="GoMain.do">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">person</i>
             </div>
             <span class="nav-link-text ms-1">메인페이지</span>
           </a>
         </li>
-        
-        <!-- <li class="nav-item">
-          <a class="nav-link text-white " href="pages/profile.html">
+        <li class="nav-item">
+          <a class="nav-link text-white active bg-gradient-primary1sidenav-collapse-main" href="#">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">person</i>
+              <span class="material-icons opacity-10">dashboard</span>
             </div>
-            <span class="nav-link-text ms-1">마이페이지</span>
+            <span class="nav-link-text ms-1" id="csvBasket">담기목록</span>
+         </a>
+        </li>
+        <li class="nav-item"  id="csvList">
+          <a class="nav-link text-white " href="pages/tables.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">table_view</i>
+            </div>  
           </a>
-        </li> -->
+        </li>
+        
       </ul>
-    </div>
+    </div> 
+    
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
       <!-- <div class="logo">
       <img src="../../material-dashboard-master/assets/img/로고.png" alt="main_logo" width="250" height="350">
@@ -425,454 +417,61 @@ color:#3C3C3C;
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl "
          id="navbarBlur" data-scroll="true">
         <div class="container-fluid py-1 px-3">
-    		<span class="pheader">Dash board</span>
-    		<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
-					id="navbar">
-					
+          <span class="pheader">Dash board</span>
+          <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
+               id="navbar">
+               
            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-		   		<ul class="navbar-main pe-md-3 navbar-nav  justify-content-end">
-        		    <c:if test="${empty User}">
-							<li class="nav-item d-flex align-items-center"><a
-								href="GoSign-in.do"
-								class="nav-link text-body font-weight-bold px-0"> <i
-									class="fa fa-user me-sm-1"></i> <span
-									class="log-out d-sm-inline d-none">Log In</span>
-							</a></li>
-					</c:if>
-        		         		    
-        		<c:if test="${!empty User}">
-								<span>${User.id}님 환영합니다!</span>
-						<li class="nav-item d-flex align-items-center"><a
-							href="GoLogout.do"
-							class="nav-link text-body font-weight-bold px-0">
-							<i class="person fa fa-user me-sm-1"> </i> <span
-								class="log-out d-sm-inline d-none">Log Out</span>
-						</a></li>
-				 </c:if>
-					
-			</div>
+               <ul class="navbar-main pe-md-3 navbar-nav  justify-content-end">
+                  <c:if test="${empty User}">
+                     <li class="nav-item d-flex align-items-center"><a
+                        href="GoSign-in.do"
+                        class="nav-link text-body font-weight-bold px-0"> <i
+                           class="fa fa-user me-sm-1"></i> <span
+                           class="log-out d-sm-inline d-none">Log In</span>
+                     </a></li>
+               </c:if>
+                                 
+              <c:if test="${!empty User}">
+                        <span>${User.id}님 환영합니다!</span>
+                  <li class="nav-item d-flex align-items-center"><a
+                     href="GoLogout.do"
+                     class="nav-link text-body font-weight-bold px-0">
+                     <i class="person fa fa-user me-sm-1"> </i> <span
+                        class="log-out d-sm-inline d-none">Log Out</span>
+                  </a></li>
+             </c:if>
+               
+         </div>
 
-			    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-						<a href="javascript:;" class="nav-link text-body p-0"
-						id="iconNavbarSidenav">
-							<div class="sidenav-toggler-inner">
-							
-								<i class="sidenav-toggler-line"></i> <i
-									class="sidenav-toggler-line"></i> <i
-									class="sidenav-toggler-line"></i>
-							</div>
-			    </a>
-			    </li>
-			 
-
-				</div>
-		  </div>
-	 </nav>
-
-    <!-- End Navbar -->
-    <div class="container-fluid py-4">
-    
-      <div class="row mt-4">
-        <div class="col-lg-4 col-md-6 mt-4 mb-4">
-          <div class="card z-index-2 ">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                <div class="chart">
-                  <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <h6 class="mb-01 ">Website Views</h6>
-              <p class="text-sm1 ">Last Campaign Performance</p>
-              <hr class="dark horizontal">
-              <div class="d-flex ">
-                <i class="material-icons2 text-sm my-auto me-1">schedule</i>
-                <p class="mb-02 text-sm2"> campaign sent 2 days ago </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 mt-4 mb-4">
-          <div class="card z-index-2  ">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-              <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
-                <div class="chart">
-                  <canvas id="chart-line" class="chart-canvas" height="170"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <h6 class="mb-01 "> Daily Sales </h6>
-              <p class="text-sm1 "> (<span class="font-weight-bolder">+15%</span>) increase in today sales. </p>
-              <hr class="dark horizontal">
-              <div class="d-flex ">
-                <i class="material-icons2 text-sm my-auto me-1">schedule</i>
-                <p class="mb-02 text-sm2"> updated 4 min ago </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mt-4 mb-3">
-          <div class="card z-index-2 ">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-              <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
-                <div class="chart">
-                  <canvas id="chart-line-tasks" class="chart-canvas" height="170"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <h6 class="mb-01 ">Completed Tasks</h6>
-              <p class="text-sm1 ">Last Campaign Performance</p>
-              <hr class="dark horizontal">
-              <div class="d-flex ">
-                <i class="material-icons2 text-sm my-auto me-1">schedule</i>
-                <p class="mb-02 text-sm2">just updated</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row mb-4">
-          <div class="col-lg-4 col-md-6 mt-4 mb-4">
-            <div class="card z-index-2 ">
-              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                  <div class="chart">
-                    <canvas id="chart-bars" class="chart-canvas"height="170"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body"> 
-                <h6 class="mb-01 ">Website Views</h6>
-                <p class="text-sm1 ">Last Campaign Performance</p>
-                <hr class="dark horizontal">
-                <div class="d-flex ">
-                  <i class="material-icons2 text-sm my-auto me-1">schedule</i>
-                  <p class="mb-02 text-sm2"> campaign sent 2 days ago </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mt-4 mb-4">
-            <div class="card z-index-2  ">
-              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
-                  <div class="chart">
-                    <canvas id="chart-line" class="chart-canvas" height="170"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <h6 class="mb-01 "> Daily Sales </h6>
-                <p class="text-sm1 "> (<span class="font-weight-bolder">+15%</span>) increase in today sales. </p>
-                <hr class="dark horizontal">
-                <div class="d-flex ">
-                  <i class="material-icons2 text-sm my-auto me-1">schedule</i>
-                  <p class="mb-02 text-sm2"> updated 4 min ago </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 mt-4 mb-3">
-            <div class="card z-index-2 ">
-              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
-                  <div class="chart">
-                    <canvas id="chart-line-tasks" class="chart-canvas" height="170"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <h6 class="mb-01 ">Completed Tasks</h6>
-                <p class="text-sm1 ">Last Campaign Performance</p>
-                <hr class="dark horizontal">
-                <div class="d-flex ">
-                  <i class="material-icons2 text-sm my-auto me-1">schedule</i>
-                  <p class="mb-02 text-sm2">just updated</p>
-                </div>
-              </div>
-            </div>
-          </div>  
-
-
-
-
-          
-        
-        <div class="col-lg-4 col-md-6">
+             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                  <a href="javascript:;" class="nav-link text-body p-0"
+                  id="iconNavbarSidenav">
+                     <div class="sidenav-toggler-inner">
+                     
+                        <i class="sidenav-toggler-line"></i> <i
+                           class="sidenav-toggler-line"></i> <i
+                           class="sidenav-toggler-line"></i>
+                     </div>
+             </a>
+             </li>
           
 
-
-
-
+            </div>
         </div>
-      </div>
-      <footer class="footer py-4  ">
-        <div class="container-fluid">
-          <div class="row align-items-center justify-content-lg-between">
-            여기에 공간이 있어요!
-            
-          </div>
-        </div>
-      </footer>
-    </div>
-  </main>
-  
+    </nav>
+	<main>
+		<div>
+			<canvas id="Mychart" style = "height:700px;"></canvas>
+		</div>
+	</main>
+   
   <!--   Core JS Files   -->
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="assets/js/plugins/chartjs.min.js"></script>
-  <script>
-    var ctx = document.getElementById("chart-bars").getContext("2d");
-
-    new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: ["M", "T", "W", "T", "F", "S", "S"],
-        datasets: [{
-          label: "Sales",
-          tension: 0.4,
-          borderWidth: 0,
-          borderRadius: 4,
-          borderSkipped: false,
-          backgroundColor: "orange",
-          data: [50, 20, 10, 22, 50, 10, 40],
-          maxBarThickness: 6
-        }, ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: 'white'
-            },
-            ticks: {
-              suggestedMin: 0,
-              suggestedMax: 500,
-              beginAtZero: true,
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-              color: "#fff"
-            },
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: 'rgba(255, 255, 255, .2)'
-            },
-            ticks: {
-              display: true,
-              color: '#f8f9fa',
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-        },
-      },
-    });
-
-
-    var ctx2 = document.getElementById("chart-line").getContext("2d");
-
-    new Chart(ctx2, {
-      type: "line",
-      data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-          label: "Mobile apps",
-          tension: 0,
-          borderWidth: 0,
-          pointRadius: 5,
-          pointBackgroundColor: "rgba(255, 255, 255, .8)",
-          pointBorderColor: "transparent",
-          borderColor: "rgba(255, 255, 255, .8)",
-          borderColor: "rgba(255, 255, 255, .8)",
-          borderWidth: 4,
-          backgroundColor: "transparent",
-          fill: true,
-          data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
-          maxBarThickness: 6
-
-        }],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: 'rgba(255, 255, 255, .2)'
-            },
-            ticks: {
-              display: true,
-              color: '#f8f9fa',
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              color: '#f8f9fa',
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-        },
-      },
-    });
-
-    var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
-
-    new Chart(ctx3, {
-      type: "line",
-      data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-          label: "Mobile apps",
-          tension: 0,
-          borderWidth: 0,
-          pointRadius: 5,
-          pointBackgroundColor: "rgba(255, 255, 255, .8)",
-          pointBorderColor: "transparent",
-          borderColor: "rgba(255, 255, 255, .8)",
-          borderWidth: 4,
-          backgroundColor: "transparent",
-          fill: true,
-          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-          maxBarThickness: 6
-
-        }],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: 'rgba(255, 255, 255, .2)'
-            },
-            ticks: {
-              display: true,
-              padding: 10,
-              color: '#f8f9fa',
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              color: '#f8f9fa',
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-        },
-      },
-    });
-  </script>
+  <!-- 운비쌤이 지운 구간 -->
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -886,6 +485,138 @@ color:#3C3C3C;
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="assets/js/material-dashboard.min.js?v=3.0.5"></script>
+  
+  <script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function () {
+     $("#csvBasket").on("click", function(){
+        alert("넘어옴?")
+        var sendData = {
+           data : $(this)[0].innerText
+           }
+        console.log("센드데이터"+sendData);
+        $.ajax({
+         url : "SelectMyCsvList.do",
+         data : sendData,
+         dataType : "json",
+         success : function(list){
+        	// list안에 지역까지 포함되게 만들기
+            // 성공했을 때 회원관심파일내역 보여주기
+            console.log(list);
+            $("#csvList").empty();
+            for(var i =0; i<list.length; i++){
+               $("#csvList").append('<input type="button" id = "'+list[i].file_path+'" class = "MyCsvName" name="MyCsvName" value="'+list[i].save_name+'">');
+            }
+            /*//////////////////////////////////////////////ajax 안에 ajax 통신//////////////////////////////////////////////////////////*/
+            $('.MyCsvName').on('click',function(){	
+         	   // 차트 데이터 경로가져오기
+         	   var pathData = $(this).attr('id');
+         	   // 차트 종류 ---> 수정
+         	   var chartType = 'doughnut';
+         	   // 지역명 가져오기 ---> 수정
+         	   var region = '부산';
+         	   // 외부에 있는 파일 읽어올 때 path 값 변경 로직(server.xml ---> Context 태그를 추가해놨으니 다른 사람도 똑같이 적용할 것)
+         	   pathData = pathData.replace('C:/Users/smhrd/Desktop/project2/csv','');
+         	   $.ajax({
+         		url : pathData,
+         		dataType : 'text',
+         		success : function(response){
+         			data = makeChartData(response);
+         			var listData = [];
+         			var labelList = [];
+         			
+         			// 진짜 차트 영역 데이터 구하기
+         			var i = 0;
+         			for(i = 0; i < data[0].length; i++){
+         				if(data[0][i] === region){
+        	         		break;
+         				}
+         			}
+         			
+         			// label영역 데이터 구하기
+         			for(var j = 1; j< data.length-1; j++){
+         				labelList.push(data[j][1]);
+         				listData.push(data[j][i]);
+         			}
+         			
+         			
+         			const chart = createChart(chartType, labelList, listData);
+         		}
+         	   })
+            })
+         },
+         error : function(){
+            console.log("실패!!!!!!!!!!!!");
+         }
+        })
+     });
+     /*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+     
+     
+     /*////////////////////////////////////////////차트 생성하기 함수////////////////////////////////////////////////////////////*/
+     function createChart(chartType, label, receive_data) {
+    	 const data = {
+    		      labels: label,
+    		      datasets: [{
+    		        data: receive_data,
+    		        backgroundColor: [
+    		          'rgba(255, 99, 132, 0.75)',
+    		          'rgba(54, 162, 235, 0.75)',
+    		          'rgba(255, 206, 86, 0.75)',
+    		          'rgba(75, 192, 192, 0.75)',
+    		          'rgba(153, 102, 255, 0.75)',
+    		          'rgba(255, 159, 64, 0.75)',
+    		          'rgba(94, 232, 129, 0.75)'
+    		        ],
+    		        borderWidth: 0
+    		      }]
+    		    }
+    	 
+       return new Chart(document.getElementById('Mychart').getContext('2d'), {
+         type: chartType, // 디비에서 값 조회해서 변경될 수도 있음
+         data: data,
+         plugins: [ChartDataLabels],
+         options: {
+           responsive: true,
+           maintainAspectRatio: false,
+           legend: {
+             position: 'right',
+             labels: {
+               boxWidth: 12
+             }
+           },
+           plugins: {
+             datalabels: {
+               formatter: (value, context) => {
+                 return context.chart.data.labels[context.dataIndex]
+               }
+             }
+           }
+         }
+       });
+     }
+     
+     /*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+     
+     // csv파일을 읽어서 변환해주는 코드//////////////////////////////////////////////////////////////////////////////////
+      function makeChartData(allData) {
+            // 1. 한 줄씩 끊어주기
+            var allTextLines = allData.split(/\r\n|\n/);
+            // 2. column명 읽어오기
+            var columnHeading = allTextLines[0].split(',');
+            console.log(columnHeading);
+            console.log(allTextLines);
+            // 3. 최종 데이터 담을 배열 생성
+            var finalData = [];
+            // 4. 배열에 column명 제외하고 읽어서 집어넣기
+            for(var i = 0; i < allTextLines.length; i++){
+                finalData.push(allTextLines[i].split(','));
+            }
+            return finalData;
+        }
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+        
+	})
+  </script>
 </body>
 
 </html>
