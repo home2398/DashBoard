@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -64,33 +65,40 @@
   </div>
   <br>
   <div id="regionButtons">
-    <button class="btn" data-region="서울">서울</button>
-    <button class="btn" data-region="부산">부산</button>
-    <button class="btn" data-region="대구">대구</button>
-    <button class="btn" data-region="인천">인천</button>
-    <button class="btn" data-region="광주">광주</button>
-    <button class="btn" data-region="대전">대전</button>
-    <button class="btn" data-region="울산">울산</button>
-    <button class="btn" data-region="세종">세종</button>
-    <button class="btn" data-region="경기">경기</button>
-    <button class="btn" data-region="강원">강원</button>
-    <button class="btn" data-region="충북">충북</button>
-    <button class="btn" data-region="충남">충남</button>
-    <button class="btn" data-region="전북">전북</button>
-    <button class="btn" data-region="전남">전남</button>
-    <button class="btn" data-region="경북">경북</button>
-    <button class="btn" data-region="경남">경남</button>
-    <button class="btn" data-region="제주">제주</button>
+    <button class="regionClass" data-region="서울" id="seoulBtn">서울</button>
+    <button class="regionClass" data-region="부산" id="busanBtn">부산</button>
+    <button class="regionClass" data-region="대구" id="daeguBtn">대구</button>
+    <button class="regionClass" data-region="인천" id="incheonBtn">인천</button>
+    <button class="regionClass" data-region="광주" id="gwangjuBtn">광주</button>
+    <button class="regionClass" data-region="대전" id="daejeonBtn">대전</button>
+    <button class="regionClass" data-region="울산" id="ulsanBtn">울산</button>
+    <button class="regionClass" data-region="세종" id="sejongBtn">세종</button>
+    <button class="regionClass" data-region="경기" id="gyeonggiBtn">경기</button>
+    <button class="regionClass" data-region="강원" id="gangwonBtn">강원</button>
+    <button class="regionClass" data-region="충북" id="chongbukBtn">충북</button>
+    <button class="regionClass" data-region="충남" id="chongnamBtn">충남</button>
+    <button class="regionClass" data-region="전북" id="jeonbukBtn">전북</button>
+    <button class="regionClass" data-region="전남" id="jeonnamBtn">전남</button>
+    <button class="regionClass" data-region="경북" id="gyongbukBtn">경북</button>
+    <button class="regionClass" data-region="경남" id="gyongnamBtn">경남</button>
+    <button class="regionClass" data-region="제주" id="jejuBtn">제주</button>
   </div>
   <br>
-    <div class="savebox">
-  <input type="text" name="saveName"  placeholder="차트 이름을 입력하세요">
-    <input type = "hidden" name = "fileName" value ="27">
-    <input type="submit" value="저장" id = "save">
-    </div>
-    </form>
-    </div>
   
+    <div class="savebox">
+	  	<input type="text" name="saveName"  placeholder="차트 이름을 입력하세요">
+	    <input type = "hidden" name = "fileName" value ="27">
+	    <input type = "hidden" name = "chartType" value ="doughnut">
+	    <input type="hidden" name="region" value="" id="regionInput">
+	    <input type="submit" value="저장" id = "save">
+   </div>
+  </form>
+ </div>
+  
+<!-- 지역 버튼 눌렀을 때 버튼에 따라 지역값 넣는 함수 -->
+<script type="text/javascript" src="region.js"></script>
+
+
   <script>
   	document.addEventListener("DOMContentLoaded", function () {
     // 데이터
@@ -143,59 +151,93 @@
     // 지역 버튼 클릭 이벤트 핸들러
     $('#regionButtons button').on('click', function () {
       const region = $(this).data('region'); // 클릭한 버튼의 data-region 속성값을 가져옴
-
+		console.log(region);
       // region에 따라 데이터를 업데이트하고 차트를 그림
       switch (region) {
         case '서울':
           data.datasets[0].data = [6887, 6372];
+          var regionInput = document.getElementById("regionInput");
+          /* regionInput.value = region; */
           break;
         case '부산':
           data.datasets[0].data = [5160, 4792];
+          var regionInput = document.getElementById("regionInput");
+          /* regionInput.value = region; */
           break;
         case '대구':
           data.datasets[0].data = [1966, 2041];
+          var regionInput = document.getElementById("regionInput");
+          /* regionInput.value = region; */
           break;
         case '인천':
           data.datasets[0].data = [4836, 4306];
+          var regionInput = document.getElementById("regionInput");
+          /* regionInput.value = region; */
           break;
         case '광주':
           data.datasets[0].data = [1039, 769];
+          var regionInput = document.getElementById("regionInput");
+          /* regionInput.value = region; */
           break;
         case '대전':
           data.datasets[0].data = [2556, 2047];
+          var regionInput = document.getElementById("regionInput");
+          /* regionInput.value = region; */
           break;
         case '울산':
           data.datasets[0].data = [2375, 1819];
+          var regionInput = document.getElementById("regionInput");
+         /*  regionInput.value = region; */
           break;
         case '세종':
           data.datasets[0].data = [1071, 812];
+          var regionInput = document.getElementById("regionInput");
+       /*    regionInput.value = region; */
           break;
         case '경기':
           data.datasets[0].data = [25879, 27522];
+          var regionInput = document.getElementById("regionInput");
+         /*  regionInput.value = region; */
           break;
         case '강원':
           data.datasets[0].data = [12698, 12724];
+          var regionInput = document.getElementById("regionInput");
+         /*  regionInput.value = region; */
           break;
         case '충북':
           data.datasets[0].data = [5192, 4954];
+          var regionInput = document.getElementById("regionInput");
+         /*  regionInput.value = region; */
           break;
         case '충남':
           data.datasets[0].data = [9435, 9712];
+          var regionInput = document.getElementById("regionInput");
+          /* regionInput.value = region */;
           break;
         case '전북':
           data.datasets[0].data = [7192, 6646];
+          var regionInput = document.getElementById("regionInput");
+          /* regionInput.value = region; */
           break;
         case '전남':
           data.datasets[0].data = [10322, 9807];
+          var regionInput = document.getElementById("regionInput");
+          /* regionInput.value = region; */
           break;
         case '경북':
           data.datasets[0].data = [11475, 11159];
+          var regionInput = document.getElementById("regionInput");
+          /* regionInput.value = region; */
           break;
         case '경남':
           data.datasets[0].data = [11473, 12034];
+          var regionInput = document.getElementById("regionInput");
+         /*  regionInput.value = region; */
           break;
         case '제주':
           data.datasets[0].data = [4614, 6483];
+          var regionInput = document.getElementById("regionInput");
+          /* regionInput.value = region; */
           break;
 
         default:
