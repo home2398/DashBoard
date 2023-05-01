@@ -4,70 +4,100 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(학력별)</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(학력별)</title>
+<script
+	src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="chart-test.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 </head>
 <style>
-	#pieChart {
-        display: flex;
-        justify-content: center;
-        height: 700px;
-    }
-    button {
-        width: 100px;
-        border: 0;
-        outline: none;
-        font-size: 15px;
-        margin: 1px;
-        background: rgb(243, 156, 18);
-        color: white;
-        padding: 5px;
-        cursor: pointer;
-        border-radius: 5px;
-    }
+html {
+	cursor: url(assets/img/cursor.png), auto !important
+}
 
-    button:hover {
-        background-color: cornsilk;
-        /* 원하는 배경색으로 변경 */
-        color: black;
-    }
+.savebox {
+	margin-left: 630px;
+}
 
-    h1 {
-        text-align: center;
-    }
+#pieChart {
+	display: flex;
+	justify-content: center;
+	height: 700px;
+}
+
+button {
+	width: 100px;
+	border: 0;
+	outline: none;
+	font-size: 15px;
+	margin: 1px;
+	background: rgb(243, 156, 18);
+	color: white;
+	padding: 5px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+button:hover {
+	background-color: cornsilk;
+	/* 원하는 배경색으로 변경 */
+	color: black;
+}
+
+h1 {
+	text-align: center;
+}
 </style>
 
 <body>
-    <h1>1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(학력별)(단위 : 만원)</h1>
-    <div class="chart-container">
-        <canvas id="pieChart"></canvas>
-    </div>
-    <br>
-    <div id="regionButtons" style="text-align: center;">
-        <button data-region="서울">서울</button>
-        <button data-region="부산">부산</button>
-        <button data-region="대구">대구</button>
-        <button data-region="인천">인천</button>
-        <button data-region="광주">광주</button>
-        <button data-region="대전">대전</button>
-        <button data-region="울산">울산</button>
-        <button data-region="세종">세종</button>
-        <button data-region="경기">경기</button>
-        <button data-region="강원">강원</button>
-        <button data-region="충북">충북</button>
-        <button data-region="충남">충남</button>
-        <button data-region="전북">전북</button>
-        <button data-region="전남">전남</button>
-        <button data-region="경북">경북</button>
-        <button data-region="경남">경남</button>
-        <button data-region="제주">제주</button>
-    </div>
-    <script>
+	<div id="contentDiv">
+		<form onsubmit="return false" method="post">
+			<h1>1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(학력별)(단위 : 만원)</h1>
+			<div class="chart-container">
+				<canvas id="pieChart"></canvas>
+			</div>
+			<br>
+			<div id="regionButtons" style="text-align: center;">
+				<button data-region="서울">서울</button>
+				<button data-region="부산">부산</button>
+				<button data-region="대구">대구</button>
+				<button data-region="인천">인천</button>
+				<button data-region="광주">광주</button>
+				<button data-region="대전">대전</button>
+				<button data-region="울산">울산</button>
+				<button data-region="세종">세종</button>
+				<button data-region="경기">경기</button>
+				<button data-region="강원">강원</button>
+				<button data-region="충북">충북</button>
+				<button data-region="충남">충남</button>
+				<button data-region="전북">전북</button>
+				<button data-region="전남">전남</button>
+				<button data-region="경북">경북</button>
+				<button data-region="경남">경남</button>
+				<button data-region="제주">제주</button>
+			</div>
+			<br>
+			<div class="savebox">
+				<input type="text" name="saveName" placeholder="차트 이름을 입력하세요">
+				<input type="hidden" name="fileName" value="6"> <input
+					type="submit" value="저장" id="save">
+			</div>
+		</form>
+	</div>
+
+	<script>
+    document.addEventListener("DOMContentLoaded", function () {
         // 표 데이터
         const data = {
             labels: ["초졸 이하", "중학교", "고등학교", "대학교이상"],
@@ -191,6 +221,30 @@
             }
             chart.update(); // 차트 업데이트
         });
+        
+		$('#save').on('click',function(){
+        	
+        	$.ajax({
+        		url : '/MyDashBoard/Mycheck.do',
+        		data : $('form').serialize(),
+        		success:function(){
+        			console.log($('#contentDiv'));
+        			$('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
+        		}
+        	})
+        })
+    })
+    const iframe = document.getElementById('modalIframe');
+	const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+	// iframe 내부 문서에 스타일 추가
+	const style = document.createElement('style');
+	style.innerHTML = `
+ 	 body {
+    	cursor: url(assets/img/cursor.png), auto;
+  	}
+	`;
+	iframeDoc.head.appendChild(style);
     </script>
 </body>
 

@@ -6,6 +6,10 @@
 <head>
     <title>직업 종류별 지역 재방문의향</title>
     <style>
+    	.savebox {
+    		margin-left: 630px;
+    	}
+    	
         .chart-container {
             width: auto;
             height: 600px;
@@ -34,10 +38,18 @@
             text-align: center;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart-test.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 </head>
 
 <body>
+<div id="contentDiv">
+<form onsubmit="return false" method="post">
     <h1>여행지별_관광여행_재방문_의향(직업별)(단위:%)</h1>
     <div class="chart-container">
         <canvas id="barChart"></canvas>
@@ -61,6 +73,14 @@
         <button class="btn" onclick="updateChart('경북')">경북</button>
         <button class="btn" onclick="updateChart('경남')">경남</button>
         <button class="btn" onclick="updateChart('제주')">제주</button>
+    </div>
+    <br>
+    <div class="savebox">
+    <input type="text" name="saveName"  placeholder="차트 이름을 입력하세요">
+    <input type = "hidden" name = "fileName" value ="17">
+    <input type="submit" value="저장" id = "save">
+    </div>
+    </form>
     </div>
 
     <script>
@@ -135,6 +155,18 @@
             '경남': [77.8, 75.1, 76.6, 79.5, 77.6, 75.8, 76],
             '제주': [80.6, 79.1, 79.7, 66.6, 80.2, 83.1, 72.1]
         };
+        
+		 $('#save').on('click',function(){
+        	
+        	$.ajax({
+        		url : '/MyDashBoard/Mycheck.do',
+        		data : $('form').serialize(),
+        		success:function(){
+        			console.log($('#contentDiv'));
+        			$('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
+        		}
+        	})
+        })
     </script>
 </body>
 

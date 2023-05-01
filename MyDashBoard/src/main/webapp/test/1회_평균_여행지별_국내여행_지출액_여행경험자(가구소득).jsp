@@ -7,6 +7,10 @@
     <title>1회_평균_여행지별_국내여행_지출액__여행경험자(가구소득)</title>
 
     <style>
+    	.savebox {
+    		margin-left: 630px;
+    	}
+    	
         .chart-container {
             width: 80%;
             margin: 0 auto;
@@ -34,15 +38,18 @@
             text-align: center;
         }
     </style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="chart-test.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-
 </head>
 
 <body>
+<div id="contentDiv">
+<form onsubmit="return false" method="post">
     <h1>1회_평균_여행지별_국내여행_지출액__여행경험자(가구소득)</h1>
     <div class="chart-container">
         <canvas id="myChart"></canvas>
@@ -66,6 +73,15 @@
         <button class="btn" id="gyongnamBtn">경남</button>
         <button class="btn" id="jejuBtn">제주</button>
     </div>
+    <br>
+    <div class="savebox">
+    <input type="text" name="saveName"  placeholder="차트 이름을 입력하세요">
+    <input type = "hidden" name = "fileName" value ="7">
+    <input type="submit" value="저장" id = "save">
+    </div>
+    </form>
+    </div>
+    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // 통계 데이터
@@ -159,6 +175,17 @@
                 myChart.data.datasets[0].data = clickData[index];
                 myChart.update(); // 차트 업데이트
             }
+            $('#save').on('click',function(){
+            	
+            	$.ajax({
+            		url : '/MyDashBoard/Mycheck.do',
+            		data : $('form').serialize(),
+            		success:function(){
+            			console.log($('#contentDiv'));
+            			$('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
+            		}
+            	})
+            })
         })
     </script>
 </body>

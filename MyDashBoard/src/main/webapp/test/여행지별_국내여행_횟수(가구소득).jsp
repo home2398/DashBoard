@@ -7,6 +7,10 @@
     <title>여행지별_국내여행_횟수(가구소득)</title>
 
     <style>
+    	.savebox {
+    		margin-left: 630px;
+    	}
+    	
         .chart-container {
             width: 80%;
             margin: 0 auto;
@@ -40,9 +44,13 @@
     <script src="chart-test.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
+<div id="contentDiv">
+<form onsubmit="return false" method="post">
     <h1>여행지별_국내여행_횟수(가구소득)</h1>
     <div class="chart-container">
         <canvas id="myChart"></canvas>
@@ -66,6 +74,15 @@
         <button class="btn" id="gyongnamBtn">경남</button>
         <button class="btn" id="jejuBtn">제주</button>
     </div>
+    <br>
+    <div class="savebox">
+    <input type="text" name="saveName"  placeholder="차트 이름을 입력하세요">
+    <input type = "hidden" name = "fileName" value ="25">
+    <input type="submit" value="저장" id = "save">
+    </div>
+    </form>
+    </div>
+    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // 통계 데이터
@@ -159,6 +176,7 @@
                 myChart.update(); // 차트 업데이트
             }
 
+
             
             $('#save').on('click',function(){
             	
@@ -172,8 +190,8 @@
             	})
             	
             })
-
-    </script>
+        })
+</script>
 </body>
 
 </html>

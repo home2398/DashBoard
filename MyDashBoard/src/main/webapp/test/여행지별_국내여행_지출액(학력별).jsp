@@ -7,11 +7,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>여행지별_국내여행_지출액(학력별)</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart-test.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 </head>
 <style>
+	.savebox {
+    		margin-left: 630px;
+    	}
+    	
 	#pieChart {
         display: flex;
         justify-content: center;
@@ -40,6 +49,8 @@
     }
 </style>
 <body>
+<div id="contentDiv">
+<form onsubmit="return false" method="post">
   <h1>여행지별_국내여행_지출액(학력별)(단위 : 만원)</h1>
   <div class="chart-container">
       <canvas id="pieChart"></canvas>
@@ -64,7 +75,17 @@
     <button data-region="경남">경남</button>
     <button data-region="제주">제주</button>
 </div>
+    <br>
+    <div class="savebox">
+<input type="text" name="saveName"  placeholder="차트 이름을 입력하세요">
+    <input type = "hidden" name = "fileName" value ="24">
+    <input type="submit" value="저장" id = "save">
+    </div>
+    </form>
+    </div>
+
   <script>
+  document.addEventListener("DOMContentLoaded", function () {
     // 표 데이터
     const data = {
       labels: ["초졸 이하", "중학교", "고등학교", "대학교이상"],
@@ -179,6 +200,18 @@ $('#regionButtons button').on('click', function () {
   
   chart.update(); // 차트 업데이트
         });
+	$('#save').on('click',function(){
+		
+		$.ajax({
+			url : '/MyDashBoard/Mycheck.do',
+			data : $('form').serialize(),
+			success:function(){
+				console.log($('#contentDiv'));
+				$('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
+			}
+		})
+	})
+	})
   </script>
 </body>
 </html>

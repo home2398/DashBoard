@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+html{cursor: url(assets/img/cursor.png), auto}
+</style>
 <body>
 	
 	<!-- 보여지는 화면을 구성하지는 않을 거임 -->
