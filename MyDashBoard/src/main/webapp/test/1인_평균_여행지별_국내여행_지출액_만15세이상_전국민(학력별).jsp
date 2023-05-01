@@ -23,7 +23,7 @@
 </head>
 <style>
 html {
-	cursor: url(assets/img/cursor.png), auto !important
+	cursor: url(assets/img/cursor.png), auto
 }
 
 .savebox {
@@ -234,17 +234,7 @@ h1 {
         	})
         })
     })
-    const iframe = document.getElementById('modalIframe');
-	const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
-	// iframe 내부 문서에 스타일 추가
-	const style = document.createElement('style');
-	style.innerHTML = `
- 	 body {
-    	cursor: url(assets/img/cursor.png), auto;
-  	}
-	`;
-	iframeDoc.head.appendChild(style);
     </script>
 </body>
 

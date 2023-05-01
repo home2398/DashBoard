@@ -30,5 +30,6 @@
   <mappers>
     <mapper resource="kr/pitb/db/MemberMapper.xml"/>
     <mapper resource="kr/pitb/db/CatMapper.xml"/>
+    <mapper resource="kr/pitb/db/MyCsvListMapper.xml"/>
   </mappers>
 </configuration>

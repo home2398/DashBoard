@@ -84,7 +84,10 @@
     </div>
 
     <script>
+<<<<<<< HEAD
     
+=======
+>>>>>>> branch 'master' of https://github.com/2022-SMHRD-IS-BigData3/PythonIsTheBest.git
         // 표 데이터
         const data = {
             labels: ["임금봉급근로자", "고용원있는사업주", "고용원없는자영업자", "무급가족 종사자", "전업주부", "학생", "기타"],
@@ -167,7 +170,10 @@
         		}
         	})
         })
+<<<<<<< HEAD
     
+=======
+>>>>>>> branch 'master' of https://github.com/2022-SMHRD-IS-BigData3/PythonIsTheBest.git
     </script>
 </body>
 

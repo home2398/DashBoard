@@ -27,6 +27,14 @@
  		values (user_like_seq.nextval, #{id}, #{saveName}, #{fileId})
  	</insert>
  
+ 	<select id="mychart" parameterType="java.lang.String"
+ 		resultType="java.lang.String">
+ 		select 회원ID as id
+ 		from 회원
+ 		where 회원ID=#{id}
+ 	</select>
+ 
+ 
  <!-- 
  	
  	
