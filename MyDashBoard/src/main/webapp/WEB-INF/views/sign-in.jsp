@@ -27,6 +27,7 @@
 	src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 </head>
 <style>
+/* 마우스 포인터 */
 html{cursor: url(assets/img/cursor.png), auto}
 .login-header {
 	background-color: rgb(243, 105, 19);

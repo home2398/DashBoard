@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <style>
+/* 마우스 포인터 */
 html{cursor: url(assets/img/cursor.png), auto}
 </style>
 <body>

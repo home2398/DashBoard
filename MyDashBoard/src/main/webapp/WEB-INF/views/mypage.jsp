@@ -32,6 +32,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
   <style>
+  	/* 마우스 포인터 */
 	html{cursor: url(assets/img/cursor.png), auto}
 /* 두꺼운 폰트 */
 @font-face {

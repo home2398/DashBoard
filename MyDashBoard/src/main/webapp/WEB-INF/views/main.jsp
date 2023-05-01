@@ -336,6 +336,7 @@ font-color: #EC6602 ;
 .log-out {
   color: #3C3C3C;
 }
+/* 마우스 포인터 */
 html{cursor: url(assets/img/cursor.png), auto}
 
 </style>
