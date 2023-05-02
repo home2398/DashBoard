@@ -554,8 +554,13 @@ color:#3C3C3C;
      
      
      /*////////////////////////////////////////////차트 생성하기 함수////////////////////////////////////////////////////////////*/
-     function createChart(chartType, label, receive_data) {
-    	 const data = {
+     function createChart(chartType, label, receive_data, options) {
+    	 var data = null;
+    	 var options = null;
+    	 const ctx = document.getElementById('Mychart').getContext('2d');
+    	 
+    	 if (chartType=='doughnut') {
+    	  data = {
     		      labels: label,
     		      datasets: [{
     		        data: receive_data,
@@ -594,8 +599,242 @@ color:#3C3C3C;
            }
          }
        });
+    	 } else if (chartType=='pie') {
+    		 data = {
+    		         labels: ["초졸 이하", "중학교", "고등학교", "대학교이상"],
+    		         datasets: [{
+    		             label: '평균 지출액',
+    		             data: [],
+    		             backgroundColor: [
+    		                    'rgba(255, 99, 132, 0.75)',
+    		                    'rgba(54, 162, 235, 0.75)',
+    		                    'rgba(255, 206, 86, 0.75)',
+    		                    'rgba(75, 192, 192, 0.75)',
+    		                    'rgba(153, 102, 255, 0.75)',
+    		                    'rgba(255, 159, 64, 0.75)',
+    		                    'rgba(94, 232, 129, 0.75)'
+    		                ],
+    		                borderColor: 'rgba(75, 192, 192, 1)',
+    		                borderWidth: 0
+    		            }]
+    		        };
+
+    		        // 차트 생성 함수
+    		        return new Chart(ctx, {
+    		                type: 'pie',
+    		                data: data,
+    		                plugins: [ChartDataLabels],
+    		                options: {
+    		                    responsive: true,
+    		                    maintainAspectRatio: false,
+    		                    legend: {
+    		                        position: 'right',
+    		                        labels: {
+    		                            boxWidth: 12
+    		                        }
+    		                    },
+    		                    plugins: {
+    		                        datalabels: {
+    		                            formatter: (value, context) => {
+    		                                return context.chart.data.labels[context.dataIndex]
+    		                            }
+    		                        }
+    		                    },
+    		                    animations: {
+    		                        animateRotate: true,
+    		                        animateScale: true
+    		                    }
+    		                }
+    		            });
+
+    	 } else if (chartType=='polarArea') {
+    		 data = {
+    		            labels: ["1인", "2인", "3인 이상"],
+    		            datasets: [{
+    		                label: "지출액",
+    		                data: [],
+    		                backgroundColor: [
+    		                    'rgba(255, 99, 132, 0.5)',
+    		                    'rgba(54, 162, 235, 0.5)',
+    		                    'rgba(255, 206, 86, 0.5)',
+    		                    'rgba(75, 192, 192, 0.5)',
+    		                    'rgba(153, 102, 255, 0.5)',
+    		                    'rgba(255, 159, 64, 0.5)',
+    		                    'rgba(255, 99, 132, 0.5)',
+    		                    'rgba(54, 162, 235, 0.5)',
+    		                    'rgba(255, 206, 86, 0.5)',
+    		                    'rgba(75, 192, 192, 0.5)',
+    		                    'rgba(153, 102, 255, 0.5)',
+    		                    'rgba(255, 159, 64, 0.5)',
+    		                    'rgba(255, 99, 132, 0.5)',
+    		                    'rgba(54, 162, 235, 0.5)',
+    		                    'rgba(255, 206, 86, 0.5)',
+    		                    'rgba(75, 192, 192, 0.5)',
+    		                ],
+    		                borderColor: [
+    		                    'rgba(255, 99, 132, 1)',
+    		                    'rgba(54, 162, 235, 1)',
+    		                    'rgba(255, 206, 86, 1)',
+    		                    'rgba(75, 192, 192, 1)',
+    		                    'rgba(153, 102, 255, 1)',
+    		                    'rgba(255, 159, 64, 1)',
+    		                    'rgba(255, 99, 132, 1)',
+    		                    'rgba(54, 162, 235, 1)',
+    		                    'rgba(255, 206, 86, 1)',
+    		                    'rgba(75, 192, 192, 1)',
+    		                    'rgba(153, 102, 255, 1)',
+    		                    'rgba(255, 159, 64, 1)',
+    		                    'rgba(255, 99, 132, 1)',
+    		                    'rgba(54, 162, 235, 1)',
+    		                    'rgba(255, 206, 86, 1)',
+    		                    'rgba(75, 192, 192, 1)',
+    		                ],
+    		                borderWidth: 1
+    		            }]
+    		        };
+
+    		        var myChart = new Chart(ctx, {
+    		            type: 'polarArea',
+    		            data: data,
+    		            options: {
+    		                responsive: true,
+    		                maintainAspectRatio: false,
+
+    		                scales: {
+    		                    yAxes: [{
+    		                        ticks: {
+    		                            beginAtZero: true
+    		                        }
+    		                    }]
+    		                }
+    		            }
+    		        });
+    	 } else if (chartType=='line') {
+    		 data = {
+    	             labels: ["15~19세", "20대", "30대", "40대", "50대", "60대", "70세 이상"],
+    	             datasets: [{
+    	                 label: '1회 평균 여행지별 지출액(15세이상 전국민)',
+    	                 fill: true,
+    	                 backgroundColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
+    	                 borderColor: ['rgba(152, 8, 8)'],
+    	                 borderWidth: 1,
+    	                 data: [20, 120, 380, 50, 180, 30, 43] // 1차원 형식으로 넣어줘야함(여기에 바로 데이터-2차원를 넣어주면 차트형식이 이상해짐)
+    	                }]
+    	            };
+
+    	            // 차트 초기 설정
+    	            
+    	            return new Chart(ctx, {
+    	                type: "line",
+    	                data: data,
+    	                options: {
+    	                    responsivre: true,
+    	                    maintainAspectRatio: false,
+    	                    scales: {
+    	                        y: {
+    	                            beginAtZero: true,
+    	                            min: 0,
+    	                            max: null
+    	                        }
+    	                    },
+    	                    responsive: true,
+    	                    title: {
+    	                        display: true,
+    	                        text: "1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(연령대별)"
+    	                    },
+    	                    elements: {
+    	                        point: {
+    	                            radius: 10 // 점의 크기 설정
+    	                        }
+    	                    },
+    	                    animations: {
+    	                        tension: {
+    	                            duration: 1000,
+    	                            easing: 'linear',
+    	                            from: 1,
+    	                            to: 0,
+    	                            loop: true
+    	                        }
+    	                    },
+    	                    plugins: {
+    	                        legend: {
+    	                            display: false
+    	                        }
+    	                    }
+    	                }
+    	            });
+    	 } else if (chartType=='bar-garo') {
+    		 data = {
+    		          labels: ["임금봉급근로자", "고용원있는사업주", "고용원없는자영업자", "무급가족 종사자", "전업주부", "학생", "기타"],
+    		          datasets: [{
+    		             label: '평균 지출액',
+    		             data: [],
+    		             backgroundColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
+    		             borderColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
+    		             borderWidth: 1
+    		            }]
+    		        };
+
+    		        // 차트 옵션
+    		 options = {
+    		            responsivre: true,
+    		            maintainAspectRatio: false,
+    		            indexAxis: 'y',
+    		            scales: {
+    		                x: {
+    		                    beginAtZero: true,
+    		                    max: null // y축 최댓값 설정
+    		                }
+    		            },
+    		            plugins: {
+    		                legend: {
+    		                    display: false
+    		                }
+    		            }
+    		        };
+    		            return new Chart(ctx, {
+    		                type: 'bar',
+    		                data: data,
+    		                options: options
+    		            });
+
+    		        // 초기 차트 생성
+    		        const barChart = createBarChart(ctx, data, options);
+    		            
+    	 } else if (chartType=='bar') {
+    		 data = {
+    	             labels: ["100만원 미만", "100~200만원 미만", "200~300만원 미만", "300~400만원 미만", "400~500만원 미만", "500~600만원 미만", "600만원 이상"],
+    	             datasets: [{
+    	                 label: '지출액',
+    	                 backgroundColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
+    	                 borderColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
+    	                 borderWidth: 1,
+    	                 data: [8, 13, 11, 10, 12, 13, 14], // 1차원 형식으로 넣어줘야함(여기에 바로 데이터-2차원를 넣어주면 차트형식이 이상해짐)
+    	                }]
+    	            };
+
+    	            // 차트 생성
+    	            var myChart = new Chart(ctx, {
+    	                type: 'bar',
+    	                data: data,
+    	                options: {
+    	                    scales: {
+    	                        y: {
+    	                            max: null,
+    	                            grid: {
+    	                                display: false
+    	                            }
+    	                        }
+    	                    },
+    	                    plugins: {
+    	                        legend: {
+    	                            display: false
+    	                        }
+    	                    }
+    	                }
+    	            });
+    	 }
      }
-     
      /*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
      
      // csv파일을 읽어서 변환해주는 코드//////////////////////////////////////////////////////////////////////////////////

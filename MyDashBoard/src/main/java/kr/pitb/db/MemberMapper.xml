@@ -23,8 +23,8 @@
  	
  	
 	<insert id="save" parameterType="kr.pitb.model.UserVO">
- 		insert into 회원관심파일내역  (관심ID, 회원id, 저장명, 파일ID)
- 		values (user_like_seq.nextval, #{id}, #{saveName}, #{fileId})
+ 		insert into 회원관심파일내역  (관심ID, 회원id, 저장명, 파일ID, 차트종류)
+ 		values (user_like_seq.nextval, #{id}, #{saveName}, #{fileId}, #{chartType})
  	</insert>
  
  	<select id="mychart" parameterType="java.lang.String"

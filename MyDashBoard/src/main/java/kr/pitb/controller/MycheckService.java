@@ -18,6 +18,7 @@ public String execute(HttpServletRequest request, HttpServletResponse response) 
 	System.out.println("fileName >> " + fileName);
 	
 	String saveName = request.getParameter("saveName");
+	String chartType = request.getParameter("chartType");
 	HttpSession session = request.getSession();
 	String id = ((UserVO)session.getAttribute("User")).getId();
 	
@@ -26,6 +27,7 @@ public String execute(HttpServletRequest request, HttpServletResponse response) 
 	vo.setId(id);
 	vo.setSaveName(saveName);
 	vo.setFileId(fileName);
+	vo.setChartType(chartType);
 	
 	UserDAO dao = new UserDAO();
 	int row = dao.save(vo);

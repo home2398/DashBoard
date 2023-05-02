@@ -22,7 +22,7 @@ public String execute(HttpServletRequest request, HttpServletResponse response) 
 		String nickname = request.getParameter("nickname");
 
 		// 3. 데이터들을 하나로 묶어주기
-		UserVO vo = new UserVO(id, pw, nickname,"","","");
+		UserVO vo = new UserVO(id, pw, nickname,"","","","","");
 
 		// 4. 데이터베이스에 데이터를 추가하기
 		// -> 데이터베이스에 접근해야 한다. >> DAO 사용

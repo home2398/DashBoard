@@ -88,6 +88,7 @@
     <div class="savebox">
     <input type="text" name="saveName"  placeholder="차트 이름을 입력하세요">
     <input type = "hidden" name = "fileName" value ="3">
+    <input type = "hidden" name = "chartType" value ="doughnut">
     <input type="submit" value="저장" id = "save">
     </div>
     </form>

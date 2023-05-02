@@ -8,8 +8,10 @@ public class UserVO {
 	private String saveName;
 	private String fileName;
 	private String fileId;
+	private String region;
+	private String chartType;
 	
-	public UserVO(String id, String pw, String nickname, String saveName, String fileName, String fileId) {
+	public UserVO(String id, String pw, String nickname, String saveName, String fileName, String fileId, String region, String chartType) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -17,6 +19,8 @@ public class UserVO {
 		this.saveName = saveName;
 		this.fileName = fileName;
 		this.fileId = fileId;
+		this.region = region;
+		this.chartType = chartType;
 	}
 	
 	public UserVO() {
@@ -70,4 +74,21 @@ public class UserVO {
 	public void setFileId(String fileId) {
 		this.fileId = fileId;
 	}
+	
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+	
+	public String getChartType() {
+		return chartType;
+	}
+
+	public void setChartType(String chartType) {
+		this.chartType = chartType;
+	}
+	
 }
