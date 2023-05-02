@@ -64,6 +64,7 @@ public class UserDAO {
 		}
 		return result;
 	}
+	
 	public int save(UserVO vo) {
 		
 		SqlSession session = null;
@@ -78,7 +79,7 @@ public class UserDAO {
 		return row;
 	}
 	
-public String mychart(String id) {
+	public String mychart(String id) {
 		
 		String result = null;
 		SqlSession session = null;
@@ -91,11 +92,7 @@ public String mychart(String id) {
 			session.close();
 		}
 		return result;
-}
-	
-	
-	
-	
+	}
 	
 	
 }

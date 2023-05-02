@@ -16,7 +16,7 @@
  	
  	<select id="login" parameterType="kr.pitb.model.UserVO"
  		resultType="kr.pitb.model.UserVO">
- 		select 회원ID as id, 비밀번호 as pw
+ 		select 회원ID as id, 비밀번호 as pw, 닉네임 as nickname
  		from 회원
  		where 회원ID=#{id} and 비밀번호=#{pw} 
  	</select>

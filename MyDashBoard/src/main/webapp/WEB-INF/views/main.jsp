@@ -405,7 +405,7 @@ html{cursor: url(assets/img/cursor.png), auto}
 								</a></li>
 							</c:if>
 						<c:if test="${!empty User}">
-								<span>${User.id}님 환영합니다!</span>
+								<span>${User.nickname}님 환영합니다!</span>
 								<li class="nav-item d-flex align-items-center"><a
 									href="GoLogout.do"
 									class="nav-link text-body font-weight-bold px-0">

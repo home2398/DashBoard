@@ -344,11 +344,11 @@ color:#3C3C3C;
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <div class="blank"></div>
-      <a class="navbar-brand m-01" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
+      <div class="navbar-brand m-01" target="_blank">
         <!-- <img class="logo" src="../../material-dashboard-master/assets/img/로고.png" alt="main_logo" > -->
-        <span class="my_page font-weight-bold  " id="my_page">마이페이지<span>
+        <span class="my_page font-weight-bold" id="my_page">마이페이지<span>
           <!-- 원래 class 명 : ms-1 font-weight-bold text-white -->
-      </a>
+      </div>
     </div>
     <div class="input-group input-group-outline">
         <label class="form-label">Type here...</label>
@@ -372,7 +372,7 @@ color:#3C3C3C;
     <!-- 담기목록 버튼 -->
   <ul class="navbar-nav" id="csvBasket" >
    <li class="nav-item">
-    <a class="nav-link text-white active bg-gradient-primary1sidenav-collapse-main">
+    <a class="nav-link text-white active bg-gradient-primary1sidenav-collapse-main" href="#">
      <span class="material-icons opacity-10">dashboard</span>
      <span class="nav-link-text ms-1">담기목록</span>
         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">  
@@ -380,7 +380,7 @@ color:#3C3C3C;
     </a>
    </li>
   </ul>
-      <li class="nav-item">
+      <li id="csvList">
           <a class="nav-link text-white " href="pages/tables.html">
               <!-- <i class="material-icons opacity-10">table_view</i> -->
             </div>  
@@ -440,7 +440,7 @@ color:#3C3C3C;
                </c:if>
                                  
               <c:if test="${!empty User}">
-                        <span>${User.id}님 환영합니다!</span>
+                        <span>${User.nickname}님 환영합니다!</span>
                   <li class="nav-item d-flex align-items-center"><a
                      href="GoLogout.do"
                      class="nav-link text-body font-weight-bold px-0">
@@ -511,16 +511,16 @@ color:#3C3C3C;
             console.log(list);
             $("#csvList").empty();
             for(var i =0; i<list.length; i++){
-               $("#csvList").append('<input type="button" id = "'+list[i].file_path+'" class = "MyCsvName" name="MyCsvName" value="'+list[i].save_name+'"><br>');
+               $("#csvList").append('<input type="button" id = "'+list[i].file_path+'" regiontemp="'+list[i].region+'" chartTypetemp="'+list[i].chartType+'" class = "MyCsvName" name="MyCsvName" value="'+list[i].save_name+'"><br>');
             }
             /*//////////////////////////////////////////////ajax 안에 ajax 통신//////////////////////////////////////////////////////////*/
             $('.MyCsvName').on('click',function(){	
          	   // 차트 데이터 경로가져오기
          	   var pathData = $(this).attr('id');
          	   // 차트 종류 ---> 수정
-         	   var chartType = 'doughnut';
+         	   var chartType =  $(this).attr('chartTypetemp');
          	   // 지역명 가져오기 ---> 수정
-         	   var region = '부산';
+         	   var region = $(this).attr('regiontemp');
          	   // 외부에 있는 파일 읽어올 때 path 값 변경 로직(server.xml ---> Context 태그를 추가해놨으니 다른 사람도 똑같이 적용할 것)
          	   pathData = pathData.replace('C:/Users/smhrd/Desktop/project2/csv','');
          	   $.ajax({
@@ -610,7 +610,7 @@ color:#3C3C3C;
     		         labels: ["초졸 이하", "중학교", "고등학교", "대학교이상"],
     		         datasets: [{
     		             label: '평균 지출액',
-    		             data: [],
+    		             data: receive_data,
     		             backgroundColor: [
     		                    'rgba(255, 99, 132, 0.75)',
     		                    'rgba(54, 162, 235, 0.75)',
@@ -658,7 +658,7 @@ color:#3C3C3C;
     		            labels: ["1인", "2인", "3인 이상"],
     		            datasets: [{
     		                label: "지출액",
-    		                data: [],
+    		                data: receive_data,
     		                backgroundColor: [
     		                    'rgba(255, 99, 132, 0.5)',
     		                    'rgba(54, 162, 235, 0.5)',
@@ -699,12 +699,13 @@ color:#3C3C3C;
     		            }]
     		        };
 
-    		        var myChart = new Chart(ctx, {
+    		 return new  Chart(ctx, {
     		            type: 'polarArea',
     		            data: data,
     		            options: {
     		                responsive: true,
     		                maintainAspectRatio: false,
+    		                startAngle: 1.134, // 65 degrees in radians
 
     		                scales: {
     		                    yAxes: [{
@@ -712,7 +713,11 @@ color:#3C3C3C;
     		                            beginAtZero: true
     		                        }
     		                    }]
-    		                }
+    		                },
+    		                /* r: {
+    		                    min: 60,
+    		                    max: 85
+        		            } */
     		            }
     		        });
     	 } else if (chartType=='line') {
@@ -724,7 +729,7 @@ color:#3C3C3C;
     	                 backgroundColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
     	                 borderColor: ['rgba(152, 8, 8)'],
     	                 borderWidth: 1,
-    	                 data: [20, 120, 380, 50, 180, 30, 43] // 1차원 형식으로 넣어줘야함(여기에 바로 데이터-2차원를 넣어주면 차트형식이 이상해짐)
+    	                 data: receive_data  // 1차원 형식으로 넣어줘야함(여기에 바로 데이터-2차원를 넣어주면 차트형식이 이상해짐)
     	                }]
     	            };
 
@@ -769,12 +774,12 @@ color:#3C3C3C;
     	                    }
     	                }
     	            });
-    	 } else if (chartType=='bar-garo') {
+    	 } else if (chartType=='widthbar') {
     		 data = {
     		          labels: ["임금봉급근로자", "고용원있는사업주", "고용원없는자영업자", "무급가족 종사자", "전업주부", "학생", "기타"],
     		          datasets: [{
     		             label: '평균 지출액',
-    		             data: [],
+    		             data: receive_data,
     		             backgroundColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
     		             borderColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
     		             borderWidth: 1
@@ -803,9 +808,6 @@ color:#3C3C3C;
     		                data: data,
     		                options: options
     		            });
-
-    		        // 초기 차트 생성
-    		        const barChart = createBarChart(ctx, data, options);
     		            
     	 } else if (chartType=='bar') {
     		 data = {
@@ -815,12 +817,12 @@ color:#3C3C3C;
     	                 backgroundColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
     	                 borderColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
     	                 borderWidth: 1,
-    	                 data: [8, 13, 11, 10, 12, 13, 14], // 1차원 형식으로 넣어줘야함(여기에 바로 데이터-2차원를 넣어주면 차트형식이 이상해짐)
+    	                 data: receive_data, // 1차원 형식으로 넣어줘야함(여기에 바로 데이터-2차원를 넣어주면 차트형식이 이상해짐)
     	                }]
     	            };
 
     	            // 차트 생성
-    	            var myChart = new Chart(ctx, {
+    	            return new Chart(ctx, {
     	                type: 'bar',
     	                data: data,
     	                options: {
