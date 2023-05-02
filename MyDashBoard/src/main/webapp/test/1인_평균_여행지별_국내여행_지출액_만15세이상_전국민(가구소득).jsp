@@ -50,30 +50,10 @@
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
-    <h1>1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(가구소득)</h1>
+    <h1>1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(가구소득)(단위 : 만원)</h1>
     <div class="chart-container">
         <canvas id="myChart" width="50" height="25"></canvas>
     </div>
-<<<<<<< HEAD
-    <div id="regionButtons" class="btn-container">
-        <button class="btn btn-primary regionClass" data-region="서울" id="seoulBtn">서울</button>
-        <button class="regionClass" data-region="부산" id="busanBtn">부산</button>
-        <button class="regionClass" data-region="대구" id="daeguBtn">대구</button>
-        <button class="regionClass" data-region="인천" id="incheonBtn">인천</button>
-        <button class="regionClass" data-region="광주" id="gwangjuBtn">광주</button>
-        <button class="regionClass" data-region="대전" id="daejeonBtn">대전</button>
-        <button class="regionClass" data-region="울산" id="ulsanBtn">울산</button>
-        <button class="regionClass" data-region="세종" id="sejongBtn">세종</button>
-        <button class="regionClass" data-region="경기" id="gyeonggiBtn">경기</button>
-        <button class="regionClass" data-region="강원" id="gangwonBtn">강원</button>
-        <button class="regionClass" data-region="충북" id="chongbukBtn">충북</button>
-        <button class="regionClass" data-region="충남" id="chongnamBtn">충남</button>
-        <button class="regionClass" data-region="전북" id="jeonbukBtn">전북</button>
-        <button class="regionClass" data-region="전남" id="jeonnamBtn">전남</button>
-        <button class="regionClass" data-region="경북" id="gyongbukBtn">경북</button>
-        <button class="regionClass" data-region="경남" id="gyongnamBtn">경남</button>
-        <button class="regionClass" data-region="제주" id="jejuBtn">제주</button>
-=======
     <div class="btn-container">
         <button class="regionClass" data-region="서울" id="seoulBtn">서울</button>
 	    <button class="regionClass" data-region="부산" id="busanBtn">부산</button>
@@ -93,17 +73,13 @@
 	    <button class="regionClass" data-region="경남" id="gyongnamBtn">경남</button>
 	    <button class="regionClass" data-region="제주" id="jejuBtn">제주</button>
   </div>
->>>>>>> branch 'master' of https://github.com/2022-SMHRD-IS-BigData3/PythonIsTheBest.git
+
     </div>
     <br>
     <div class="savebox">
 	<input type="text" name="saveName"  placeholder="차트 이름을 입력하세요">
-    <input type = "hidden" name = "fileName" value ="1">
-<<<<<<< HEAD
-    <input type="hidden" name ="chartType" value="bar">
-=======
-    <input type = "hidden" name = "chartType" value ="bar">
->>>>>>> branch 'master' of https://github.com/2022-SMHRD-IS-BigData3/PythonIsTheBest.git
+    <input type ="hidden" name = "fileName" value ="1">
+    <input type ="hidden" name ="chartType" value ="bar">
     <input type="hidden" name="region" value="" id="regionInput">
     <input type="submit" value="저장" id = "save">
     </div>

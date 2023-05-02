@@ -50,7 +50,7 @@
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
-    <h1>여행지별_국내여행_지출액(직업별)</h1>
+    <h1>여행지별_국내여행_지출액(직업별)(단위 : 만원)</h1>
     <div class="chart-container">
         <canvas id="barChart"></canvas>
     </div>

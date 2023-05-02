@@ -50,7 +50,7 @@
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
-    <h1>여행지별_관광여행_재방문_의향(가구소득)</h1>
+    <h1>여행지별_관광여행_재방문_의향(가구소득)(단위 : %)</h1>
     <div class="chart-container">
         <canvas id="myChart"></canvas>
     </div>

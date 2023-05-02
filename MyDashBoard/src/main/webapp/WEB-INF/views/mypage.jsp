@@ -491,7 +491,7 @@ color:#3C3C3C;
   <script type="text/javascript">
 	document.addEventListener("DOMContentLoaded", function () {
      $("#csvBasket").on("click", function(){
-        alert("넘어옴?")
+        alert("담은 차트를 보시겠습니까?")  // 담은 차트 클릭시 알림창으로 확인
         var sendData = {
            data : $(this)[0].innerText
            }

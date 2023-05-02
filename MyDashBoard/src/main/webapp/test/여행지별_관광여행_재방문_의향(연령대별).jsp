@@ -55,7 +55,7 @@
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
-    <h1>여행지별_관광여행_재방문_의향(연령대별)</h1>
+    <h1>여행지별_관광여행_재방문_의향(연령대별)(단위 : %)</h1>
     <canvas id="myChart"></canvas>
     <br>
     <div style="text-align: center;">
