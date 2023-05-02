@@ -50,7 +50,7 @@
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
-    <h1>1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(가구소득)</h1>
+    <h1>1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(가구소득)(단위 : 만원)</h1>
     <div class="chart-container">
         <canvas id="myChart" width="50" height="25"></canvas>
     </div>
@@ -73,12 +73,19 @@
 	    <button class="regionClass" data-region="경남" id="gyongnamBtn">경남</button>
 	    <button class="regionClass" data-region="제주" id="jejuBtn">제주</button>
   </div>
+
     </div>
     <br>
     <div class="savebox">
+<<<<<<< HEAD
+	<input type="text" name="saveName"  placeholder="차트 이름을 입력하세요">
+    <input type ="hidden" name = "fileName" value ="1">
+    <input type ="hidden" name ="chartType" value ="bar">
+=======
 	<input type="text" name="saveName"  placeholder="저장명을 입력해주세요">
     <input type = "hidden" name = "fileName" value ="1">
     <input type = "hidden" name = "chartType" value ="bar">
+>>>>>>> branch 'master' of https://github.com/2022-SMHRD-IS-BigData3/PythonIsTheBest.git
     <input type="hidden" name="region" value="" id="regionInput">
     <input type="submit" value="저장" id = "save">
     </div>

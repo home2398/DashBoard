@@ -56,7 +56,7 @@
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
-    <h1>1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(연령대별)</h1>
+    <h1>1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(연령대별)(단위 : 만원)</h1>
     <canvas id="myChart"></canvas>
     <br>
     <div style="text-align: center;">
