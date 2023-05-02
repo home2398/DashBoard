@@ -41,6 +41,7 @@
 <!-- jquery 로딩 -->
 
 <style type="text/css">
+
 /* 모달창 스타일 */
 .modalDiv {
   display: none; /* 모달창 초기에는 숨김 */

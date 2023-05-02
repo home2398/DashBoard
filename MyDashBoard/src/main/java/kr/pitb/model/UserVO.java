@@ -11,7 +11,7 @@ public class UserVO {
 	private String region;
 	private String chartType;
 	
-	public UserVO(String id, String pw, String nickname, String saveName, String fileName, String fileId, String region, String chartType) {
+	public UserVO(String id, String pw, String nickname, String saveName, String fileName, String fileId , String region , String chartType) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -23,8 +23,25 @@ public class UserVO {
 		this.chartType = chartType;
 	}
 	
+	public String getChartType() {
+		return chartType;
+	}
+
+	public void setChartType(String chartType) {
+		this.chartType = chartType;
+	}
+
 	public UserVO() {
 		
+	}
+	
+	public String getRegion() {
+		return region;
+	}
+
+
+	public void setRegion(String region) {
+		this.region = region;
 	}
 
 	public String getId() {
@@ -75,20 +92,5 @@ public class UserVO {
 		this.fileId = fileId;
 	}
 	
-	public String getRegion() {
-		return region;
-	}
-
-	public void setRegion(String region) {
-		this.region = region;
-	}
-	
-	public String getChartType() {
-		return chartType;
-	}
-
-	public void setChartType(String chartType) {
-		this.chartType = chartType;
-	}
 	
 }

@@ -357,10 +357,7 @@ color:#3C3C3C;
     <hr class="horizontal light mt-0 mb-2">
     <!-- <button id="csvBasket">담기목록</button> -->
     
-    <div id="csvList">
-    
-    </div>
-    
+ 
      <!-- <div class="collapse navbar-collapse w-auto ps" id="sidenav-collapse-main">
        <ul class="navbar-nav" >
           <li class="nav-item">
@@ -372,8 +369,31 @@ color:#3C3C3C;
           </li>
        </ul>
     </div>  -->
+    <!-- 담기목록 버튼 -->
+  <ul class="navbar-nav" id="csvBasket" >
+   <li class="nav-item">
+    <a class="nav-link text-white active bg-gradient-primary1sidenav-collapse-main">
+     <span class="material-icons opacity-10">dashboard</span>
+     <span class="nav-link-text ms-1">담기목록</span>
+        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">  
+       </div>
+    </a>
+   </li>
+  </ul>
+      <li class="nav-item">
+          <a class="nav-link text-white " href="pages/tables.html">
+              <!-- <i class="material-icons opacity-10">table_view</i> -->
+            </div>  
+            <div id="csvList">
+         </a>
+        </li>
+ 
+<!-- 메인페이지 버튼 -->
+  
+
     
-     <div class="collapse navbar-collapse w-auto ps" id="sidenav-collapse-main">
+    
+    <div class="collapse navbar-collapse w-auto ps" id="sidenav-collapse-main">
       <div class="input-group input-group-outline">
       </div>
      <div id="csvBasket">
@@ -386,24 +406,10 @@ color:#3C3C3C;
             <span class="nav-link-text ms-1">메인페이지</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary1sidenav-collapse-main" href="#">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <span class="material-icons opacity-10">dashboard</span>
-            </div>
-            <span class="nav-link-text ms-1" id="csvBasket">담기목록</span>
-         </a>
-        </li>
-        <li class="nav-item"  id="csvList">
-          <a class="nav-link text-white " href="pages/tables.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>  
-          </a>
-        </li>
-        
       </ul>
-    </div> 
+    </div>
+   </div>
+    
     
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
       <!-- <div class="logo">
@@ -505,7 +511,7 @@ color:#3C3C3C;
             console.log(list);
             $("#csvList").empty();
             for(var i =0; i<list.length; i++){
-               $("#csvList").append('<input type="button" id = "'+list[i].file_path+'" class = "MyCsvName" name="MyCsvName" value="'+list[i].save_name+'">');
+               $("#csvList").append('<input type="button" id = "'+list[i].file_path+'" class = "MyCsvName" name="MyCsvName" value="'+list[i].save_name+'"><br>');
             }
             /*//////////////////////////////////////////////ajax 안에 ajax 통신//////////////////////////////////////////////////////////*/
             $('.MyCsvName').on('click',function(){	
