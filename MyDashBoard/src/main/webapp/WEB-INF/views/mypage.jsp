@@ -332,6 +332,11 @@ color:#3C3C3C;
 color:#3C3C3C;
 }
 
+.MyCsvName {
+	border: none;
+	background: transparent;
+	color: #ffffff
+}
   </style>
 
 </head>
@@ -451,8 +456,8 @@ color:#3C3C3C;
         </div>
     </nav>
 	<main>
-		<div>
-			<canvas id="Mychart" style = "height:700px;"></canvas>
+		<div id="Mychart">
+			<%-- <canvas id="Mychart" style = "height:700px;"></canvas> --%>
 		</div>
 	</main>
    
@@ -536,7 +541,7 @@ color:#3C3C3C;
          			const chart = createChart(chartType, labelList, listData);
          		}
          	   })
-            })
+        	})
          },
          error : function(){
             console.log("실패!!!!!!!!!!!!");
@@ -571,7 +576,7 @@ color:#3C3C3C;
     		      }]
     		    }
     	 
-       return new Chart(document.getElementById('Mychart').getContext('2d'), {
+       return new Chart(ctx, {
          type: chartType, // 디비에서 값 조회해서 변경될 수도 있음
          data: data,
          plugins: [ChartDataLabels],
