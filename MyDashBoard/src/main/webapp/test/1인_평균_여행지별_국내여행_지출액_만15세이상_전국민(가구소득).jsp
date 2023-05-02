@@ -77,9 +77,15 @@
     </div>
     <br>
     <div class="savebox">
+<<<<<<< HEAD
 	<input type="text" name="saveName"  placeholder="차트 이름을 입력하세요">
     <input type ="hidden" name = "fileName" value ="1">
     <input type ="hidden" name ="chartType" value ="bar">
+=======
+	<input type="text" name="saveName"  placeholder="저장명을 입력해주세요">
+    <input type = "hidden" name = "fileName" value ="1">
+    <input type = "hidden" name = "chartType" value ="bar">
+>>>>>>> branch 'master' of https://github.com/2022-SMHRD-IS-BigData3/PythonIsTheBest.git
     <input type="hidden" name="region" value="" id="regionInput">
     <input type="submit" value="저장" id = "save">
     </div>
