@@ -375,8 +375,6 @@ color:#3C3C3C;
     <a class="nav-link text-white active bg-gradient-primary1sidenav-collapse-main" href="#">
      <span class="material-icons opacity-10">dashboard</span>
      <span class="nav-link-text ms-1">담기목록</span>
-        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">  
-       </div>
     </a>
    </li>
   </ul>
@@ -389,14 +387,10 @@ color:#3C3C3C;
         </li>
  
 <!-- 메인페이지 버튼 -->
-  
-
-    
     
     <div class="collapse navbar-collapse w-auto ps" id="sidenav-collapse-main">
       <div class="input-group input-group-outline">
       </div>
-     <div id="csvBasket">
       <ul class="navbar-nav" >
       <li class="nav-item">
           <a class="nav-link text-white" href="GoMain.do">
@@ -407,7 +401,6 @@ color:#3C3C3C;
           </a>
         </li>
       </ul>
-    </div>
    </div>
     
     
