@@ -84,7 +84,7 @@
   </div>
   <br>
     <div class="savebox">
-  <input type="text" name="saveName"  placeholder="차트 이름을 입력하세요">
+  <input type="text" name="saveName"  placeholder="저장명을 입력해주세요">
     <input type = "hidden" name = "fileName" value ="21">
     <input type = "hidden" name = "chartType" value ="doughnut">
 	<input type="hidden" name="region" value="" id="regionInput">

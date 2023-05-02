@@ -380,10 +380,15 @@ color:#3C3C3C;
     </a>
    </li>
   </ul>
-  
+      <li class="nav-item">
+          <a class="nav-link text-white " href="pages/tables.html">
+              <!-- <i class="material-icons opacity-10">table_view</i> -->
+            </div>  
+            <div id="csvList">
+         </a>
+        </li>
+ 
 <!-- 메인페이지 버튼 -->
-  <div id="csvList">
-  </div>
   
 
     
