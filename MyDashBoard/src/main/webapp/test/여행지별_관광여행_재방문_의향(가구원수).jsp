@@ -14,16 +14,21 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 </head>
 <style>
-	.savebox {
-    		margin-left: 630px;
-    	}
 
-	#myChart {
+	/* #myChart {
         display: flex;
         justify-content: center;
         height: 700px;
+    } */
+    
+     #chartContainer {
+      display: flex;
+      justify-content: left;
+      margin-left: 4%;
+      height: 600px;
     }
-    .regionClass {
+    
+    /* .region-button {
         width: 100px;
         border: 0;
         outline: none;
@@ -34,44 +39,62 @@
         padding: 5px;
         cursor: pointer;
         border-radius: 5px;
-    }
+    } */
     button:hover {
         background-color: cornsilk; /* 원하는 배경색으로 변경 */
         color: black;
     }
 
+button {
+      width: 100px;
+      border: 0;
+      outline: none;
+      font-size: 15px;
+      margin: 1px;
+      background: rgb(243, 156, 18);
+      color: white;
+      padding: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
     h1 {
         text-align: center;
+    }
+    
+     .savebox{
+    margin-left: 630px;
     }
 </style>
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
     <h1>여행지별_관광여행_재방문_의향(가구원수)(단위 : %)</h1>
-    <div style="text-align: center;">
-	    <button class="regionClass" data-region="서울" id="seoulBtn" value="서울">서울</button>
-	    <button class="regionClass" data-region="부산" id="busanBtn" value="부산">부산</button>
-	    <button class="regionClass" data-region="대구" id="daeguBtn" value="대구">대구</button>
-	    <button class="regionClass" data-region="인천" id="incheonBtn" value="인천">인천</button>
-	    <button class="regionClass" data-region="광주" id="gwangjuBtn" value="광주">광주</button>
-	    <button class="regionClass" data-region="대전" id="daejeonBtn" value="대전">대전</button>
-	    <button class="regionClass" data-region="울산" id="ulsanBtn" value="울산">울산</button>
-	    <button class="regionClass" data-region="세종" id="sejongBtn" value="세종">세종</button>
-	    <button class="regionClass" data-region="경기" id="gyeonggiBtn" value="경기">경기</button>
-	    <button class="regionClass" data-region="강원" id="gangwonBtn" value="강원">강원</button>
-	    <button class="regionClass" data-region="충북" id="chongbukBtn" value="충북">충북</button>
-	    <button class="regionClass" data-region="충남" id="chongnamBtn" value="충남">충남</button>
-	    <button class="regionClass" data-region="전북" id="jeonbukBtn" value="전북">전북</button>
-	    <button class="regionClass" data-region="전남" id="jeonnamBtn" value="전남">전남</button>
-	    <button class="regionClass" data-region="경북" id="gyongbukBtn" value="경북">경북</button>
-	    <button class="regionClass" data-region="경남" id="gyongnamBtn" value="경남">경남</button>
-	    <button class="regionClass" data-region="제주" id="jejuBtn" value="제주">제주</button>
-    </div>
-    <br>
-    <div>
+    
+    <div id="chartContainer">
+    <span id="regionButtons">
+    <button class="regionClass" data-region="서울" id="seoulBtn" value="서울">서울</button>
+       <button class="regionClass" data-region="부산" id="busanBtn" value="부산">부산</button>
+       <button class="regionClass" data-region="대구" id="daeguBtn" value="대구">대구</button>
+       <button class="regionClass" data-region="인천" id="incheonBtn" value="인천">인천</button>
+       <button class="regionClass" data-region="광주" id="gwangjuBtn" value="광주">광주</button>
+       <button class="regionClass" data-region="대전" id="daejeonBtn" value="대전">대전</button>
+       <button class="regionClass" data-region="울산" id="ulsanBtn" value="울산">울산</button>
+       <button class="regionClass" data-region="세종" id="sejongBtn" value="세종">세종</button>
+       <button class="regionClass" data-region="경기" id="gyeonggiBtn" value="경기">경기</button>
+       <button class="regionClass" data-region="강원" id="gangwonBtn" value="강원">강원</button>
+       <button class="regionClass" data-region="충북" id="chongbukBtn" value="충북">충북</button>
+       <button class="regionClass" data-region="충남" id="chongnamBtn" value="충남">충남</button>
+       <button class="regionClass" data-region="전북" id="jeonbukBtn" value="전북">전북</button>
+       <button class="regionClass" data-region="전남" id="jeonnamBtn" value="전남">전남</button>
+       <button class="regionClass" data-region="경북" id="gyongbukBtn" value="경북">경북</button>
+       <button class="regionClass" data-region="경남" id="gyongnamBtn" value="경남">경남</button>
+       <button class="regionClass" data-region="제주" id="jejuBtn" value="제주">제주</button>
+    </span>
         <canvas id="myChart"></canvas>
-    </div>
     <br>
+    </div>
+    
     <div class="savebox">
     <input type="text" name="saveName"  placeholder="저장명을 입력해주세요">
     <input type = "hidden" name = "fileName" value ="14">
@@ -82,8 +105,7 @@
     </form>
     </div>
     
-    <!-- 지역 버튼 눌렀을 때 버튼에 따라 지역값 넣는 함수 -->
-	<script type="text/javascript" src="region.js"></script>
+    <script type="text/javascript" src="region.js"></script>
     
     <script>
     	document.addEventListener("DOMContentLoaded", function () {
@@ -151,7 +173,8 @@
               }
         });
         // 버튼 클릭시 데이터 갱신
-        $(".regionClass").click(function () {
+         $(".regionClass").click(function () {
+            // 선택한 지역의 데이터 가져오기
             // 선택한 지역의 데이터 가져오기
             var region = $(this).val();
             var regionData = [];

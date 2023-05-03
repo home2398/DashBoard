@@ -335,8 +335,34 @@ color:#3C3C3C;
 .MyCsvName {
 	border: none;
 	background: transparent;
-	color: #ffffff
+	color: #ffffff;
+	/* height:50px; */
 }
+
+#Mychart{
+   height:300px;
+   width:300px;
+}
+
+.chart-check{
+	box-shadow:0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	margin-bottom:15px;
+	margin-right:15px;
+	width: 47%;
+	border: 1px solid black;
+	float: left; 
+	padding:10px;"
+}
+
+#chart{
+	padding-left:15px;
+}
+
+canvas{
+	height:200px;
+	width:300px;
+}
+
   </style>
 
 </head>
@@ -455,11 +481,14 @@ color:#3C3C3C;
             </div>
         </div>
     </nav>
+    
+ 
+   <!-- 마이페이지 화면에 사용자 저장한 차트 표출 구간-->
    <main>
-      <div id="chart-container">
-         <canvas id="Mychart" style = "height:300px;"></canvas>
-      </div>
+   <div id="chart">
+   </div>
    </main>
+   
    
   <!--   Core JS Files   -->
   <script src="assets/js/core/popper.min.js"></script>
@@ -498,7 +527,7 @@ color:#3C3C3C;
             console.log(list);
             $("#csvList").empty();
             for(var i =0; i<list.length; i++){
-               $("#csvList").append('<ul class="navbar-nav"><li class="nav-item"><a class="nav-link text-white" href="#"><div class="text-white text-center me-2 d-flex align-items-center justify-content-center"><i class="material-icons opacity-10">receipt_long</i></div><input type="button" id = "'+list[i].file_path+'" regiontemp="'+list[i].region+'" chartTypetemp="'+list[i].chartType+'" fileNametemp="'+list[i].file_name+'" class = "MyCsvName" name="MyCsvName" value="'+list[i].save_name+'" ><br>');
+               $("#csvList").append('<ul class="navbar-nav"><li class="nav-item"><a class="nav-link text-white" href="#"><div class="text-white text-center me-2 d-flex align-items-center justify-content-center"><i class="material-icons opacity-10">receipt_long</i></div><input type="button" id = "'+list[i].file_path+'" regiontemp="'+list[i].region+'" chartTypetemp="'+list[i].chartType+'" fileNametemp="'+list[i].file_name+'" myIDtemp="'+list[i].myID+'" class = "MyCsvName" name="MyCsvName" value="'+list[i].save_name+'" ><br>');
                $("#csvList").append('</a>');
                $("#csvList").append('</li>');
                $("#csvList").append('</ul>');
@@ -516,9 +545,12 @@ color:#3C3C3C;
                // 차트이름 가져오기
                var filename = $(this).attr('fileNametemp');
                
+               // 관심ID 가져오기
+               var myID = $(this).attr('myIDtemp');
                
                console.log("파일이름 >> "+filename);
                console.log("차트종류 >> "+chartType);
+               console.log("my >> "+myID);
         
                // 외부에 있는 파일 읽어올 때 path 값 변경 로직(server.xml ---> Context 태그를 추가해놨으니 다른 사람도 똑같이 적용할 것)
                pathData = pathData.replace('C:/Users/smhrd/Desktop/project2/csv','');
@@ -548,7 +580,21 @@ color:#3C3C3C;
                   }
                   
                   
-                  const chart = createChart(chartType, labelList, listData);
+                  $("#chart").append('<div class="chart-check" id = "title-area'+myID+'"><div id="chart-container"><canvas id="Mychart'+myID+'"></canvas>');
+                  $("#chart").append('</div>');
+                  $("#chart").append('</div>');
+                  
+                  const chart = createChart(chartType, labelList, listData, filename, myID);
+                  
+                  // create a new div element
+                  var newH1 = document.createElement("h4");
+                  // and give it some content
+                  var newContent = document.createTextNode(filename.replaceAll('.csv',''));
+                  // add the text node to the newly created div
+                  newH1.appendChild(newContent);
+                  newH1.setAttribute('align','center');
+                  document.getElementById('title-area'+myID+'').prepend(newH1);
+                  
                }
                })
             })
@@ -563,17 +609,21 @@ color:#3C3C3C;
 
      
      /*////////////////////////////////////////////차트 생성하기 함수////////////////////////////////////////////////////////////*/
-     function createChart(chartType, label, receive_data, options, filename) {
+     function createChart(chartType, label, receive_data, filename, myID) {
+       console.log('>>>>>',filename);
+       console.log('>>>>>',myID);
         var data = null;
         var options = null;
-        const ctx = document.getElementById('Mychart').getContext('2d');
+        console.log('확인', document.getElementById("Mychart"+myID));
+        const ctx = document.getElementById("Mychart"+myID).getContext('2d');
         
         // 마이페이지 담은 버튼별로 차트 나오는 로직 /////////////////////////////
-        let chartStatus = Chart.getChart("Mychart"); // <canvas> id
+        /* let chartStatus = Chart.getChart("Mychart"+myID); // <canvas> id
         if (chartStatus != undefined) {
-          	chartStatus.destroy();
-        }
+             chartStatus.destroy();
+        }  */
         //////////////////////////////////////////////////////////////
+      
         
         if (chartType=='doughnut') {
          data = {
@@ -593,15 +643,15 @@ color:#3C3C3C;
                 }]
               }
        
-       return new Chart(document.getElementById('Mychart').getContext('2d'), {
+       return new Chart(document.getElementById("Mychart"+myID).getContext('2d'), {
          type: chartType, // 디비에서 값 조회해서 변경될 수도 있음
          data: data,
          plugins: [ChartDataLabels],
          options: {
-        	 title: {
-       		  display: true,
-       		  text: filename
-       	  },
+            title: {
+               display: true,
+               text: filename
+            },
            responsive: true,
            maintainAspectRatio: false,
            legend: {
@@ -646,10 +696,10 @@ color:#3C3C3C;
                           data: data,
                           plugins: [ChartDataLabels],
                           options: {
-                        	  title: {
-                        		  display: true,
-                        		  text: filename
-                        	  },
+                             title: {
+                                display: true,
+                                text: filename
+                             },
                               responsive: true,
                               maintainAspectRatio: false,
                               legend: {
@@ -722,7 +772,7 @@ color:#3C3C3C;
                       type: 'polarArea',
                       data: data,
                       options: {
-                    	 
+                        
                           responsive: true,
                           maintainAspectRatio: false,
                           startAngle: 1.134, // 65 degrees in radians
@@ -759,7 +809,7 @@ color:#3C3C3C;
                        type: "line",
                        data: data,
                        options: {
-                    	  
+                         
                            responsivre: true,
                            maintainAspectRatio: false,
                            scales: {
@@ -808,7 +858,7 @@ color:#3C3C3C;
                   };
 
                   // 차트 옵션
-           	options = {
+              options = {
                       responsivre: true,
                       maintainAspectRatio: false,
                       indexAxis: 'y',
@@ -847,8 +897,8 @@ color:#3C3C3C;
                        type: 'bar',
                        data: data,
                        options: {
-                    	   
-                    	   responsivre: true,
+                          
+                          responsivre: true,
                            maintainAspectRatio: false,
                            scales: {
                                y: {
@@ -867,6 +917,15 @@ color:#3C3C3C;
                    });
         }
      }
+     
+     
+     
+     
+     
+     
+     
+     
+     
      /*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
      
      // csv파일을 읽어서 변환해주는 코드//////////////////////////////////////////////////////////////////////////////////

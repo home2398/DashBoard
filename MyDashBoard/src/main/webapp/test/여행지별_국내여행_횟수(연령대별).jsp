@@ -6,10 +6,14 @@
 <head>
     <title>여행지별_국내여행_횟수(연령대별)</title>
     <style>
-    	.savebox {
-    		margin-left: 630px;
-    	}
-    	
+    
+     #chartContainer {
+      display: flex;
+      justify-content: left;
+      margin-left: 4%;
+      height: 600px;
+    }
+    
         .regionClass {
             width: 100px;
             border: 0;
@@ -34,15 +38,28 @@
         }
         #myChart {
         width: auto;
-        height: auto;
+        height: auto; 
         min-height: 300px;
         max-height: 600px;
         display: flex;
-        justify-content: center;
-        align-items: center
+        justify-content: left;
+      	margin-left: 4%;
+      	height: 600px;
+        align-items: center 
         }
+        
+        #regionButtons {
+     	text-align: center;
+   		 }	
+   		 
+   		 
+    .savebox{
+    margin-left: 630px;
+    }
+        
     </style>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -52,31 +69,58 @@
 </head>
 
 <body>
+
+
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
     <h1>여행지별_국내여행_횟수(연령대별)</h1>
+    <!-- <div style="text-align: center;"> -->
+    <div id="chartContainer">
+    <span id="regionButtons">
+    <button class="regionClass" data-region="서울" id="seoulBtn" onclick="updateChart('서울')">서울</button>
+        <button class="regionClass" data-region="부산" id="seoulBtn" onclick="updateChart('부산')">부산</button>
+        <button class="regionClass" data-region="대구" id="daeguBtn" onclick="updateChart('대구')">대구</button>
+        <button class="regionClass" data-region="인천" id="incheonBtn" onclick="updateChart('인천')">인천</button>
+        <button class="regionClass" data-region="광주" id="gwangjuBtn" onclick="updateChart('광주')">광주</button>
+        <button class="regionClass" data-region="대전" id="daejeonBtn" onclick="updateChart('대전')">대전</button>
+        <button class="regionClass" data-region="울산" id="ulsanBtn" onclick="updateChart('울산')">울산</button>
+        <button class="regionClass" data-region="세종" id="sejongBtn" onclick="updateChart('세종')">세종</button>
+        <button class="regionClass" data-region="경기" id="gyeonggiBtn" onclick="updateChart('경기')">경기</button>
+        <button class="regionClass" data-region="강원" id="gangwonBtn" onclick="updateChart('강원')">강원</button>
+        <button class="regionClass" data-region="충북" id="chongbukBtn" onclick="updateChart('충북')">충북</button>
+        <button class="regionClass" data-region="충남" id="chongnamBtn" onclick="updateChart('충남')">충남</button>
+        <button class="regionClass" data-region="전북" id="jeonbukBtn" onclick="updateChart('전북')">전북</button>
+        <button class="regionClass" data-region="전남" id="jeonnamBtn" onclick="updateChart('전남')">전남</button>
+        <button class="regionClass" data-region="경북" id="gyongbukBtn" onclick="updateChart('경북')">경북</button>
+        <button class="regionClass" data-region="경남" id="gyongnamBtn" onclick="updateChart('경남')">경남</button>
+        <button class="regionClass" data-region="제주" id="jejuBtn" onclick="updateChart('제주')">제주</button>
+    
+    <!-- <select id="region-dropdown">
+    <option value="" selected disabled>지역을 선택하세요</option>
+    <option class="btn" data-region="서울" value="서울">서울</option>
+    <option class="btn" data-region="부산" value="부산">부산</option>
+    <option class="btn" data-region="대구" value="대구">대구</option>
+    <option class="btn" data-region="인천" value="인천">인천</option>
+    <option class="btn" data-region="광주" value="광주">광주</option>
+    <option class="btn" data-region="대전" value="대전">대전</option>
+    <option class="btn" data-region="울산" value="울산">울산</option>
+    <option class="btn" data-region="세종" value="세종">세종</option>
+    <option class="btn" data-region="경기" value="경기">경기</option>
+    <option class="btn" data-region="강원" value="강원">강원</option>
+    <option class="btn" data-region="충북" value="충북">충북</option>
+    <option class="btn" data-region="충남" value="충남">충남</option>
+    <option class="btn" data-region="전북" value="전북">전북</option>
+    <option class="btn" data-region="전남" value="전남">전남</option>
+    <option class="btn" data-region="경북" value="경북">경북</option>
+    <option class="btn" data-region="경남" value="경남">경남</option>
+    <option class="btn" data-region="제주" value="제주">제주</option>
+  	</select> -->
+    
+    </span>
     <canvas id="myChart"></canvas>
-    <br>
-    <div style="text-align: center;">
-	    <button class="regionClass" data-region="서울" id="seoulBtn">서울</button>
-	    <button class="regionClass" data-region="부산" id="busanBtn">부산</button>
-	    <button class="regionClass" data-region="대구" id="daeguBtn">대구</button>
-	    <button class="regionClass" data-region="인천" id="incheonBtn">인천</button>
-	    <button class="regionClass" data-region="광주" id="gwangjuBtn">광주</button>
-	    <button class="regionClass" data-region="대전" id="daejeonBtn">대전</button>
-	    <button class="regionClass" data-region="울산" id="ulsanBtn">울산</button>
-	    <button class="regionClass" data-region="세종" id="sejongBtn">세종</button>
-	    <button class="regionClass" data-region="경기" id="gyeonggiBtn">경기</button>
-	    <button class="regionClass" data-region="강원" id="gangwonBtn">강원</button>
-	    <button class="regionClass" data-region="충북" id="chongbukBtn">충북</button>
-	    <button class="regionClass" data-region="충남" id="chongnamBtn">충남</button>
-	    <button class="regionClass" data-region="전북" id="jeonbukBtn">전북</button>
-	    <button class="regionClass" data-region="전남" id="jeonnamBtn">전남</button>
-	    <button class="regionClass" data-region="경북" id="gyongbukBtn">경북</button>
-	    <button class="regionClass" data-region="경남" id="gyongnamBtn">경남</button>
-	    <button class="regionClass" data-region="제주" id="jejuBtn">제주</button>
     </div>
     <br>
+    
     <div class="savebox">
     <input type="text" name="saveName"  placeholder="저장명을 입력해주세요">
     <input type = "hidden" name = "fileName" value ="28">
@@ -87,12 +131,13 @@
     </form>
     </div>
     
-    
     <!-- 지역 버튼 눌렀을 때 버튼에 따라 지역값 넣는 함수 -->
 	<script type="text/javascript" src="region.js"></script>
     
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
+    
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
             // 통계 데이터
             var data = {
                 labels: ["15~19세", "20대", "30대", "40대", "50대", "60대", "70세 이상"],
@@ -106,6 +151,9 @@
                 }]
             };
 
+
+            
+            
             // 차트 초기 설정
               var ctx = document.getElementById("myChart").getContext("2d");
             var myChart = new Chart(ctx, {
@@ -147,6 +195,11 @@
                     }
                 }
             });
+            
+       $('#region-dropdown').on('change', function () {
+           var region = $(this).val();    
+        
+            
         // 버튼 클릭 이벤트 리스너
         // 버튼 id와 대응하는 데이터 인덱스를 객체 배열로 정의
         var chartData = [
@@ -168,12 +221,23 @@
             { id: 'gyongnamBtn', index: 15 },
             { id: 'jejuBtn', index: 16 }
         ];
+        	console.log(chartData)
         // for문으로 버튼 이벤트 리스너 등록
-        for (let i = 0; i < chartData.length; i++) {
+    for (let i = 0; i < chartData.length; i++) {
             document.getElementById(chartData[i].id).addEventListener('click', function () {
+            	console.log(chartData[i].id)
                 updateChart(chartData[i].index); // 해당 버튼에 대응하는 데이터 인덱스로 차트 업데이트
+            // 문제점 : chartData 배열은 잘 불러와지나 
+            // script, body 순서 문제로 addEventListener를 부여할 DOM을 찾을 수 없는 오류가 납니다!
+            // 해당 문제만 고민하시면 될 것 같습니다~
+            
             });
-        }
+        
+         } 
+      
+            
+               
+        
         // 2차원의 데이터(원본형태)
         var clickData = [
             [809, 3537, 2719, 2327, 1957, 1187, 722], // 서울 수치
@@ -194,12 +258,20 @@
             [443, 3085, 4725, 5661, 5648, 3217, 730], // 경남 수치
             [174, 2261, 2740, 2500, 2024, 1159, 240] // 제주 수치
         ];
+        
+   
+        
+            
+            
         // updateChart 함수 정의
         function updateChart(index) {
             // 데이터 업데이트
             myChart.data.datasets[0].data = clickData[index];
             myChart.update(); // 차트 업데이트
         }
+
+        
+        
         
         $('#save').on('click',function(){
         	
@@ -212,8 +284,9 @@
         		}
         	})
         })
-    })
-    </script>
+      })
+  })
+</script>
 </body>
 
 </html>

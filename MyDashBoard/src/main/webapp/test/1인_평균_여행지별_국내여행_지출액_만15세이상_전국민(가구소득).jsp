@@ -7,22 +7,58 @@
     <title>1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(가구소득)</title>
 
     <style>
-    
-    	.savebox {
-    		margin-left: 630px;
-    	}
-        .chart-container {
+       /*  .chart-container {
             width: 80%;
             margin: 0 auto;
-        }
+        } */
 
-        .btn-container {
+       /*  .btn-container {
             width: 80%;
             margin: 20px auto;
             text-align: center;
         }
+         */
+         h1{
+         text-align: center;
+        }
+        
+      #chartContainer {
+      display: flex;
+      justify-content: left;
+      margin-left: 8%;
+      height: 600px;
+    }
+ 
+     #regionButtons {
+      text-align: center;
+    }
+    
+    
+    button {
+      width: 100px;
+      border: 0;
+      outline: none;
+      font-size: 15px;
+      margin: 1px;
+      background: rgb(243, 156, 18);
+      color: white;
+      padding: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
 
-        .regionClass {
+    button:hover {
+      background-color: cornsilk;
+      /* 원하는 배경색으로 변경 */
+      color: black;
+    }
+        
+        
+    #mychart {
+    }    
+        
+/* 
+        .btn {
             border: 0;
             outline: none;
             font-size: 20px;
@@ -33,10 +69,12 @@
             cursor: pointer;
             border-radius: 10px;
         }
+ */
 
-        h1{
-            text-align: center;
-        }
+.savebox{
+    margin-left: 630px;
+    margin-top: 60px;
+    }
     </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -50,42 +88,40 @@
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
-    <h1>1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(가구소득)(단위 : 만원)</h1>
-    <div class="chart-container">
-        <canvas id="myChart" width="50" height="25"></canvas>
-    </div>
-    <div class="btn-container">
-        <button class="regionClass" data-region="서울" id="seoulBtn">서울</button>
-	    <button class="regionClass" data-region="부산" id="busanBtn">부산</button>
-	    <button class="regionClass" data-region="대구" id="daeguBtn">대구</button>
-	    <button class="regionClass" data-region="인천" id="incheonBtn">인천</button>
-	    <button class="regionClass" data-region="광주" id="gwangjuBtn">광주</button>
-	    <button class="regionClass" data-region="대전" id="daejeonBtn">대전</button>
-	    <button class="regionClass" data-region="울산" id="ulsanBtn">울산</button>
-	    <button class="regionClass" data-region="세종" id="sejongBtn">세종</button>
-	    <button class="regionClass" data-region="경기" id="gyeonggiBtn">경기</button>
-	    <button class="regionClass" data-region="강원" id="gangwonBtn">강원</button>
-	    <button class="regionClass" data-region="충북" id="chongbukBtn">충북</button>
-	    <button class="regionClass" data-region="충남" id="chongnamBtn">충남</button>
-	    <button class="regionClass" data-region="전북" id="jeonbukBtn">전북</button>
-	    <button class="regionClass" data-region="전남" id="jeonnamBtn">전남</button>
-	    <button class="regionClass" data-region="경북" id="gyongbukBtn">경북</button>
-	    <button class="regionClass" data-region="경남" id="gyongnamBtn">경남</button>
-	    <button class="regionClass" data-region="제주" id="jejuBtn">제주</button>
-  </div>
-
+    <h1>1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(가구소득)</h1>
+    <!-- <div class="chart-container"> -->
+       
+    <!-- <div class="btn-container"> -->
+    
+    <div id="chartContainer">
+    <span id="regionButtons">
+        <button class="btn" data-region="서울" id="seoulBtn">서울</button>
+        <button class="btn" data-region="부산" id="busanBtn">부산</button>
+        <button class="btn" data-region="대구" id="daeguBtn">대구</button>
+        <button class="btn" data-region="인천" id="incheonBtn">인천</button>
+        <button class="btn" data-region="광주" id="gwangjuBtn">광주</button>
+        <button class="btn" data-region="대전" id="daejeonBtn">대전</button>
+        <button class="btn" data-region="울산" id="ulsanBtn">울산</button>
+        <button class="btn" data-region="세종" id="sejongBtn">세종</button>
+        <button class="btn" data-region="경기" id="gyeonggiBtn">경기</button>
+        <button class="btn" data-region="강원" id="gangwonBtn">강원</button>
+        <button class="btn" data-region="충북" id="chongbukBtn">충북</button>
+        <button class="btn" data-region="충남" id="chongnamBtn">충남</button>
+        <button class="btn" data-region="전북" id="jeonbukBtn">전북</button>
+        <button class="btn" data-region="전남" id="jeonnamBtn">전남</button>
+        <button class="btn" data-region="경북" id="gyongbukBtn">경북</button>
+        <button class="btn" data-region="경남" id="gyongnamBtn">경남</button>
+        <button class="btn" data-region="제주" id="jejuBtn">제주</button>
+        </span>
+   	</span>
+   	
+    <canvas id="myChart" width="50" height="25"></canvas>
     </div>
     <br>
     <div class="savebox">
-<<<<<<< HEAD
-	<input type="text" name="saveName"  placeholder="차트 이름을 입력하세요">
-    <input type ="hidden" name = "fileName" value ="1">
-    <input type ="hidden" name ="chartType" value ="bar">
-=======
 	<input type="text" name="saveName"  placeholder="저장명을 입력해주세요">
     <input type = "hidden" name = "fileName" value ="1">
     <input type = "hidden" name = "chartType" value ="bar">
->>>>>>> branch 'master' of https://github.com/2022-SMHRD-IS-BigData3/PythonIsTheBest.git
     <input type="hidden" name="region" value="" id="regionInput">
     <input type="submit" value="저장" id = "save">
     </div>
@@ -105,7 +141,7 @@
                     backgroundColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
                     borderColor: ['rgba(230, 126, 34, 0.2)', 'rgba(241, 196, 15, 0.2)', 'rgba(52, 152, 219, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(155, 89, 182, 0.2)', 'rgba(26, 188, 156, 0.2)', 'rgba(231, 76, 60, 0.2)'],
                     borderWidth: 1,
-                    data: [8, 13, 11, 10, 12, 13, 14], // 1차원 형식으로 넣어줘야함(여기에 바로 데이터-2차원를 넣어주면 차트형식이 이상해짐)
+                    data: [20, 120, 400, 50, 180, 30, 43], // 1차원 형식으로 넣어줘야함(여기에 바로 데이터-2차원를 넣어주면 차트형식이 이상해짐)
                 }]
             };
 

@@ -7,14 +7,11 @@
   <title>여행지별_국내여행_지출액(성별분류)</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js">
   <style>
-  	.savebox {
-    		margin-left: 630px;
-    	}
-    	
     #chartContainer {
       display: flex;
-      justify-content: center;
-      height: 700px;
+      justify-content: left;
+      margin-left: 4%;
+      height: 600px;
     }
 
 
@@ -44,6 +41,10 @@
     h1 {
       text-align: center;
     }
+    
+    .savebox{
+    margin-left: 630px;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
@@ -60,10 +61,7 @@
 <form onsubmit="return false" method="post">
   <h1>여행지별_국내여행_지출액(성별분류)(단위 : 만원)</h1>
   <div id="chartContainer">
-    <canvas id="chart"></canvas>
-  </div>
-  <br>
-  <div id="regionButtons">
+  	 <span id="regionButtons">
     <button class="regionClass" data-region="서울" id="seoulBtn">서울</button>
     <button class="regionClass" data-region="부산" id="busanBtn">부산</button>
     <button class="regionClass" data-region="대구" id="daeguBtn">대구</button>
@@ -81,9 +79,12 @@
     <button class="regionClass" data-region="경북" id="gyongbukBtn">경북</button>
     <button class="regionClass" data-region="경남" id="gyongnamBtn">경남</button>
     <button class="regionClass" data-region="제주" id="jejuBtn">제주</button>
+    </span>
+  <canvas id="chart"></canvas>
   </div>
-  <br>
-    <div class="savebox">
+   <br>
+   
+   <div class="savebox">
   <input type="text" name="saveName"  placeholder="저장명을 입력해주세요">
     <input type = "hidden" name = "fileName" value ="21">
     <input type = "hidden" name = "chartType" value ="doughnut">
@@ -93,9 +94,8 @@
     </form>
     </div>
   
-  	<!-- 지역 버튼 눌렀을 때 버튼에 따라 지역값 넣는 함수 -->
+  <!-- 지역 버튼 눌렀을 때 버튼에 따라 지역값 넣는 함수 -->
 	<script type="text/javascript" src="region.js"></script>
-  
   
   <script>
   document.addEventListener("DOMContentLoaded", function () {

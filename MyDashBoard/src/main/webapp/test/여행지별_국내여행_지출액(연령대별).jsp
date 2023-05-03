@@ -7,10 +7,13 @@
     <title>여행지별_국내여행_지출액(연령대별)</title>
 
     <style>
-    	.savebox {
-    		margin-left: 630px;
-    	}
-    	
+    
+     #chartContainer {
+      display: flex;
+      justify-content: left;
+      margin-left: 4%;
+      height: 600px;
+    }
         .regionClass {
             width: 100px;
             border: 0;
@@ -39,9 +42,19 @@
         min-height: 300px;
         max-height: 600px;
         display: flex;
-        justify-content: center;
+        justify-content: left;
+      	margin-left: 4%;
+      	height: 600px;
         align-items: center
         }
+        
+        #regionButtons {
+     	text-align: center;
+   		 }	
+   		 
+    .savebox{
+    margin-left: 630px;
+    }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -55,11 +68,12 @@
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
-    <h1>여행지별_국내여행_지출액(연령대별)(단위 : 만원)</h1>
-    <canvas id="myChart"></canvas>
-    <br>
-    <div style="text-align: center;">
-	    <button class="regionClass" data-region="서울" id="seoulBtn">서울</button>
+    <h1>여행지별_국내여행_지출액(연령대별)</h1>
+    
+    
+  		<div id="chartContainer">
+    	<span id="regionButtons">
+        <button class="regionClass" data-region="서울" id="seoulBtn">서울</button>
 	    <button class="regionClass" data-region="부산" id="busanBtn">부산</button>
 	    <button class="regionClass" data-region="대구" id="daeguBtn">대구</button>
 	    <button class="regionClass" data-region="인천" id="incheonBtn">인천</button>
@@ -76,9 +90,10 @@
 	    <button class="regionClass" data-region="경북" id="gyongbukBtn">경북</button>
 	    <button class="regionClass" data-region="경남" id="gyongnamBtn">경남</button>
 	    <button class="regionClass" data-region="제주" id="jejuBtn">제주</button>
+       </span>
+	<canvas id="myChart"></canvas>   
     </div>
     <br>
-    
     <div class="savebox">
     <input type="text" name="saveName"  placeholder="저장명을 입력해주세요">
     <input type = "hidden" name = "fileName" value ="22">
@@ -91,7 +106,6 @@
     
     <!-- 지역 버튼 눌렀을 때 버튼에 따라 지역값 넣는 함수 -->
 	<script type="text/javascript" src="region.js"></script>
-    
     
     <script>
         document.addEventListener("DOMContentLoaded", function () {

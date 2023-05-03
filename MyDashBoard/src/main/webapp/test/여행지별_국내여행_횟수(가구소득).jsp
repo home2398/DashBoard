@@ -7,22 +7,51 @@
     <title>여행지별_국내여행_횟수(가구소득)</title>
 
     <style>
-    	.savebox {
-    		margin-left: 630px;
-    	}
-    	
-        .chart-container {
+/* .chart-container {
             width: 80%;
             margin: 0 auto;
-        }
+ } */
 
-        .btn-container {
+ #chartContainer {
+      display: flex;
+      justify-content: left;
+      margin-left: 4%;
+      height: 600px;
+    }
+ 
+     #regionButtons {
+      text-align: center;
+    }
+    
+    
+    button {
+      width: 100px;
+      border: 0;
+      outline: none;
+      font-size: 15px;
+      margin: 1px;
+      background: rgb(243, 156, 18);
+      color: white;
+      padding: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: cornsilk;
+      /* 원하는 배경색으로 변경 */
+      color: black;
+    }
+    
+    
+ 
+        /* .btn-container {
             width: 80%;
             margin: 20px auto;
             text-align: center;
-        }
+        } */
 
-        .regionClass {
+       /*  .btn {
             border: 0;
             outline: none;
             font-size: 20px;
@@ -32,11 +61,16 @@
             padding: 10px;
             cursor: pointer;
             border-radius: 10px;
-        }
+        } */
 
         h1{
             text-align: center;
         }
+        
+    .savebox{
+    margin-left: 630px;
+    margin-top: 140px;
+    }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -52,11 +86,12 @@
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
     <h1>여행지별_국내여행_횟수(가구소득)</h1>
-    <div class="chart-container">
-        <canvas id="myChart"></canvas>
-    </div>
-    <div class="btn-container">
-	    <button class="regionClass" data-region="서울" id="seoulBtn">서울</button>
+   <!--  <div class="chart-container"> -->
+      
+    <!-- <div class="btn-container"> -->
+    <div id="chartContainer">
+     <span id="regionButtons">
+        <button class="regionClass" data-region="서울" id="seoulBtn">서울</button>
 	    <button class="regionClass" data-region="부산" id="busanBtn">부산</button>
 	    <button class="regionClass" data-region="대구" id="daeguBtn">대구</button>
 	    <button class="regionClass" data-region="인천" id="incheonBtn">인천</button>
@@ -73,6 +108,9 @@
 	    <button class="regionClass" data-region="경북" id="gyongbukBtn">경북</button>
 	    <button class="regionClass" data-region="경남" id="gyongnamBtn">경남</button>
 	    <button class="regionClass" data-region="제주" id="jejuBtn">제주</button>
+        </span>
+    </span>
+    <canvas id="myChart" width="50" height="25"></canvas>
     </div>
     <br>
     <div class="savebox">
@@ -87,7 +125,6 @@
     
     <!-- 지역 버튼 눌렀을 때 버튼에 따라 지역값 넣는 함수 -->
 	<script type="text/javascript" src="region.js"></script>
-    
     
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -147,6 +184,8 @@
                 { id: 'jejuBtn', index: 16 }
             ];
 
+            
+            
             // for문으로 버튼 이벤트 리스너 등록
             for (let i = 0; i < chartData.length; i++) {
                 document.getElementById(chartData[i].id).addEventListener('click', function () {
@@ -174,16 +213,13 @@
                 [430, 1004, 3377, 5852, 5101, 4337, 3408],
                 [161, 204, 808, 1710, 1845, 2269, 4100]
             ];
-
+            
             // updateChart 함수 정의
             function updateChart(index) {
                 // 데이터 업데이트
                 myChart.data.datasets[0].data = clickData[index];
                 myChart.update(); // 차트 업데이트
             }
-
-
-            
             $('#save').on('click',function(){
             	
             	$.ajax({
@@ -194,10 +230,9 @@
             			$('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
             		}
             	})
-            	
             })
         })
-</script>
+    </script>
 </body>
 
 </html>

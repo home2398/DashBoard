@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>여행지별_국내여행_지출액(직업별)</title>
     <style>
-    	.savebox {
-    		margin-left: 630px;
-    	}
-    	
+       .savebox {
+          margin-left: 630px;
+       }
+       
         .chart-container {
             width: auto;
             height: 600px;
@@ -38,7 +38,7 @@
             text-align: center;
         }
     </style>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -55,7 +55,7 @@
         <canvas id="barChart"></canvas>
     </div>
     <br>
-	<div style="text-align: center;">
+   <div style="text-align: center;">
         <button class="regionClass" data-region="서울" id="seoulBtn" onclick="updateChart('서울')">서울</button>
         <button class="regionClass" data-region="부산" id="seoulBtn" onclick="updateChart('부산')">부산</button>
         <button class="regionClass" data-region="대구" id="daeguBtn" onclick="updateChart('대구')">대구</button>
@@ -84,16 +84,12 @@
     </div>
     </form>
     </div>
-	
-	<!-- 지역 버튼 눌렀을 때 버튼에 따라 지역값 넣는 함수 -->
-	<script type="text/javascript" src="region.js"></script>
-	
-	
+   
+   <!-- 지역 버튼 눌렀을 때 버튼에 따라 지역값 넣는 함수 -->
+   <script type="text/javascript" src="region.js"></script>
+   
+   
     <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/2022-SMHRD-IS-BigData3/PythonIsTheBest.git
         // 표 데이터
         const data = {
             labels: ["임금봉급근로자", "고용원있는사업주", "고용원없는자영업자", "무급가족 종사자", "전업주부", "학생", "기타"],
@@ -165,21 +161,17 @@
             '경남': [1176, 56, 371, 25, 234, 95, 44],
             '제주': [3330, 222, 672, 27, 635, 255, 128]
         };
-		$('#save').on('click',function(){
-        	
-        	$.ajax({
-        		url : '/MyDashBoard/Mycheck.do',
-        		data : $('form').serialize(),
-        		success:function(){
-        			console.log($('#contentDiv'));
-        			$('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
-        		}
-        	})
+      $('#save').on('click',function(){
+           
+           $.ajax({
+              url : '/MyDashBoard/Mycheck.do',
+              data : $('form').serialize(),
+              success:function(){
+                 console.log($('#contentDiv'));
+                 $('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
+              }
+           })
         })
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/2022-SMHRD-IS-BigData3/PythonIsTheBest.git
     </script>
 </body>
 

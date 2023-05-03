@@ -5,7 +5,7 @@
 <mapper namespace="kr.pitb.model.MyCsvDAO">
    
    <select id="selectMyCsvList" parameterType="java.lang.String" resultType="kr.pitb.model.MyCsvVO">
-   select b.저장명 as save_name, a.서버저장경로 as file_path , b.지역명 as region , b.차트종류 as chartType, a.원본파일이름 as file_name
+   select b.저장명 as save_name, a.서버저장경로 as file_path , b.지역명 as region , b.차트종류 as chartType, a.원본파일이름 as file_name, b.관심ID as myID
    from CSV파일정보 a , 회원관심파일내역 b
    where a.파일ID = b.파일ID
    and b.회원ID = #{id}

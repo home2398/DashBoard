@@ -8,14 +8,15 @@
   <title>여행지별_국내여행_횟수(성별분류)</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js">
   <style>
-  	.savebox {
-    		margin-left: 630px;
-    	}
-    	
+     .savebox {
+          margin-left: 630px;
+       }
+       
     #chartContainer {
       display: flex;
-      justify-content: center;
-      height: 700px;
+      justify-content: left;
+      margin-left: 4%;
+      height: 600px;
     }
 
 
@@ -61,10 +62,7 @@
 <form onsubmit="return false" method="post">
   <h1>여행지별_국내여행_횟수(성별분류)</h1>
   <div id="chartContainer">
-    <canvas id="chart"></canvas>
-  </div>
-  <br>
-  <div id="regionButtons">
+  <span id="regionButtons">
     <button class="regionClass" data-region="서울" id="seoulBtn">서울</button>
     <button class="regionClass" data-region="부산" id="busanBtn">부산</button>
     <button class="regionClass" data-region="대구" id="daeguBtn">대구</button>
@@ -82,14 +80,16 @@
     <button class="regionClass" data-region="경북" id="gyongbukBtn">경북</button>
     <button class="regionClass" data-region="경남" id="gyongnamBtn">경남</button>
     <button class="regionClass" data-region="제주" id="jejuBtn">제주</button>
+    </span>
+  <canvas id="chart"></canvas>
   </div>
   <br>
     <div class="savebox">
-	  	<input type="text" name="saveName"  placeholder="저장명을 입력해주세요">
-	    <input type = "hidden" name = "fileName" value ="27">
-	    <input type = "hidden" name = "chartType" value ="doughnut">
-	    <input type="hidden" name="region" value="" id="regionInput">
-	    <input type="submit" value="저장" id = "save">
+        <input type="text" name="saveName"  placeholder="저장명을 입력해주세요">
+       <input type = "hidden" name = "fileName" value ="27">
+       <input type = "hidden" name = "chartType" value ="doughnut">
+       <input type="hidden" name="region" value="" id="regionInput">
+       <input type="submit" value="저장" id = "save">
    </div>
   </form>
  </div>
@@ -99,7 +99,7 @@
 
 
   <script>
-  	document.addEventListener("DOMContentLoaded", function () {
+     document.addEventListener("DOMContentLoaded", function () {
     // 데이터
     const data = {
       labels: ["남자", "여자"],
@@ -150,7 +150,7 @@
     // 지역 버튼 클릭 이벤트 핸들러
     $('#regionButtons button').on('click', function () {
       const region = $(this).data('region'); // 클릭한 버튼의 data-region 속성값을 가져옴
-		console.log(region);
+      console.log(region);
       // region에 따라 데이터를 업데이트하고 차트를 그림
       switch (region) {
         case '서울':
@@ -249,15 +249,15 @@
     });
 
     $('#save').on('click',function(){
-    	
-    	$.ajax({
-    		url : '/MyDashBoard/Mycheck.do',
-    		data : $('form').serialize(),
-    		success:function(){
-    			console.log($('#contentDiv'));
-    			$('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
-    		}
-    	})
+       
+       $.ajax({
+          url : '/MyDashBoard/Mycheck.do',
+          data : $('form').serialize(),
+          success:function(){
+             console.log($('#contentDiv'));
+             $('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
+          }
+       })
     })
 })
   </script>

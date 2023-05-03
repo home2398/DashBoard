@@ -17,10 +17,17 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 </head>
 <style>
-	.savebox {
-    		margin-left: 630px;
-    	}
 
+	#chartContainer {
+      display: flex;
+      justify-content: left;
+      margin-left: 4%;
+      height: 600px;
+    }
+      #regionButtons {
+     	text-align: center;
+   		 }	
+   		 
 	#pieChart {
         display: flex;
         justify-content: center;
@@ -46,17 +53,19 @@
     h1 {
         text-align: center;
     }
+    
+    .savebox{
+    margin-left: 630px;
+    }
 </style>
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
   <h1>여행지별_관광여행_재방문_의향(학력별)(단위 : %)</h1>
-  <div class="chart-container">
-      <canvas id="pieChart"></canvas>
-  </div>
-  <br>
-  <div id="regionButtons" style="text-align: center;">
-    <button class="regionClass" data-region="서울" id="seoulBtn">서울</button>
+      
+  <div id="chartContainer">
+    <span id="regionButtons">
+   <button class="regionClass" data-region="서울" id="seoulBtn">서울</button>
     <button class="regionClass" data-region="부산" id="busanBtn">부산</button>
     <button class="regionClass" data-region="대구" id="daeguBtn">대구</button>
     <button class="regionClass" data-region="인천" id="incheonBtn">인천</button>
@@ -73,10 +82,12 @@
     <button class="regionClass" data-region="경북" id="gyongbukBtn">경북</button>
     <button class="regionClass" data-region="경남" id="gyongnamBtn">경남</button>
     <button class="regionClass" data-region="제주" id="jejuBtn">제주</button>
-</div>
-<br>
-    <div class="savebox">
-<input type="text" name="saveName"  placeholder="저장명을 입력해주세요">
+</span>
+<canvas id="pieChart"></canvas>
+  </div>
+  <br>
+ <div class="savebox">
+	<input type="text" name="saveName"  placeholder="저장명을 입력해주세요">
     <input type = "hidden" name = "fileName" value ="18">
     <input type = "hidden" name = "chartType" value ="pie">
 	<input type="hidden" name="region" value="" id="regionInput">
@@ -85,10 +96,9 @@
     </form>
     </div>
     
-    
-	<!-- 지역 버튼 눌렀을 때 버튼에 따라 지역값 넣는 함수 -->
+    <!-- 지역 버튼 눌렀을 때 버튼에 따라 지역값 넣는 함수 -->
 	<script type="text/javascript" src="region.js"></script>
-	
+    
   <script>
   document.addEventListener("DOMContentLoaded", function () {
     // 표 데이터
@@ -142,7 +152,7 @@ const chart = createPieChart(data);
 
 // 지역 버튼 클릭 이벤트 핸들러
 $('#regionButtons button').on('click', function () {
-  const region = $(this).data('region'); // 클릭한 버튼의 data-region 속성값을 가져옴
+      const region = $(this).data('region'); // 클릭한 버튼의 data-region 속성값을 가져옴
 
   // region에 따라 데이터를 업데이트하고 차트를 그림
   switch (region) {

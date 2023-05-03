@@ -8,9 +8,10 @@ public class MyCsvVO {
    private String file_path;
    private String region;
    private String chartType;
+   private String myID;
 
    public MyCsvVO(String user_id, String file_name, String save_name, String file_path, String region,
-         String chartType) {
+         String chartType , String myID) {
       super();
       this.file_name = file_name;
       this.save_name = save_name;
@@ -18,10 +19,27 @@ public class MyCsvVO {
       this.file_path = file_path;
       this.region = region;
       this.chartType = chartType;
-
+      this.myID = myID;
    }
+   
+   
+   
 
-   public String getFile_path() {
+   public String getMyID() {
+	return myID;
+}
+
+
+
+
+public void setMyID(String myID) {
+	this.myID = myID;
+}
+
+
+
+
+public String getFile_path() {
       return file_path;
    }
 

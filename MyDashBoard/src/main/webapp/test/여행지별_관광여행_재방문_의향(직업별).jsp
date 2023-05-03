@@ -6,10 +6,6 @@
 <head>
     <title>직업 종류별 지역 재방문의향</title>
     <style>
-    	.savebox {
-    		margin-left: 630px;
-    	}
-    	
         .chart-container {
             width: auto;
             height: 600px;
@@ -37,6 +33,10 @@
         h1 {
             text-align: center;
         }
+        
+        .savebox{
+    margin-left: 630px;
+    }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -55,7 +55,7 @@
         <canvas id="barChart"></canvas>
     </div>
     <br>
-     <div style="text-align: center;">
+    <div style="text-align: center;">
         <button class="regionClass" data-region="서울" id="seoulBtn" onclick="updateChart('서울')">서울</button>
         <button class="regionClass" data-region="부산" id="seoulBtn" onclick="updateChart('부산')">부산</button>
         <button class="regionClass" data-region="대구" id="daeguBtn" onclick="updateChart('대구')">대구</button>
@@ -74,7 +74,6 @@
         <button class="regionClass" data-region="경남" id="gyongnamBtn" onclick="updateChart('경남')">경남</button>
         <button class="regionClass" data-region="제주" id="jejuBtn" onclick="updateChart('제주')">제주</button>
     </div>
-    <br>
     <div class="savebox">
     <input type="text" name="saveName"  placeholder="저장명을 입력해주세요">
     <input type = "hidden" name = "fileName" value ="17">
@@ -85,10 +84,9 @@
     </form>
     </div>
 
-
 	<!-- 지역 버튼 눌렀을 때 버튼에 따라 지역값 넣는 함수 -->
 	<script type="text/javascript" src="region.js"></script>
-
+	
     <script>
         // 표 데이터
         const data = {
@@ -172,7 +170,7 @@
         			$('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
         		}
         	})
-        })
+    })
     </script>
 </body>
 

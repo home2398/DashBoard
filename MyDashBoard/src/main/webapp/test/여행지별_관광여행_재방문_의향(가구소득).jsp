@@ -7,11 +7,7 @@
     <title>여행지별_관광여행_재방문_의향(가구소득)</title>
 
     <style>
-    	.savebox {
-    		margin-left: 630px;
-    	}
-    	
-        .chart-container {
+       /*  .chart-container {
             width: 80%;
             margin: 0 auto;
         }
@@ -20,9 +16,10 @@
             width: 80%;
             margin: 20px auto;
             text-align: center;
-        }
+        } */
 
-        .regionClass {
+
+       /*  .btn {
             border: 0;
             outline: none;
             font-size: 20px;
@@ -32,11 +29,47 @@
             padding: 10px;
             cursor: pointer;
             border-radius: 10px;
-        }
+        } */
+        
+      #chartContainer {
+      display: flex;
+      justify-content: left;
+      margin-left: 8%;
+      height: 600px;
+    }
+ 
+     #regionButtons {
+      text-align: center;
+    }
+    
+    
+    button {
+      width: 100px;
+      border: 0;
+      outline: none;
+      font-size: 15px;
+      margin: 1px;
+      background: rgb(243, 156, 18);
+      color: white;
+      padding: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
 
-        h1{
-            text-align: center;
-        }
+    button:hover {
+      background-color: cornsilk;
+      /* 원하는 배경색으로 변경 */
+      color: black;
+    }
+        
+
+    h1{
+         text-align: center;
+       }
+       
+    .savebox{
+    margin-left: 630px;
+    }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -50,11 +83,9 @@
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
-    <h1>여행지별_관광여행_재방문_의향(가구소득)(단위 : %)</h1>
-    <div class="chart-container">
-        <canvas id="myChart"></canvas>
-    </div>
-    <div class="btn-container">
+    <h1>여행지별_관광여행_재방문_의향(가구소득)</h1>
+    <div id="chartContainer">
+        <span id="regionButtons">
         <button class="regionClass" data-region="서울" id="seoulBtn">서울</button>
 	    <button class="regionClass" data-region="부산" id="busanBtn">부산</button>
 	    <button class="regionClass" data-region="대구" id="daeguBtn">대구</button>
@@ -72,8 +103,10 @@
 	    <button class="regionClass" data-region="경북" id="gyongbukBtn">경북</button>
 	    <button class="regionClass" data-region="경남" id="gyongnamBtn">경남</button>
 	    <button class="regionClass" data-region="제주" id="jejuBtn">제주</button>
+        </span>
+     
+    <canvas id="myChart"></canvas>
     </div>
-    <br>
     <div class="savebox">
     <input type="text" name="saveName"  placeholder="저장명을 입력해주세요">
     <input type = "hidden" name = "fileName" value ="13">
@@ -83,28 +116,8 @@
     </div>
     </form>
     </div>
-   
-
-<script type="text/javascript" src="region.js"></script>
-<!-- <script>
-	$(document).ready(function(){
-	  // JavaScript를 사용하여 value 속성 값을 변경
-	  $(".regionClass").click(function(){
-			var regionId = $(this).attr("id")
-			var region = $(this).data('region');
-			var regionVal = document.getElementById("regionInput")
-			if(regionId === "seoulBtn"){
-				regionVal.value = region
-			}
-			else if(regionId === "busanBtn"){
-				regionVal.value = region
-			}
-	  })
-	});
-</script> -->
-   
-   
-   
+    
+    <script type="text/javascript" src="region.js"></script>
     
     <script>
         document.addEventListener("DOMContentLoaded", function () {
