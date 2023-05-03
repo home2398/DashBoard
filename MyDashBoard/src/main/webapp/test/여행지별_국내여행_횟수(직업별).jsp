@@ -57,7 +57,7 @@
     <br>
     <div style="text-align: center;">
         <button class="regionClass" data-region="서울" id="seoulBtn" onclick="updateChart('서울')">서울</button>
-        <button class="regionClass" data-region="부산" id="seoulBtn" onclick="updateChart('부산')">부산</button>
+        <button class="regionClass" data-region="부산" id="busanBtn" onclick="updateChart('부산')">부산</button>
         <button class="regionClass" data-region="대구" id="daeguBtn" onclick="updateChart('대구')">대구</button>
         <button class="regionClass" data-region="인천" id="incheonBtn" onclick="updateChart('인천')">인천</button>
         <button class="regionClass" data-region="광주" id="gwangjuBtn" onclick="updateChart('광주')">광주</button>

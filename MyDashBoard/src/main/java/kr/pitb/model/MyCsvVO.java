@@ -9,9 +9,10 @@ public class MyCsvVO {
    private String region;
    private String chartType;
    private String myID;
+   private String save_date;
 
    public MyCsvVO(String user_id, String file_name, String save_name, String file_path, String region,
-         String chartType , String myID) {
+         String chartType , String myID, String save_date) {
       super();
       this.file_name = file_name;
       this.save_name = save_name;
@@ -20,12 +21,27 @@ public class MyCsvVO {
       this.region = region;
       this.chartType = chartType;
       this.myID = myID;
+      this.save_date = save_date;
    }
    
    
    
 
-   public String getMyID() {
+   public String getSave_date() {
+	return save_date;
+}
+
+
+
+
+public void setSave_date(String save_date) {
+	this.save_date = save_date;
+}
+
+
+
+
+public String getMyID() {
 	return myID;
 }
 

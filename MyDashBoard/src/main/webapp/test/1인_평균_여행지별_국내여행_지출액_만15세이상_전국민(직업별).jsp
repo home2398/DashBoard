@@ -56,23 +56,23 @@
     </div>
     <br>
     <div style="text-align: center;">
-        <button class="regionClass" data-region="서울" onclick="updateChart('서울')">서울</button>
-        <button class="regionClass" data-region="부산" onclick="updateChart('부산')">부산</button>
-        <button class="regionClass" data-region="대구" onclick="updateChart('대구')">대구</button>
-        <button class="regionClass" data-region="인천" onclick="updateChart('인천')">인천</button>
-        <button class="regionClass" data-region="광주" onclick="updateChart('광주')">광주</button>
-        <button class="regionClass" data-region="대전" onclick="updateChart('대전')">대전</button>
-        <button class="regionClass" data-region="울산" onclick="updateChart('울산')">울산</button>
-        <button class="regionClass" data-region="세종" onclick="updateChart('세종')">세종</button>
-        <button class="regionClass" data-region="경기" onclick="updateChart('경기')">경기</button>
-        <button class="regionClass" data-region="강원" onclick="updateChart('강원')">강원</button>
-        <button class="regionClass" data-region="충북" onclick="updateChart('충북')">충북</button>
-        <button class="regionClass" data-region="충남" onclick="updateChart('충남')">충남</button>
-        <button class="regionClass" data-region="전북" onclick="updateChart('전북')">전북</button>
-        <button class="regionClass" data-region="전남" onclick="updateChart('전남')">전남</button>
-        <button class="regionClass" data-region="경북" onclick="updateChart('경북')">경북</button>
-        <button class="regionClass" data-region="경남" onclick="updateChart('경남')">경남</button>
-        <button class="regionClass" data-region="제주" onclick="updateChart('제주')">제주</button>
+        <button class="regionClass" data-region="서울" id="seoulBtn" onclick="updateChart('서울')">서울</button>
+        <button class="regionClass" data-region="부산" id="busanBtn" onclick="updateChart('부산')">부산</button>
+        <button class="regionClass" data-region="대구" id="daeguBtn" onclick="updateChart('대구')">대구</button>
+        <button class="regionClass" data-region="인천" id="incheonBtn" onclick="updateChart('인천')">인천</button>
+        <button class="regionClass" data-region="광주" id="gwangjuBtn" onclick="updateChart('광주')">광주</button>
+        <button class="regionClass" data-region="대전" id="daejeonBtn" onclick="updateChart('대전')">대전</button>
+        <button class="regionClass" data-region="울산" id="ulsanBtn" onclick="updateChart('울산')">울산</button>
+        <button class="regionClass" data-region="세종" id="sejongBtn" onclick="updateChart('세종')">세종</button>
+        <button class="regionClass" data-region="경기"  id="gyeonggiBtn" onclick="updateChart('경기')">경기</button>
+        <button class="regionClass" data-region="강원"  id="gangwonBtn" onclick="updateChart('강원')">강원</button>
+        <button class="regionClass" data-region="충북" id="chongbukBtn" onclick="updateChart('충북')">충북</button>
+        <button class="regionClass" data-region="충남" id="chongnamBtn" onclick="updateChart('충남')">충남</button>
+        <button class="regionClass" data-region="전북" id="jeonbukBtn" onclick="updateChart('전북')">전북</button>
+        <button class="regionClass" data-region="전남" id="jeonnamBtn" onclick="updateChart('전남')">전남</button>
+        <button class="regionClass" data-region="경북" id="gyongbukBtn" onclick="updateChart('경북')">경북</button>
+        <button class="regionClass" data-region="경남" id="gyongnamBtn" onclick="updateChart('경남')">경남</button>
+        <button class="regionClass" data-region="제주" id="jejuBtn" onclick="updateChart('제주')">제주</button>
     </div>
     <div class="savebox">
     <input type="text" name="saveName"  placeholder="저장명을 입력해주세요">

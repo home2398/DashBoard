@@ -17,7 +17,7 @@
     
     
     
-        .btn {
+        .regionClass {
             width: 100px;
             border: 0;
             outline: none;
@@ -77,23 +77,23 @@
     
     <div id="chartContainer">
     	<span id="regionButtons">
-        <button class="btn" data-region="서울" id="seoulBtn">서울</button>
-        <button class="btn" data-region="부산" id="busanBtn">부산</button>
-        <button class="btn" data-region="대구" id="daeguBtn">대구</button>
-        <button class="btn" data-region="인천" id="incheonBtn">인천</button>
-        <button class="btn" data-region="광주" id="gwangjuBtn">광주</button>
-        <button class="btn" data-region="대전" id="daejeonBtn">대전</button>
-        <button class="btn" data-region="울산" id="ulsanBtn">울산</button>
-        <button class="btn" data-region="세종" id="sejongBtn">세종</button>
-        <button class="btn" data-region="경기" id="gyeonggiBtn">경기</button>
-        <button class="btn" data-region="강원" id="gangwonBtn">강원</button>
-        <button class="btn" data-region="충북" id="chongbukBtn">충북</button>
-        <button class="btn" data-region="충남" id="chongnamBtn">충남</button>
-        <button class="btn" data-region="전북" id="jeonbukBtn">전북</button>
-        <button class="btn" data-region="전남" id="jeonnamBtn">전남</button>
-        <button class="btn" data-region="경북" id="gyongbukBtn">경북</button>
-        <button class="btn" data-region="경남" id="gyongnamBtn">경남</button>
-        <button class="btn" data-region="제주" id="jejuBtn">제주</button>
+        <button class="regionClass" data-region="서울" id="seoulBtn">서울</button>
+        <button class="regionClass" data-region="부산" id="busanBtn">부산</button>
+        <button class="regionClass" data-region="대구" id="daeguBtn">대구</button>
+        <button class="regionClass" data-region="인천" id="incheonBtn">인천</button>
+        <button class="regionClass" data-region="광주" id="gwangjuBtn">광주</button>
+        <button class="regionClass" data-region="대전" id="daejeonBtn">대전</button>
+        <button class="regionClass" data-region="울산" id="ulsanBtn">울산</button>
+        <button class="regionClass" data-region="세종" id="sejongBtn">세종</button>
+        <button class="regionClass" data-region="경기" id="gyeonggiBtn">경기</button>
+        <button class="regionClass" data-region="강원" id="gangwonBtn">강원</button>
+        <button class="regionClass" data-region="충북" id="chongbukBtn">충북</button>
+        <button class="regionClass" data-region="충남" id="chongnamBtn">충남</button>
+        <button class="regionClass" data-region="전북" id="jeonbukBtn">전북</button>
+        <button class="regionClass" data-region="전남" id="jeonnamBtn">전남</button>
+        <button class="regionClass" data-region="경북" id="gyongbukBtn">경북</button>
+        <button class="regionClass" data-region="경남" id="gyongnamBtn">경남</button>
+        <button class="regionClass" data-region="제주" id="jejuBtn">제주</button>
         </span>
    		<canvas id="myChart"></canvas>
     	</div>

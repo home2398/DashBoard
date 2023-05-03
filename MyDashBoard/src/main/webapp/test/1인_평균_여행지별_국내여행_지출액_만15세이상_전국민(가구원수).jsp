@@ -92,8 +92,6 @@
        <button class="regionClass" data-region="제주" id="jejuBtn" value="제주">제주</button>
     </span>
         <canvas id="myChart"></canvas>
-    <br>
-    <div>
     </div>
     <br>
     <div class="savebox">
