@@ -333,10 +333,10 @@ color:#3C3C3C;
 }
 
 .MyCsvName {
-	border: none;
-	background: transparent;
-	color: #ffffff;
-	/* height:50px; */
+   border: none;
+   background: transparent;
+   color: #ffffff;
+   /* height:50px; */
 }
 
 #Mychart{
@@ -345,22 +345,22 @@ color:#3C3C3C;
 }
 
 .chart-check{
-	box-shadow:0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-	margin-bottom:15px;
-	margin-right:15px;
-	width: 47%;
-	border: 1px solid black;
-	float: left; 
-	padding:10px;"
+   box-shadow:0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+   margin-bottom:15px;
+   margin-right:15px;
+   width: 47%;
+   border: 1px solid black;
+   float: left; 
+   padding:10px;"
 }
 
 #chart{
-	padding-left:15px;
+   padding-left:15px;
 }
 
 canvas{
-	height:200px;
-	width:300px;
+   height:200px;
+   width:300px;
 }
 
   </style>
@@ -388,7 +388,7 @@ canvas{
     <hr class="horizontal light mt-0 mb-2">
     <!-- <button id="csvBasket">담기목록</button> -->
     
- 	
+    
  
  
      <!-- <div class="collapse navbar-collapse w-auto ps" id="sidenav-collapse-main">
@@ -563,6 +563,7 @@ canvas{
                pathData = pathData.replace('C:/Users/smhrd/Desktop/project2/csv','');
                $.ajax({
                url : pathData,
+               contentType : "application/x-www-form-urlencoded; charset=UTF-8",
                dataType : 'text',
                success : function(response){
                   data = makeChartData(response);
@@ -944,15 +945,15 @@ canvas{
             return finalData;
         }
    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
-		$("#filterText").keyup(function() {
+      $("#filterText").keyup(function() {
                 var k = $(this).val();
                 console.log(k);
                 if(k === ''){
-                	$("#csvList > ul").hide();
+                   $("#csvList > ul").hide();
                 }
                 else {
-                	var temp = $("#csvList > ul > li:contains('" + k + "')");
-                	$(temp).show();
+                   var temp = $("#csvList > ul > li:contains('" + k + "')");
+                   $(temp).show();
                 }
             })
    
