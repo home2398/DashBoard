@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+
+    <style>
+        body {
+            padding: 40px;
+            background: #f5f7fb;
+        }
+
+        .btn {
+            display: block;
+            width: 200px;
+            height: 50px;
+            background: #FF7012;
+            text-decoration: none;
+            text-align: center;
+            color: #fff;
+            border-radius: 50px;
+            line-height: 50px;
+        }
+
+        .popup {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            box-sizing: border-box;
+            background: #FFB85A;
+            border-radius: 20px;
+            opacity: 0;
+            transition: all 1s;
+        }
+
+        .popup a {
+            color: black;
+            font-size: larger;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .popup:target {
+            opacity: 1;
+        }
+
+        .popup:target+.dim {
+            opacity: 1;
+        }
+
+
+        .dim {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="#pop1" class="btn">내용보기</a>
+    <div class="popup" id="pop1">
+        <a href="#a">☞확인</a> 내가
+    </div>
+    <div class="dim">
+    </div>
+
+
+</body>
+
+</html>

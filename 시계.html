@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>자바스크립트 시계 구현</title>
+
+    <style>
+        /*CSS : 시계를 꾸미는 부분*/
+        .Clock {
+            width: 200px;
+            height: 100px;
+            text-align: center;
+            color: #f4f4f4;
+            background-color: black;
+            padding-top: 10px;
+        }
+
+        #Clock {
+            color: #F0C420;
+            font-size: 24px;
+        }
+
+        #Clockday {
+            color: #F0C420;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Clock">
+        현재 <b>시간은</b>?<br>
+        <div id="Clock">00:00</div>
+        <div id="Clockday">00/00/00</div>
+    </div>
+
+    <script>
+        function Clock() {
+            var date = new Date();
+            var YYYY = String(date.getFullYear());
+            var MM = String(date.getMonth() + 1);
+            var DD = Zero(date.getDate());
+            var hh = Zero(date.getHours());
+            var mm = Zero(date.getMinutes());
+            var ss = Zero(date.getSeconds());
+            var Week = Weekday();
+
+            Write(YYYY, MM, DD, hh, mm, ss, Week);
+            //시계에 1의 자리 수가 나올때 0을 넣어주는 함수 (ex : 1초 -> 01초)
+
+            function Zero(num) {
+                return (num < 10 ? '0' + num : '' + num);
+            }
+
+            //요일을 추가해주는 함수
+            function Weekday() {
+                var Week = ['일', '월', '화', '수', '목', '금', '토'];
+                var Weekday = date.getDay();
+                return Week[Weekday];
+            }
+
+
+            //시계부분을 써주는 함수
+            function Write(YYYY, MM, DD, hh, mm, ss, Week) {
+                var Clockday = document.getElementById("Clockday");
+                var Clock = document.getElementById("Clock");
+                Clockday.innerText = YYYY + '/' + MM + '/' + DD + '(' + Week + ')';
+                Clock.innerText = hh + ':' + mm + ':' + ss;
+            }
+        }
+
+        setInterval(Clock, 1000); //1초(1000)마다 Clock함수를 재실행 한다
+    </script>
+</body>

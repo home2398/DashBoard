@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Tutorial Test</title>
+	
+	<script src="https://code.jquery.com/jquery-latest.js"></script> 
+	<script type="text/javascript">
+		$(document).ready(function(){
+			//Radio button init
+			$('input:radio[id=close]').prop("checked", true);
+			
+			//Radio button event
+			$('input:radio[name=curtain]').change(function () {
+				if($(this).val() == "open"){ //Curtain on
+					var maskHeight = $(document).height();  
+					var maskWidth = $(window).width();  
+					
+					$('.tutorialCurtain').css({'width':maskWidth,'height':maskHeight});
+					$('.tutorialCurtain').fadeTo("slow",0.8);
+				} else if ($(this).val() == "close"){ //Curtain off
+					$('.tutorialCurtain').css({'width':0,'height':0});
+					$('.tutorialCurtain').fadeOut();
+				}
+			});
+		});
+	</script>
+	
+	<style type="text/css">
+		.tutorialCurtain {  
+			position:absolute;  
+			left:0;
+			top:0;
+			z-index:9;  
+			background-color:#000;  
+			display:none;  
+		}
+		.tutorialView{
+			z-index:10;
+			position:relative;
+			background-color:#FFF;
+		}
+	</style>
+</head>
+<body>
+	<div class="tutorialCurtain"></div>
+	
+	<div class="normal">
+	<ol>
+		<li class="tutorialView">Hello, World! 1</li>
+		<li>Hello, World! 2</li>
+		<li>Hello, World! 3</li>
+		<li class="tutorialView">Hello, World! 4</li>
+		<li>Hello, World! 5</li>
+	</ol>
+	
+		<span class="tutorialView">
+			<input type="radio" name="curtain" id="open"  value="open" ><label for="open" >Tutorial on </label>
+			<input type="radio" name="curtain" id="close" value="close"><label for="close">Tutorial off</label>
+		</span>
+	</div>
+</body>
+</html>

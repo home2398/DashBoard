@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>박스 레이아웃</title>
+	<style>
+		.container {
+			display: flex;
+			flex-direction: column; /* 박스들을 세로로 한 줄씩 나열하기 위해 flex-direction 속성 사용 */
+			height: 600px; /* flex 컨테이너의 높이 설정 */
+		}
+
+		.box {
+			flex: 1; /* 각 박스들이 동일한 높이로 나열되게 하기 위해 flex 속성 사용 */
+			margin: 10px;
+			background-color: #f2f2f2;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+			text-align: center;
+			line-height: 200px;
+			font-size: 24px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box">박스1</div>
+		<div class="box">박스2</div>
+		<div class="box">박스3</div>
+		<div class="box">박스4</div>
+		<div class="box">박스5</div>
+		<div class="box">박스6</div>
+	</div>
+</body>
+</html>
