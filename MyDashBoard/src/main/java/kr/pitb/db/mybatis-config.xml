@@ -6,7 +6,7 @@
 
 <configuration>
   
-  <!-- 2) properties : 외부 파일 읽어오기! -->
+  <!-- 2) properties : 외부 파일 읽어오기!, -->
   <properties resource="kr/pitb/db/db.properties"/>
   
   <!-- 3) environments : 데이터베이스들을 기술하는 공간 -->

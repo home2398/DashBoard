@@ -26,7 +26,7 @@
 
         button:hover {
             background-color: cornsilk;
-            /* 원하는 배경색으로 변경 */
+            /* 원하는 배경색으로 변경, */
             color: black;
         }
 

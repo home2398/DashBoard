@@ -22,7 +22,7 @@ import kr.pitb.model.UserDAO;
 import kr.pitb.model.UserVO;
 import kr.pitb.controller.Command;
 
-// url이 .do 로 끝나는 모든 요청에 대해 처리하는 서블릿
+// url이 .do 로 끝나는 모든 요청에 대해 처리하는 서블릿,
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {

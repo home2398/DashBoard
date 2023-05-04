@@ -29,7 +29,7 @@
     
     /* .region-button {
         width: 100px;
-        border: 0;
+        border: 0;,
         outline: none;
         font-size: 15px;
         margin: 1px;

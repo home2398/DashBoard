@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(연령대별)</title>
+    <title>1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(연령대별)</title>
 
     <style>
     
@@ -40,9 +40,8 @@
             text-align: center;
         }
         
-        #myChart {
-        	width: auto;
-        height: auto;
+		#myChart {
+        width: 500px;
         min-height: 300px;
         max-height: 600px;
         display: flex;
@@ -72,7 +71,7 @@
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
-    <h1>1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(연령대별)</h1>
+    <h1>1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(연령대별)</h1>
     
     
     <div id="chartContainer">

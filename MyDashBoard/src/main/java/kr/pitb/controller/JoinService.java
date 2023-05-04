@@ -15,7 +15,7 @@ public String execute(HttpServletRequest request, HttpServletResponse response) 
 		
 
 
-		// 2. 요청받은 데이터들을 꺼내오기
+		// 2. 요청받은 데이터들을 꺼내오기,
 		// -> 4개를 전부 꺼내와주세요!
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");

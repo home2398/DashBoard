@@ -1,5 +1,5 @@
 /**
- * 
+ *, 
  */
 $(document).ready(function(){
   // JavaScript를 사용하여 value 속성 값을 변경

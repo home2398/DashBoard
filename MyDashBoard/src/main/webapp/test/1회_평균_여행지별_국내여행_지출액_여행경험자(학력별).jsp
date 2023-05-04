@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1회_평균_여행지별_국내여행_지출액__여행경험자(학력별)</title>
+    <title>1회_평균_여행지별_국내여행_지출액_여행경험자(학력별)</title>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -65,7 +65,7 @@
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
-    <h1>1회_평균_여행지별_국내여행_지출액__여행경험자(학력별)</h1>
+    <h1>1회_평균_여행지별_국내여행_지출액_여행경험자(학력별)</h1>
         
    <div id="chartContainer">
     <span id="regionButtons">

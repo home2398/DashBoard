@@ -381,13 +381,15 @@ canvas{
           <!-- 원래 class 명 : ms-1 font-weight-bold text-white -->
       </div>
     </div>
-    <div class="input-group input-group-outline">
+    <!-- <div class="input-group input-group-outline">
         <label class="form-label">Type here...</label>
-        <input type="text"  class="form-control">
-      </div>
+        <input id="filterText" type="text" class="form-control">
+    </div> -->
     <hr class="horizontal light mt-0 mb-2">
     <!-- <button id="csvBasket">담기목록</button> -->
     
+ 	
+ 
  
      <!-- <div class="collapse navbar-collapse w-auto ps" id="sidenav-collapse-main">
        <ul class="navbar-nav" >
@@ -420,6 +422,8 @@ canvas{
        </a>
       </li>
      </ul>
+     
+     
      
     <div class="collapse navbar-collapse w-auto ps" id="csvList">
       
@@ -510,6 +514,9 @@ canvas{
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="assets/js/material-dashboard.min.js?v=3.0.5"></script>
   
+
+  
+  
   <script type="text/javascript">
    document.addEventListener("DOMContentLoaded", function () {
      $("#csvBasket").on("click", function(){
@@ -527,11 +534,11 @@ canvas{
             console.log(list);
             $("#csvList").empty();
             for(var i =0; i<list.length; i++){
-               $("#csvList").append('<ul class="navbar-nav"><li class="nav-item"><a class="nav-link text-white" href="#"><div class="text-white text-center me-2 d-flex align-items-center justify-content-center"><i class="material-icons opacity-10">receipt_long</i></div><input type="button" id = "'+list[i].file_path+'" regiontemp="'+list[i].region+'" chartTypetemp="'+list[i].chartType+'" fileNametemp="'+list[i].file_name+'" myIDtemp="'+list[i].myID+'" class = "MyCsvName" name="MyCsvName" value="'+list[i].save_name+'" ><br>');
+               $("#csvList").append('<ul class="navbar-nav filterUL"><li class="nav-item filterLI"><a class="nav-link text-white" href="#"><div class="text-white text-center me-2 d-flex align-items-center justify-content-center"><i class="material-icons opacity-10">receipt_long</i></div><input type="button" id = "'+list[i].file_path+'" regiontemp="'+list[i].region+'" chartTypetemp="'+list[i].chartType+'" fileNametemp="'+list[i].file_name+'" myIDtemp="'+list[i].myID+'" class = "MyCsvName" name="MyCsvName" value="'+list[i].save_name+'" ><br>');
                $("#csvList").append('</a>');
                $("#csvList").append('</li>');
                $("#csvList").append('</ul>');
-               /* $("#csvList").append('<input type="button" id = "'+list[i].file_path+'" regiontemp="'+list[i].region+'" chartTypetemp="'+list[i].chartType+'" class = "MyCsvName" name="MyCsvName" value="'+list[i].save_name+'"><br>'); */
+               /* $("#csvList").append('<input type="button" id = "'+list[i].file_path+'" regiontemp="'+list[i].region+'" chartTypetemp="'+list[i].chartType+'" class = "" name="MyCsvName" value="'+list[i].save_name+'"><br>'); */
             }
             /*//////////////////////////////////////////////ajax 안에 ajax 통신//////////////////////////////////////////////////////////*/
            $('.MyCsvName').on('click',function(){
@@ -918,14 +925,6 @@ canvas{
         }
      }
      
-     
-     
-     
-     
-     
-     
-     
-     
      /*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
      
      // csv파일을 읽어서 변환해주는 코드//////////////////////////////////////////////////////////////////////////////////
@@ -945,9 +944,30 @@ canvas{
             return finalData;
         }
    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+		$("#filterText").keyup(function() {
+                var k = $(this).val();
+                console.log(k);
+                if(k === ''){
+                	$("#csvList > ul").hide();
+                }
+                else {
+                	var temp = $("#csvList > ul > li:contains('" + k + "')");
+                	$(temp).show();
+                }
+            })
+   
+   
+   
+   
+   
+   
+   
 
-   })
+   });
+   
+
   </script>
+  
   
 </body>
 

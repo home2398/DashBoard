@@ -13,7 +13,7 @@ import kr.pitb.model.UserVO;
 public class MychartService  implements Command {
 	//메인에서 마이 넘어갈때 로그인 한 사람만 넘어갈 수 있도록
 public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	//
 	HttpSession session = request.getSession();
 	String id = ((UserVO)session.getAttribute("User")).getId();
 	

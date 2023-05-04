@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public interface Command {
-	// FrontController -> 매니저급 직원?
+	// FrontController -> 매니저급 직원?,
 	// ~~service(일반클래스 / POJO) -> 아르바이트생?
 	// Command -> 아르바이트생이라면 지켜야하는 업무 메뉴얼
 	

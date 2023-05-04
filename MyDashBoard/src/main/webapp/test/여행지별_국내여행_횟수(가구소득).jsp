@@ -9,7 +9,7 @@
     <style>
 /* .chart-container {
             width: 80%;
-            margin: 0 auto;
+            margin: 0 auto;,
  } */
 
  #chartContainer {
@@ -108,8 +108,7 @@
 	    <button class="regionClass" data-region="경북" id="gyongbukBtn">경북</button>
 	    <button class="regionClass" data-region="경남" id="gyongnamBtn">경남</button>
 	    <button class="regionClass" data-region="제주" id="jejuBtn">제주</button>
-        </span>
-    </span>
+      </span>
     <canvas id="myChart" width="50" height="25"></canvas>
     </div>
     <br>

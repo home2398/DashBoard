@@ -27,7 +27,7 @@
             color: white;
             padding: 10px;
             cursor: pointer;
-            border-radius: 10px;
+            border-radius: 10px;,
         }
  */
  
@@ -84,6 +84,7 @@
 <form onsubmit="return false" method="post">
     <h1>여행지별_국내여행_지출액(가구소득)</h1>
     <div id="chartContainer">
+      <span id="regionButtons">
         <button class="regionClass" data-region="서울" id="seoulBtn">서울</button>
 	    <button class="regionClass" data-region="부산" id="busanBtn">부산</button>
 	    <button class="regionClass" data-region="대구" id="daeguBtn">대구</button>
@@ -103,7 +104,6 @@
 	    <button class="regionClass" data-region="제주" id="jejuBtn">제주</button>
     </span>
     <canvas id="myChart" width="50" height="20"></canvas>
-    <canvas id="myChart"></canvas>
     </div>
     
     <div class="savebox">
@@ -211,6 +211,18 @@
                 myChart.data.datasets[0].data = clickData[index];
                 myChart.update(); // 차트 업데이트
             }
+            
+			$('#save').on('click',function(){
+	            	
+	            	$.ajax({
+	            		url : '/MyDashBoard/Mycheck.do',
+	            		data : $('form').serialize(),
+	            		success:function(){
+	            			console.log($('#contentDiv'));
+	            			$('#contentDiv')[0].innerHTML = '<h1>저장되었습니다.</h1>';
+	            		}
+	            	})
+	            })
         })
     </script>
 </body>

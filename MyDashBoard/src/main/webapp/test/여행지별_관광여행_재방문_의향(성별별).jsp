@@ -30,7 +30,7 @@
 
     button:hover {
       background-color: cornsilk;
-      /* 원하는 배경색으로 변경 */
+      /* 원하는 배경색으로 변경, */
       color: black;
     }
 
@@ -42,9 +42,9 @@
       text-align: center;
     }
     
-     .savebox{
-    margin-left: 630px;
-    }
+     .savebox {
+          margin-left: 700px;
+       }
     
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>

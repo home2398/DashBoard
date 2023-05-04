@@ -10,6 +10,6 @@
    from csv파일정보 where 원본파일이름 like  '%'||#{cat}||'%'
    </select>
    
-   
+   <!--  -->
    
 </mapper>

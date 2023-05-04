@@ -42,9 +42,9 @@
       text-align: center;
     }
     
-    .savebox{
-    margin-left: 630px;
-    }
+    .savebox {
+          margin-left: 700px;
+       }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>

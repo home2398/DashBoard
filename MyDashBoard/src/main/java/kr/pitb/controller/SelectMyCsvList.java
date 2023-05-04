@@ -22,7 +22,7 @@ public class SelectMyCsvList implements Command{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		//
 		HttpSession session = request.getSession();
 		String id = ((UserVO)session.getAttribute("User")).getId();
 		

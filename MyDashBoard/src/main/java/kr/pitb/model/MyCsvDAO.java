@@ -12,7 +12,7 @@ import kr.pitb.model.MyCsvVO;
 
 public class MyCsvDAO {
 	
-//	mybatis 파일을 읽어서 connection 객체 빌려오기 위해서 작성해야하는 코드
+//	mybatis 파일을 읽어서 connection 객체 빌려오기 위해서 작성해야하는 코드,
 	
 	private static SqlSessionFactory sqlSessionFactory;
 	static {

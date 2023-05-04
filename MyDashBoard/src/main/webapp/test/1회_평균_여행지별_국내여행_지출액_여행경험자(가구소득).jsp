@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>1회_평균_여행지별_국내여행_지출액__여행경험자(가구소득)</title>
+    <title>1회_평균_여행지별_국내여행_지출액_여행경험자(가구소득)</title>
 
     <style>
     /*    .chart-container{
@@ -82,7 +82,7 @@
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
-    <h1>1회_평균_여행지별_국내여행_지출액__여행경험자(가구소득)</h1>
+    <h1>1회_평균_여행지별_국내여행_지출액_여행경험자(가구소득)</h1>
     <!-- <div class="chart-container"> -->
         
     <!-- <div class="btn-container"> -->

@@ -1,7 +1,7 @@
 package kr.pitb.model;
 
 public class MyCsvVO {
-
+	//
    private String user_id;
    private String file_name;
    private String save_name;

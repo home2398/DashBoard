@@ -11,5 +11,5 @@
    and b.회원ID = #{id}
    order by b.관심등록일자 asc
    </select>
-   
+   <!--  -->
 </mapper>

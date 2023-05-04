@@ -6,7 +6,7 @@
 	<packaging>war</packaging>
 	<!-- 라이브러리 추가하는 공간 -->
 	<dependencies>
-		<!-- Gson라이브러리(java의 객체를 json구조로 변환) -->
+		<!-- Gson라이브러리(java의 객체를 json구조로 변환), -->
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -56,11 +56,6 @@
             <artifactId>webjars-locator</artifactId>
             <version>0.40</version>
         </dependency>
-		<dependency>
-			<groupId>kr.smhrd</groupId>
-			<artifactId>MessageSystem</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

@@ -1,7 +1,7 @@
 package kr.pitb.model;
 
 public class UserVO {
-
+	//
 	private String id;
 	private String pw;
 	private String nickname;

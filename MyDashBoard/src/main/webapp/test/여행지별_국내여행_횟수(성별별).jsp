@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js">
   <style>
      .savebox {
-          margin-left: 630px;
+          margin-left: 700px;
        }
        
     #chartContainer {

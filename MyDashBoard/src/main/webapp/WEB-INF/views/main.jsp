@@ -65,7 +65,8 @@
    padding: 10px;
    border: 1px solid #888;
    width: 1600px;
-   height: 1000px;
+   height: 900px;
+   position: fixed;
 }
 
 /* 차트 스타일 */

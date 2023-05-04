@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(가구원수)</title>
+    <title>1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(가구원수)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -70,7 +70,7 @@
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
-    <h1>1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(가구원수)(단위 : 만원)</h1>
+    <h1>1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(가구원수)(단위 : 만원)</h1>
     <div id="chartContainer">
   	<span id="regionButtons">
        <button class="regionClass" data-region="서울" id="seoulBtn" value="서울">서울</button>

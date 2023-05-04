@@ -12,7 +12,7 @@ import kr.pitb.model.UserVO;
 public class LoginService implements Command {
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
+		//
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		

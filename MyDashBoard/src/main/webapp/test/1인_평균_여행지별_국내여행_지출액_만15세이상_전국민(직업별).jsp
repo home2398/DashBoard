@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(직업별)</title>
+    <title>1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(직업별)</title>
     <style>
         .chart-container {
             width: auto;
@@ -35,8 +35,8 @@
         }
         
          .savebox{
-    margin-left: 630px;
-    }
+    		margin-left: 630px;
+    	}
     </style>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -50,7 +50,7 @@
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
-    <h1>1인_평균_여행지별_국내여행_지출액__만15세이상_전국민(직업별)(단위 : 만원)</h1>
+    <h1>1인_평균_여행지별_국내여행_지출액_만15세이상_전국민(직업별)(단위 : 만원)</h1>
     <div class="chart-container">
         <canvas id="barChart"></canvas>
     </div>

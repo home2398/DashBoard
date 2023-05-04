@@ -7,7 +7,7 @@
  
  <mapper namespace="kr.pitb.model.UserDAO">
  	
- 	<!--  parameterType : DAO에서 받아오는 데이터가 있을 때 작성
+ 	<!--  parameterType : DAO에서 받아오는 데이터가 있을 때 작성,
  						  >> 반드시 FULL NAME 작성(패키지명까지) -->
  	<insert id="join" parameterType="kr.pitb.model.UserVO">
  		insert into 회원 (회원id , 비밀번호, 닉네임)

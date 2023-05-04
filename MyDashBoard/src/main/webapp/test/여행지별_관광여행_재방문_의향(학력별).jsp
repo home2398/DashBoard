@@ -46,7 +46,7 @@
         border-radius: 5px;
     }
     button:hover {
-        background-color: cornsilk; /* 원하는 배경색으로 변경 */
+        background-color: cornsilk; /* 원하는 배경색으로 변경, */
         color: black;
     }
 

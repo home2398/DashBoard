@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>1회_평균_여행지별_국내여행_지출액__여행경험자(직업별)</title>
+    <title>1회_평균_여행지별_국내여행_지출액_여행경험자(직업별)</title>
     <style>
         .chart-container {
             width: auto;
@@ -50,7 +50,7 @@
 <body>
 <div id="contentDiv">
 <form onsubmit="return false" method="post">
-    <h1>1회_평균_여행지별_국내여행_지출액__여행경험자(직업별)(단위 : 만원)</h1>
+    <h1>1회_평균_여행지별_국내여행_지출액_여행경험자(직업별)(단위 : 만원)</h1>
     <div class="chart-container">
         <canvas id="barChart"></canvas>
     </div>

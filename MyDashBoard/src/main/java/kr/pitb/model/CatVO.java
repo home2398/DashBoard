@@ -1,7 +1,7 @@
 package kr.pitb.model;
 
 public class CatVO {
-	
+	//
 	private String file_id;
 	private String file_name;
 	private String path;
