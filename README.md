@@ -1,4 +1,3 @@
-# CoreProject
 ## 🔗한국관광현황대시보드(팀명 : 파채(파이썬이 채고야)
 ![image](https://user-images.githubusercontent.com/122069364/236148720-324152f6-eb7f-4378-b865-625e04a3f25a.png)
 
